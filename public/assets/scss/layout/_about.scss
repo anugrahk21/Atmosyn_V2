@@ -1,0 +1,34 @@
+@use '../utils' as *;
+
+/*=============================
+    About area
+===============================*/
+.about-thumb-box8 {
+    background: var(--tg-theme-primary);
+    display: inline-block;
+}
+.about-wrap8 {
+    .sec-text2 {
+        font-size: 40px;
+        font-weight: 400;
+        letter-spacing: -0.03em;
+        line-height: 1.5em;
+        margin-top: 0;
+        @media #{$ml} {
+            font-size: 30px;
+        }
+        @media #{$md} {
+            font-size: 24px;
+        }
+        @media #{$xs} {
+            font-size: 20px;
+        }
+        @media #{$sm} {
+            font-size: 24px;
+        }
+    }
+    .icon-btn {
+        width: 60px;
+        height: 60px;
+    }
+}

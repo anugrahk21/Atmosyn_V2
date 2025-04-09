@@ -1,0 +1,66 @@
+@use '../utils' as *;
+
+/*=============================
+    Work 01
+===============================*/
+.video-btn-wrap {
+    .play-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--tg-heading2-font-family);
+        font-size: 20px;
+        font-weight: 500;
+        color: var(--tg-color-white-default);
+        max-width: 200px;
+        .icon-btn {
+            color: var(--tg-color-white-default);
+            width: 110px;
+            height: 60px;
+            flex: none;
+            &:hover {
+                color: var(--tg-theme-primary);
+            }
+        }
+    }
+}
+.video-thumb-box1 {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 55%;
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+    .video-btn-wrap {
+        position: absolute;
+        left: 270px;
+        bottom: 160px;
+        @media #{$ml} {
+            left: 120px;
+            bottom: 120px;
+        }
+        @media #{$lg} {
+            left: 40px;
+            bottom: 40px;
+        }
+    }
+    @media #{$md} {
+        width: 100%;
+        position: inherit;
+    }
+}
+.video-wrap1 {
+    padding-top: 190px;
+    padding-bottom: 470px;
+    @media #{$ml} {
+        padding-top: 120px;
+        padding-bottom: 350px;
+    }
+    @media #{$md} {
+        padding-bottom: 0;
+    }
+}

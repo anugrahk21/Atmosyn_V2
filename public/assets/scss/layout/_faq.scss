@@ -1,0 +1,158 @@
+@use '../utils' as *;
+
+/*=============================
+    FAQ 01
+===============================*/
+.accordion-card {
+    transition: 0.4s ease-in-out;
+    overflow: hidden;
+    background: transparent;
+    border-bottom: 1px solid var(--tg-heading-color);
+    border-radius: 0px;
+    position: relative;
+    padding-bottom: 18px;
+    &:first-child {
+        border-top: 1px solid var(--tg-heading-color);
+    }
+    .accordion-button {
+        font-size: 20px;
+        font-weight: 400;
+        font-family: var(--tg-heading-font-family);
+        color: var(--tg-heading-color);
+        border: 0;
+        background-color: transparent;
+        text-align: left;
+        transition: 0.3s;
+        box-shadow: none;
+        padding: 35px 45px 12px 0;
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
+        line-height: 1;
+        @media #{$xs} {
+            font-size: 18px;
+            padding: 32px 45px 10px 0;
+            line-height: 1.3;
+        }
+        &:after {
+            content: "\e905";
+            height: 30px;
+            width: auto;
+            background: transparent;
+            border: 0;
+            font-family: 'icomoon' !important;
+            color: var(--tg-heading-color);
+            font-weight: 900;
+            font-size: 30px;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: absolute;
+            line-height: normal;
+            top: 28px;
+            right: 0px;
+            transition: 0.3s ease-in-out;
+            @media #{$xs} {
+                font-size: 20px;
+                right: 1px;
+            }
+        }
+        .accordion-number {
+            font-size: 16px;
+            font-family: var(--tg-body-font-family);
+            font-style: normal;
+            font-weight: 400;
+            flex: none;
+            width: 272px;
+            @media #{$md} {
+                width: 172px;
+            }
+            @media #{$xs} {
+                width: 30px;
+            }
+        }
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+    }
+    .accordion-collapse {
+        border: none;
+        position: relative;
+    }
+    .accordion-body {
+        border-radius: 0;
+        background-color: transparent;
+        border: none;
+        padding: 0px 0 5px 272px;
+        @media #{$md} {
+            padding: 0px 0 5px 172px;
+        }
+        @media #{$xs} {
+            padding: 0px 0 5px 31px;
+        }        
+        p {
+            font-weight: 400;
+            font-size: 16px;
+            margin: 0;
+            letter-spacing: -0.015em;
+            opacity: 0.8;
+            max-width: 610px;
+        }
+    }
+    &:has(.accordion-collapse.show) {
+        .accordion-button {
+            color: var(--tg-theme-primary);
+        }
+    }
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+/*faq area 2****************/
+.accordion-card.style2 {
+    border-bottom: 0;
+    &:first-child {
+        border-top: 0;
+        .accordion-button {
+            padding-top: 0;
+            &:after {
+                top: 0;
+            }
+        }
+    }
+    &:last-child {
+        padding-bottom: 2px;
+    }
+    .accordion-button {
+        &:after {
+            content: "\ea3e";
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 50%;
+            font-size: 14px;            
+            font-weight: 400;
+            background: var(--tg-theme-primary);
+            color: var(--tg-heading-color);
+            @media #{$xs} {
+                top: 26px;
+            }
+        }
+        &.collapsed {
+            &:after {
+                color: var(--tg-color-white-default);
+                background: var(--tg-heading-color);
+            }
+        }
+    }
+    &:has(.accordion-collapse.show) .accordion-button {
+        color: var(--tg-heading-color);
+    }
+    .accordion-body {
+        padding-left: 0;
+        padding-bottom: 28px;
+        padding-top: 30px;
+        border-bottom: 1px solid var(--tg-heading-color);
+    }
+}

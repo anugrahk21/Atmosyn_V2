@@ -1,0 +1,113 @@
+@use '../utils' as *;
+
+/*=============================
+	05. OffCanvas
+===============================*/
+.offCanvas {
+    &__info {
+        background: var(--tg-color-black-1) none repeat scroll 0 0;
+        height: 100%;
+        padding: 30px;
+        position: fixed;
+        right: 0;
+        top: 0;
+        transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        -moz-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        -webkit-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        -ms-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        -o-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        width: 340px;
+        z-index: 999;
+        overflow-y: scroll;
+        @include transform(translateX(100%));
+        &.active {
+            @include transform(translateX(0));
+        }
+        &::-webkit-scrollbar {
+            width: 0px;
+        }
+    }
+    &__close-icon {
+        margin-top: -16px;
+        text-align: right;
+        & button {
+            background: transparent;
+            border: 0 none;
+            color: var(--tg-color-white-default);
+            cursor: pointer;
+            font-size: 20px;
+            padding: 0;
+        }
+    }
+    &__logo {
+        & img {
+            max-height: 45px;
+        }
+    }
+    &__side-info {
+        border-top: 1px solid rgba($color: #ffffff, $alpha: 0.2);
+        padding-top: 25px;
+        & .contact-list {
+            & h4 {
+                color: var(--tg-color-white-default);
+                font-weight: 400;
+                font-size: 18px;
+            }
+            & p {
+                color: var(--tg-color-white-default);
+                margin: 0;
+                margin-bottom: 2px;
+                line-height: 26px;
+            }
+        }
+    }
+    &__social-icon {
+        @include flexbox();
+        position: relative;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        & li {
+            position: relative;
+            display: inline-block;
+            margin: 0px 6px 10px;
+            & a {
+                @include flexbox();
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                position: relative;
+                line-height: 32px;
+                font-size: 16px;
+                color: var(--tg-color-white-default);
+                -webkit-transition: all 500ms ease;
+                -o-transition: all 500ms ease;
+                transition: all 500ms ease;
+                border: 1px solid #efefef;
+                border-radius: 50%;
+                &:hover {
+                    background: var(--tg-color-white-default);
+                    color: var(--tg-heading-color);
+                }
+            }
+        }
+    }
+    &__overly {
+        position: fixed;
+        background: #000;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 99;
+        opacity: 0;
+        visibility: hidden;
+        @include transition(.3s);
+        &.active {
+            opacity: .7;
+            visibility: visible;
+        }
+    }
+}

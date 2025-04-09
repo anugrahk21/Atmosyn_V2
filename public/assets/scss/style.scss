@@ -1,0 +1,36 @@
+@forward 'components/theme';
+@forward 'components/buttons';
+@forward 'components/preloader';
+@forward 'components/background';
+@forward 'components/offCanvas';
+@forward 'components/search';
+@forward 'components/breadcrumb';
+@forward 'components/scroll-top';
+@forward 'components/section-title';
+@forward 'components/select2';
+@forward 'components/input';
+@forward 'layout/header';
+@forward 'components/mobile-menu';
+@forward 'layout/banner';
+@forward 'layout/service';
+@forward 'layout/work';
+@forward 'layout/team';
+@forward 'layout/testimonial';
+@forward 'layout/counter';
+@forward 'layout/project';
+@forward 'layout/award';
+@forward 'layout/client';
+@forward 'layout/contact';
+@forward 'layout/marquee';
+@forward 'layout/pricing';
+@forward 'layout/faq';
+@forward 'layout/video';
+@forward 'layout/about';
+@forward 'layout/blog';
+
+@forward 'layout/footer';
+@forward 'components/animation';
+
+.rfm-marquee-container {
+    overflow: hidden;
+}

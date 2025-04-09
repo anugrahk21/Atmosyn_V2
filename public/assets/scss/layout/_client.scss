@@ -1,0 +1,57 @@
+@use '../utils' as *;
+
+/*=============================
+    Client
+===============================*/
+.client-list-wrap {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid rgba($color: #0A0C00, $alpha: 0.5);
+    li {
+        border-top: 1px solid rgba($color: #0A0C00, $alpha: 0.5);
+        border-right: 1px solid rgba($color: #0A0C00, $alpha: 0.5);
+        a {
+            display: block;
+            text-align: center;
+            padding: 58px 30px;
+            img {
+                transition: 0.4s;
+            }
+            &:hover {
+                img {
+                    transform: scale(1.05);
+                }
+            }
+            @media #{$xs} {
+                padding: 38px 10px;
+            }
+        }
+        &:last-child {
+            border-right: 0;
+        }
+        &:not(:nth-last-child(-n + 3)) {
+            border-top: 0;
+        }
+        &:nth-child(3) {
+            border-right: 0;
+        }
+    }
+}
+/*=============================
+    Partner 2
+===============================*/
+.partner-shape2-1 {
+    .square-shape-wrap {
+        top: 0;
+        left: 0;
+        right: auto;
+        transform: translate(0, -100%) rotate(90deg);
+        --box-size: 35px;
+        @media #{$xs} {
+            --box-size: 18px;
+        }
+    }
+}

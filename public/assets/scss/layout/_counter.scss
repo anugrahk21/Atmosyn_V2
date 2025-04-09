@@ -1,0 +1,152 @@
+@use '../utils' as *;
+
+/*=============================
+    Counter 01
+===============================*/
+.counter-card {
+    display: flex;
+    align-items: center;
+    position: relative;
+    &:not(:last-child) {
+        margin-bottom: 95px;
+        @media #{$md} {
+            margin-bottom: 55px;
+        }
+        @media #{$xs} {
+            margin-bottom: 25px;
+        }
+        @media #{$sm} {
+            margin-bottom: 45px;
+        }
+    }
+    .counter-card-number {
+        font-size: 90px;
+        font-weight: 400;
+        color: var(--tg-color-white-default);
+        opacity: 0.15;
+        margin-bottom: -0.3em;
+        margin-top: -0.13em;
+        transition: 0.4s;
+        position: absolute;
+        z-index: -1;
+        @media #{$xs} {
+            font-size: 60px;
+        }
+        @media #{$sm} {
+            font-size: 70px;
+        }
+    }
+    .counter-card-title {
+        color: var(--tg-color-white-default);
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1;
+        padding: 7px 8px 3px;
+        text-transform: uppercase;
+        letter-spacing: -0.015em;
+        transition: 0.4s;
+        margin: 19px 0 19px 20px;
+        @media #{$xs} {
+            font-size: 18px;
+        }
+    }
+    &:hover {
+        .counter-card-number {
+            color: var(--tg-theme-primary);
+            opacity: 1;
+        }
+        .counter-card-title {
+            background: var(--tg-color-white-default);
+            color: var(--tg-heading-color);
+        }
+    }
+}
+.overview-thumb1-1 {
+    overflow: hidden;
+    img {
+        max-width: 614px;
+        max-height: 684px;
+        object-fit: cover;
+        @media #{$xs} {
+            max-height: none;
+            max-width: none;
+            width: 100%;
+        }
+    }
+}
+.counter-grid-wrap {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--tg-color-white-default);
+    .counter-card {
+        margin-bottom: 40px;
+    }
+}
+.counter-area-1 {
+    border-top: 1px solid var(--tg-heading-color);
+    border-bottom: 1px solid var(--tg-heading-color);
+}
+.counter-divider {
+    position: relative;
+    &:after {
+        content: '';
+        position: absolute;
+        left: -70px;
+        top: 0;
+        height: 100%;
+        width: 1px;
+        background: var(--tg-heading-color);
+    }
+    &:first-child {
+        &:after {
+            display: none;
+        }
+    }
+    @media #{$ml} {
+        &:after {
+            left: -60px;
+        }
+    }
+    @media #{$lg} {
+        &:after {
+            display: none;
+        }
+    }
+}
+.counter-box {
+    max-width: 320px;
+    &_icon {
+        font-size: 40px;
+        margin-bottom: 15px;
+        i {
+            transition: all 0.4s ease-in-out;
+            display: inline-block;
+        }
+    }
+    &_title {
+        font-weight: 400;
+        font-size: 24px;
+        letter-spacing: 0.015em;
+        margin-bottom: 30px;
+        @media #{$lg} {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+    }
+    &_text {
+        font-size: 16px;
+        margin-bottom: -0.2em;
+        letter-spacing: -0.015em;
+        opacity: 0.8;
+        line-height: 1.75em;
+    }
+    &:hover {
+        .counter-box_icon {
+            i {
+                transform: scale(-1) rotate(180deg);
+            }
+        }
+    }
+}

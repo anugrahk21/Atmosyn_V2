@@ -1,0 +1,74 @@
+@use '../utils' as *;
+
+/*=============================
+    04. Background color
+===============================*/
+.grey-bg {
+	background: var(--tg-color-gray-1);
+}
+.white-bg {
+	background: var(--tg-color-white-default);
+}
+.black-bg {
+	background: var(--tg-heading-color);
+}
+.black2-bg {
+	background: var(--tg-color-black-1);
+}
+.dark-bg {
+	background: var(--tg-color-dark);
+}
+.theme-bg {
+	background: var(--tg-theme-primary);
+}
+
+/*=============================
+    Background Shape
+===============================*/
+.square-shape-wrap {
+	display: inline-flex;
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: calc(var(--box-size) * 3) 0 0 calc(var(--box-size) * 3);
+	--box-size: 62px;
+	.square-shape1 {
+		display: inline-block;
+		width: calc(calc(var(--box-size) * 3));
+		height: calc(calc(var(--box-size) * 3));
+		background: var(--tg-theme-primary);
+	}
+	.square-shape2 {
+		display: inline-block;
+		width: var(--box-size);
+		height: var(--box-size);
+		background: var(--tg-theme-primary);
+		position: absolute;
+		top: 0;
+		left: 0;
+		transform: translate(calc(var(--box-size) * 2), calc(var(--box-size) * 2));
+	}
+	.square-shape3 {
+		display: inline-block;
+		width: var(--box-size);
+		height: var(--box-size);
+		background: var(--tg-heading-color);
+		position: absolute;
+		top: 0;
+		left: 0;
+		transform: translate(var(--box-size), var(--box-size));
+	}
+	.square-shape4 {
+		display: inline-block;
+		width: var(--box-size);
+		height: var(--box-size);
+		background: var(--tg-theme-primary);
+		position: absolute;
+		top: 0;
+		left: 0;
+		transform: translate(0, 0);
+	}
+	&.style2 {
+		transform: rotate(180deg);
+	}
+}

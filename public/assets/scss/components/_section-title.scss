@@ -1,0 +1,180 @@
+@use '../utils' as *;
+
+/*=============================
+	09. Section Title
+===============================*/
+.section__title {
+    & .sub-title {
+        text-transform: uppercase;
+        font-size: 18px;
+        font-weight: 400;
+        margin-bottom: 25px;
+        display: inline-flex;
+        line-height: 1;
+        font-family: var(--tg-heading-font-family);
+        gap: 10px;
+        letter-spacing: -0.015em;
+        margin-left: 12px;
+        @media #{$ml} {
+            margin-left: 0px;
+        }
+        & svg {
+            color: var(--tg-color-gray-3);
+            transform: translateY(-3px);
+        }
+        &:before {
+            content: '';
+            position: relative;
+            display: inline-block;
+            height: 2px;
+            width: 80px;
+            background: var(--tg-theme-primary);
+            align-self: center;
+            margin-top: -0.1em;
+            @media #{$md} {
+                display: none;
+            }
+        } 
+    }
+    & .sub-title2 {
+        font-family: var(--tg-heading2-font-family);
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: -0.015em;
+        margin-bottom: 43px;
+    }
+    & .title {
+        margin-bottom: 0;
+        font-weight: 400;
+        font-size: 3.75rem;
+        text-transform: capitalize;
+        line-height: 1.166;
+        letter-spacing: -0.03em;
+        @media #{$lg} {
+            font-size: 3rem;
+        }
+        @media #{$xs} {
+            font-size: 2rem;
+        }
+        @media #{$sm} {
+            font-size: 2.5rem;
+        }
+        & br {
+            @media #{$md} {
+                display: none;
+            }
+        }
+        &.title2 {
+            font-family: var(--tg-heading2-font-family);
+            font-weight: 700;
+        }
+    }
+    & .shadow-title {
+        font-weight: 400;
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
+        margin-left: 150px;
+        margin-bottom: -53px;
+        opacity: 0.2;
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke: 1px var(--tg-color-white-default);
+        @media #{$md} {
+            margin-left: 0;
+            margin-bottom: -43px;
+        }
+        @media #{$xs} {
+            font-size: 2rem;
+            margin-bottom: -23px;
+        }
+        @media #{$sm} {
+            font-size: 2.5rem;
+            margin-bottom: -30px;
+        }        
+    }
+    & p {
+        margin-bottom: 0;
+        margin-top: 10px;
+        & br {
+            @media #{$xs} {
+                display: none;
+            }
+        }
+    }
+    & .sec-text {
+        font-size: 18px;
+        margin-top: 28px;
+        opacity: 0.8;
+        @media #{$xs} {
+            font-size: 16px;
+        }
+    }
+    & .sec-text2 {
+        font-size: 20px;
+        font-family: var(--tg-heading2-font-family);
+        margin-top: 28px;
+        line-height: 1.5em;
+        letter-spacing: -0.015em;
+        @media #{$xs} {
+            font-size: 16px;
+        }
+    }
+    & .sec-text3 {
+        font-size: 20px;
+        margin-top: 28px;
+        line-height: 1.5em;
+        letter-spacing: -0.015em;
+        @media #{$xs} {
+            font-size: 16px;
+        }
+    }
+    &-two {
+        border-top: 1px solid var(--tg-heading-color);
+        border-bottom: 1px solid var(--tg-heading-color);
+        padding: 40px 0 31px;
+        @media (min-width: 1920px) {
+            .title {
+                margin-left: -20px;
+            }
+        }
+    }
+    &-three {
+        position: relative;
+        &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 44px;
+            height: 1px;
+            background: var(--tg-color-white-default);
+        }
+    }
+    &.white-title {
+        & .sub-title {
+            color: var(--tg-color-gray-5);
+            & svg {
+                color: var(--tg-color-light-blue);
+            }
+        }
+        & .title {
+            color: var(--tg-color-white-default);
+        }
+        & p {
+            color: var(--tg-color-gray-5);
+        }
+    }
+    &.mb-40 {
+        @media #{$md} {
+            margin-bottom: 30px;
+        }
+    }
+}
+
+.page-title {
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    @media #{$xs} {
+        font-size: 24px;
+    }
+}

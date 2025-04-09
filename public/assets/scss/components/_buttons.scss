@@ -1,0 +1,490 @@
+@use '../utils' as *;
+
+/*=============================
+	02. Button style
+===============================*/
+.tg-button-wrap {
+    @include flexbox();
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px 30px;
+    &.g-0 {
+        gap: 0;
+    }
+}
+.btn {
+    user-select: none;
+    -moz-user-select: none;
+    background: var(--tg-theme-primary) none repeat scroll 0 0;
+    border: medium none;
+    @include border-radius(100px);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1;
+    margin-bottom: 0;
+    padding: 10px 20px;
+    text-align: center;
+    text-transform: capitalize;
+    touch-action: manipulation;
+    @include transition(.3s);
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-family: var(--tg-heading-font-family);
+    gap: 20px;
+    --arrow-hover-move-x: -110%;
+    &::before {
+        content: "";
+        position: absolute;
+        -webkit-transition-duration: 800ms;
+        transition-duration: 800ms;
+        width: 200%;
+        height: 200%;
+        top: 110%;
+        left: 50%;
+        background: var(--tg-color-white-default);
+        @include transform(translateX(-50%));
+        @include border-radius(50%);
+        z-index: -1;
+    }
+    & svg {
+        @include transform(translateY(-2.5px));
+        & path {
+            transition: transform .38s cubic-bezier(.37, .08, .02, .93), opacity .18s ease-out;
+            &:nth-of-type(1) {
+                transform: translateX(0);
+                opacity: 1;
+                transition-delay: .15s, .15s;
+            }
+            &:nth-of-type(2) {
+                transform: translateX(calc(1 * var(--arrow-hover-move-x)));
+                opacity: .5;
+                transition-delay: 0s, 0s;
+            }
+        }
+    }
+    &:active,
+    &:focus,
+    &:hover,
+    &:focus-visible {
+        background: var(--tg-theme-primary);
+        &:before {
+            top: -40%;
+        }
+        & svg {
+            & path {
+                &:nth-of-type(1) {
+                    transform: translateX(calc(-1 * var(--arrow-hover-move-x)));
+                    opacity: 0;
+                    transition-delay: 0s, 0s;
+                }
+                &:nth-of-type(2) {
+                    transform: translateX(0) translateY(0);
+                    opacity: 1;
+                    transition-delay: .15s, .15s;
+                }
+            }
+        }
+    }
+    &-two {
+        padding: 22px 40px 20px;
+        font-size: 18px;
+        background: var(--tg-heading-color);
+        color: var(--tg-color-white-default);
+        &:before {
+            background: var(--tg-theme-primary);
+        }
+        &:active,
+        &:focus,
+        &:hover {
+            background: var(--tg-heading-color);
+            color: var(--tg-heading-color);
+        }
+        @media #{$xs} {
+            padding: 18px 30px 16px;
+        }
+    }
+    &-three {
+        &:before {
+            background: var(--tg-heading-color);
+        }
+        &:active,
+        &:focus,
+        &:hover {
+            color: var(--tg-color-white-default);
+            &:before {
+                background: var(--tg-heading-color);
+            }
+        }
+    }
+    &-four {
+        background: rgba($color: #ffffff, $alpha: 0.1);
+        color: var(--tg-color-white-default);
+        padding: 22px 40px 20px;
+        font-size: 18px;
+        @media #{$xs} {
+            padding: 18px 30px 16px;
+        }
+        &:active,
+        &:focus,
+        &:hover {
+            background: rgba($color: #ffffff, $alpha: 0.1);
+        }
+    }
+    &-five {
+        background: var(--tg-theme-primary);
+        color: var(--tg-color-white-default);
+        padding: 22px 40px 20px;
+        font-size: 18px;
+        &:before {
+            background: var(--tg-heading-color);
+        }
+        &:active,
+        &:focus,
+        &:hover {
+            color: var(--tg-color-white-default) !important;
+        }
+        @media #{$xs} {
+            padding: 18px 30px 16px;
+        }
+    }
+    &-six {
+        background: var(--tg-theme-primary);
+        color: var(--tg-color-white-default);
+        padding: 22px 40px 20px;
+        font-size: 18px;
+        &:before {
+            background: var(--tg-color-white-default);
+        }
+        &:active,
+        &:focus,
+        &:hover {
+            color: var(--tg-heading-color) !important;
+        }
+        @media #{$xs} {
+            padding: 18px 30px 16px;
+        }
+    }
+    &.square-btn {
+        border-radius: 0;
+        padding: 23px 40px 21px;
+        @media #{$xs} {
+            padding: 18px 30px 16px;
+        }
+    }
+    &.border-btn {
+        border: 1px solid var(--tg-theme-primary);
+        background: transparent;
+        color: var(--tg-theme-primary);
+        &:active,
+        &:focus,
+        &:hover {
+            background: transparent;
+            border-color: var(--tg-theme-primary);
+            color: var(--tg-color-dark);
+            &::before {
+                background: var(--tg-theme-primary);
+            }
+        }
+    }
+    &.border-white {
+        color: var(--tg-color-white-default);
+        border: 1px solid var(--tg-color-white-default);
+        background: transparent;
+        &:active,
+        &:focus,
+        &:hover {
+            color: var(--tg-color-dark);
+            &::before {
+                background: var(--tg-color-white-default);
+            }
+        }
+    }
+    &.border-dark {
+        font-size: 18px;
+        border-radius: 0;
+        line-height: 1.77777;
+        border: 1px solid var(--tg-color-dark);
+        background: transparent;
+        &:active,
+        &:focus,
+        &:hover {
+            background: transparent;
+            border: 1px solid var(--tg-theme-primary) !important;
+            &:before {
+                background: var(--tg-theme-primary);
+            }
+        }
+    }
+    &.border-dark2 {
+        font-size: 18px;
+        border-radius: 0;
+        line-height: 1;
+        padding: 21px 40px 19px;
+        border: 1px solid var(--tg-color-dark);
+        background: transparent;
+        &:active,
+        &:focus,
+        &:hover {
+            background: transparent;
+            border: 1px solid var(--tg-theme-primary) !important;
+            &:before {
+                background: var(--tg-theme-primary);
+            }
+        }
+    }
+    &.border-dark3 {
+        font-size: 18px;
+        line-height: 1.77777;
+        border: 1px solid var(--tg-color-dark);
+        background: transparent;
+        &:active,
+        &:focus,
+        &:hover {
+            background: transparent;
+            border: 1px solid var(--tg-color-dark) !important;
+            color: var(--tg-color-white-default);
+            &:before {
+                background: var(--tg-color-dark);
+            }
+        }
+    }
+    &.border-dark4 {
+        font-size: 18px;
+        border-radius: 0;
+        line-height: 1;
+        padding: 21px 40px 19px;
+        border: 1px solid var(--tg-color-dark);
+        background: transparent;
+        &:active,
+        &:focus,
+        &:hover {
+            background: transparent;
+            border: 1px solid var(--tg-theme-primary) !important;
+            color: var(--tg-color-white-default);
+            &:before {
+                background: var(--tg-theme-primary);
+            }
+        }
+    }
+    &.btn-font2 {
+        font-family: var(--tg-heading2-font-family);
+        font-size: 18px;
+    }
+}
+
+.big-circle-btn {
+    height: 148px;
+    width: 148px;
+    justify-content: center;
+    font-size: 46px;
+    white-space: normal;
+    @media #{$ml} {
+        height: 120px;
+        width: 120px;
+        font-size: 40px;
+    }
+    @media #{$xs} {
+        height: 100px;
+        width: 100px;
+        font-size: 30px;
+    }
+    &.style2 {
+        font-size: 14px;
+    }
+    &.style3 {
+        height: 185px;
+        width: 185px;
+        letter-spacing: -0.004em;
+        padding: 20px;
+        font-size: 20px;
+        line-height: 1.5em;
+    }
+    &.style4{
+        height: 185px;
+        width: 185px;
+        letter-spacing: -0.004em;
+        padding: 20px;
+        font-size: 20px;
+        line-height: 1.5em;
+        &:before {
+            background: var(--tg-heading-color);
+        }
+        &:active,
+        &:focus,
+        &:hover {
+            color: var(--tg-color-white-default);
+        }
+    }
+}
+.link-btn {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: var(--tg-heading-font-family);
+    line-height: 0.8;
+    position: relative;
+    padding-bottom: 17px;
+    margin-bottom: 0px;
+    color: var(--tg-color-dark);
+    display: inline-flex;
+    gap: 25px;
+    text-decoration: none;
+    i {
+        font-size: 12px;
+        transition: 0.4s;
+    }
+    &:after,
+    &:before {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--tg-color-dark);
+        transition: all ease 0.4s;
+    }
+    &:after {
+        width: 0;
+        left: 0;
+        transition: all ease 1.2s;
+    }
+    &:hover {
+        color: var(--tg-color-dark);
+        &::before {
+            width: 0;
+        }
+        &:after {
+            width: 100%;
+        }
+        i.icon-arrow-top-left {
+            transform: rotate(45deg) translate(-2px, 2px);
+        }
+    }
+    &.style2 {
+        padding-bottom: 3px;
+        gap: 20px;
+        @media #{$md} {
+            font-size: 16px;
+        }
+        &:after {
+            display: none;
+        }
+        &:before {
+            left: 2px;
+            bottom: -1px;
+            width: 100%;
+            height: 1px;
+            background: currentColor;
+            transform-origin: right top;
+            transform: scale(0, 1);
+            transition: transform 0.4s cubic-bezier(0.74, 0.72, 0.27, 0.24);
+        }
+        &:hover {
+            &:before {
+                transform-origin: left top;
+                transform: scale(1, 1);
+            }
+        }
+    }
+    &.style3 {
+        padding-bottom: 5px;
+        font-family: var(--tg-heading2-font-family);
+        @media #{$md} {
+            font-size: 16px;
+        }
+        &:after {
+            display: none;
+        }
+        &:before {
+            left: 2px;
+            bottom: -1px;
+            width: 100%;
+            height: 1px;
+            background: currentColor;
+            transform-origin: right top;
+            transform: scale(0, 1);
+            transition: transform 0.4s cubic-bezier(0.74, 0.72, 0.27, 0.24);
+        }
+        &:hover {
+            &:before {
+                transform-origin: left top;
+                transform: scale(1, 1);
+            }
+        }
+    }
+    &.text-white {
+        &::before,
+        &::after {
+            background: var(--tg-color-white-default);
+        }
+    }
+}
+.icon-btn {
+    height: 52px;
+    width: 52px;
+    padding: 0;
+    justify-content: center;
+    &.btn-five,
+    &.btn-four,
+    &.btn-three,
+    &.btn-two {
+        height: 60px;
+        width: 60px;
+        color: var(--tg-color-white-default);
+        &:hover {
+            color: var(--tg-heading-color);
+        }
+        @media #{$xs} {
+            height: 52px;
+            width: 52px;
+        }
+    }
+    &.btn-three {
+        &:hover {
+            color: var(--tg-color-white-default);
+        }
+    }
+    &.btn-five {
+        &:before {
+            background: var(--tg-color-white-default);
+        }
+        &:focus,
+        &:active,
+        &:hover {
+            color: var(--tg-theme-primary) !important;
+        }
+    }
+}
+.btn-with-icon {
+    display: inline-flex;
+    align-items: center;
+    &:hover {
+        .btn {
+            color: var(--tg-heading-color);
+            &:before {
+                top: -40%;
+            }
+        }
+    }
+    &.style2 {
+        &:hover {
+            .btn {
+                color: var(--tg-color-white-default);
+            }
+        }
+    }
+    &.style3 {
+        &:hover {
+            .btn {
+                color: var(--tg-theme-primary);
+            }
+        }
+    }
+}

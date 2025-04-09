@@ -1,0 +1,234 @@
+@use '../utils' as *;
+
+/*=============================
+    Award 01
+===============================*/
+.award-wrap-area {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    .single-award-list {
+        display: flex;
+        border-top: 2px solid var(--tg-heading-color);
+        padding-bottom: 38px;
+        padding-top: 38px;
+        align-items: center;
+        transition: 0.4s;
+        @media #{$xs} {
+            display: block;
+            padding-bottom: 30px;
+        }
+        @media #{$sm} {
+            display: flex;
+            padding-bottom: 38px;
+        }
+        &:last-child {
+            border-bottom: 2px solid var(--tg-heading-color);
+        }
+        .award-year {
+            font-size: 30px;
+            font-weight: 400;
+            font-family: var(--tg-heading-font-family);
+            color: var(--tg-heading-color);
+            letter-spacing: -0.03em;
+            margin-left: auto;
+            margin-right: 50px;
+            text-transform: uppercase;
+            transition: 1.0s;
+            display: inline-block;
+            margin-bottom: -0.25em;
+            @media #{$xs} {
+                margin-right: 30px;
+                margin-left: 30px;
+                margin-top: 20px;
+                line-height: 1;
+            }            
+            @media #{$sm} {
+                margin-right: 30px;
+                margin-top: 0;
+                margin-left: auto;
+            }
+        }
+        .award-details {
+            margin-left: 50px;
+            transition: 1.0s;
+            position: relative;
+            @media #{$xs} {
+                margin-left: 30px;
+            }
+            h4 {
+                font-size: 28px;
+                font-weight: 400;
+                font-family: var(--tg-heading-font-family);
+                margin-bottom: 3px;
+                letter-spacing: -0.03em;
+                text-transform: uppercase;
+                a {
+                    color: var(--tg-heading-color);
+                    &:hover {
+                        color: var(--tg-heading-color);
+                    }
+                }
+                @media #{$xs} {
+                    font-size: 24px;
+                }
+            }
+            p {
+                font-size: 18px;
+                margin-bottom: -0.3em;
+            }
+        }
+        &:hover {
+            background: var(--tg-color-white-default);
+            border-color: var(--tg-color-white-default);
+            ~ .single-award-list {
+                border-top-color: var(--tg-color-white-default);
+                ~ .single-award-list {
+                    border-top-color: var(--tg-heading-color);
+                }
+            }
+        }
+    }
+}
+
+
+/*=============================
+    Award 06
+===============================*/
+.award-wrap-area-6 {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    @media #{$xs} {
+        border-top: 1px solid rgba($color: #ffffff, $alpha: 0.5);
+    }
+    @media #{$sm} {
+        border-top: 0;
+    }
+    .single-award-list {
+        display: flex;
+        border-bottom: 1px solid rgba($color: #ffffff, $alpha: 0.5);
+        padding-bottom: 45px;
+        padding-top: 45px;
+        align-items: center;
+        transition: 0.4s;
+        @media #{$xs} {
+            display: block;
+            padding-bottom: 30px;
+            padding-top: 30px;
+
+        }
+        @media #{$sm} {
+            display: flex;
+            padding-bottom: 38px;
+            padding-top: 38px;
+        }
+        .project-number {
+            font-size: 18px;
+            font-weight: 500;
+            font-family: var(--tg-heading2-font-family);
+            color: var(--tg-color-white-default);
+            flex: 0.8;
+            transition: 1.0s;
+            @media #{$md} {
+                flex: none;
+                width: 80px;
+            }
+            @media #{$xs} {
+                font-size: 16px;
+            }
+        }
+        .award-details {
+            flex: 1;
+            transition: 1.0s;
+            @media #{$xs} {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            .title {
+                font-family: var(--tg-heading2-font-family);
+                color: var(--tg-color-white-default);
+                font-size: 18px;
+                font-weight: 400;
+                margin-bottom: 0;
+                letter-spacing: 0.015em;
+                @media #{$xs} {
+                    line-height: 1.5;
+                }
+            }
+        }
+        .award-project-wrap {
+            display: flex;
+            justify-content: space-between;
+            margin-left: auto;
+            align-items: center;
+            flex: 1;
+        }
+        .project-name {
+            font-family: var(--tg-heading2-font-family);
+            color: var(--tg-color-white-default);
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 0;
+            letter-spacing: 0.015em;
+            transition: 1s;
+            @media #{$xs} {
+                line-height: 1.5;
+            }
+        }
+        .award-year {
+            font-family: var(--tg-heading2-font-family);
+            color: var(--tg-color-white-default);
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 0;
+            letter-spacing: 0.015em;
+            opacity: 0.8;
+            transition: 1.0s;
+        }
+        &.list-header {
+            border-bottom: 2px solid var(--tg-color-white-default);
+            padding-bottom: 31px;
+            padding-top: 0;
+            margin-top: -0.78em;
+            .project-number {
+                font-size: 26px;
+                font-weight: 400;
+                @media #{$xs} {
+                    font-size: 20px;
+                }
+            }
+            .project-name,
+            .award-details .title {
+                font-size: 26px;
+                font-weight: 600;
+                letter-spacing: -0.03em;
+                @media #{$xs} {
+                    font-size: 20px;
+                }
+            }
+            @media #{$xs} {
+                display: none;
+            }
+            @media #{$sm} {
+                display: flex;
+            }
+        }
+        &:not(:first-child):hover {
+            .project-number {
+                transform: translate3d(1.5rem, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+                transform-style: preserve-3d;
+                @media #{$xs} {
+                    transform: none;
+                }
+            }
+            .award-year {
+                transform: translate3d(-1.5rem, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+                transform-style: preserve-3d;
+                @media #{$xs} {
+                    transform: none;
+                }
+            } 
+        }
+    }
+}

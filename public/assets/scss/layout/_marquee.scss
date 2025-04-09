@@ -1,0 +1,114 @@
+@use '../utils' as *;
+
+/*=============================
+    Marquee 01
+===============================*/
+.marquee-wrap {
+    margin: -7px 0 -26px;
+    display: flex;
+    @media #{$ml} {
+        margin: -5px 0 -20px;
+    }
+    @media #{$lg} {
+        margin: -4px 0 -7px;
+    }
+    @media #{$xs} {
+        margin: -2px 0 -7px;
+    }
+    .marquee__group {
+        .m-item {
+            margin-right: 25px;
+            display: inline;
+            a {
+                font-size: 130px;
+                font-weight: 400;
+                letter-spacing: -0.03em;
+                text-transform: uppercase;
+                line-height: 1;
+                @media #{$ml} {
+                    font-size: 100px;
+                }
+                @media #{$lg} {
+                    font-size: 80px;
+                }
+                @media #{$md} {
+                    font-size: 65px;
+                }
+                @media #{$xs} {
+                    font-size: 45px;
+                }
+                @media #{$vxs} {
+                    font-size: 40px;
+                }
+                @media #{$sm} {
+                    font-size: 50px;
+                }
+            }
+            &.text-stroke {
+                a {
+                    -webkit-text-fill-color: transparent;
+                    -webkit-text-stroke: 1px var(--tg-heading-color);
+                    &:hover {
+                        -webkit-text-stroke: 1px var(--tg-theme-primary);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*marquee-wrap2*****************/
+.marquee-wrap.style2 {
+    margin: -12px 0 -17px;
+    .marquee__group {
+        .m-item {
+            a {
+                font-family: var(--tg-heading2-font-family);
+                font-weight: 500;
+                color: var(--tg-color-white-default);
+                display: inline-flex;
+                align-items: center;
+                gap: 15px;
+                img {
+                    width: 80px;
+                    @media #{$lg} {
+                        width: 60px;
+                    }
+                    @media #{$md} {
+                        width: 50px;
+                    }
+                    @media #{$xs} {
+                        width: 30px;
+                    }
+                    @media #{$sm} {
+                        width: 40px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*marquee-wrap3*****************/
+.marquee-wrap.style3 {
+    margin: 0;
+    .marquee__group {
+        display: inline-flex;
+        align-self: center;
+        .m-item {
+            margin-right: 100px;
+            display: inline-block;
+            a {
+                line-height: normal;
+                font-size: 20px;
+                display: inline-block;
+                img {
+                    transition: 0.4s;
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+    }
+}
