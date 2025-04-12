@@ -1,40 +1,29 @@
-'use client'
-import { Autoplay, Navigation, Pagination } from "swiper/modules"
-import { Swiper, SwiperSlide } from "swiper/react"
-
-const swiperOptions = {
-    modules: [Autoplay, Pagination, Navigation],
-    slidesPerView: 1,
-    spaceBetween: 30,
-    loop: true,
-    breakpoints: {
-        '1200': {
-            slidesPerView: 1,
-        },
-        '992': {
-            slidesPerView: 1,
-        },
-        '768': {
-            slidesPerView: 1,
-        },
-        '576': {
-            slidesPerView: 1,
-        },
-        '0': {
-            slidesPerView: 1,
-        },
-    },
-    // Navigation arrows
-    navigation: {
-        nextEl: '.testimonial-button-next',
-        prevEl: '.testimonial-button-prev',
-    },
-}
-
-
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
+import { generateStaticMetadata } from "@/util/metadata"
+import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
+
+// Generate metadata using our utility
+export const metadata: Metadata = generateStaticMetadata({
+  title: 'Our Team',
+  pageName: 'Team',
+  shortInfo: 'Meet Our Experts',
+  description: 'Meet the talented Atmosyn team of digital experts who bring creativity, innovation and technical excellence to every project. Atmosyn merges innovative design with strategic insights to create engaging digital experiences.',
+  specificTopic: 'our expert team members',
+  keywords: ['digital agency team', 'creative professionals', 'digital experts', 'web developers', 'designers', 'UX specialists', 'marketing experts'],
+});
+
 import Marquee from 'react-fast-marquee'
+import ContactForm from "@/components/sections/ContactForm"
+import PartnerMarquee from "@/components/sections/PartnerMarquee"
+
+// Client component for the testimonial slider
+const TestimonialSlider = dynamic(() => 
+  import('@/components/slider/TestimonialSlider1').then((mod) => mod.default), 
+  { ssr: false }
+)
+
 export default function Team() {
 
     return (
@@ -228,120 +217,27 @@ export default function Team() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="testimonial__item-wrap4">
-                                <div className="swiper testimonial-active" id="testimonialSlider1">
-                                    <Swiper {...swiperOptions} className="swiper-wrapper">
-                                        <SwiperSlide>
-                                            <div className="row gy-30 align-items-center">
-                                                <div className="col-xl-5">
-                                                    <div className="testimonial__author">
-                                                        <div className="thumb">
-                                                            <img src="/assets/img/others/testimonial5-1.jpg" alt="img" />
-                                                        </div>
-                                                        <div className="testimonial__author-content">
-                                                            <h4 className="testimonial__title">MARK FRIDMAN</h4>
-                                                            <span className="testimonial__desig">CEO, GOOGLE</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="col-xl-7">
-                                                    <div className="testimonial__item style4">
-                                                        <div className="testimonial__icon">
-                                                            <img src="/assets/img/icon/svg-img/quote-left2.svg" alt="img" />
-                                                        </div>
-                                                        <div className="testimonial__content">
-                                                            <p className="testimonial__text">Atmosyn has been an invaluable partner to us. Any talent we've worked with has shown a deep
-                                                                understanding of digital experiences. They're able to seamlessly integrate with our team and meet the level of craft that we hold ourselves accountable to. We're set up to meet our budgets and timelines while exceeding expectations.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </SwiperSlide>
-                                        <SwiperSlide>
-                                            <div className="row gy-30 align-items-center">
-                                                <div className="col-xl-5">
-                                                    <div className="testimonial__author">
-                                                        <div className="thumb">
-                                                            <img src="/assets/img/others/group-img-1-3.jpg" alt="img" />
-                                                        </div>
-                                                        <div className="testimonial__author-content">
-                                                            <h4 className="testimonial__title">MARK FRIDMAN</h4>
-                                                            <span className="testimonial__desig">CEO, GOOGLE</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="col-xl-7">
-                                                    <div className="testimonial__item style4">
-                                                        <div className="testimonial__icon">
-                                                            <img src="/assets/img/icon/svg-img/quote-left2.svg" alt="img" />
-                                                        </div>
-                                                        <div className="testimonial__content">
-                                                            <p className="testimonial__text">Atmosyn has been an invaluable partner to us. Any talent we've worked with has shown a deep
-                                                                understanding of digital experiences. They're able to seamlessly integrate with our team and meet the level of craft that we hold ourselves accountable to. We're set up to meet our budgets and timelines while exceeding expectations.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </SwiperSlide>
-                                    </Swiper>
-                                </div>
-                                <div className="row justify-content-end">
-                                    <div className="col-xl-7">
-                                        <div className="btn-wrap">
-                                            <button className="testimonial-button-next btn border-dark3 icon-btn slider-prev default"><i className="fas fa-angle-left" /></button>
-                                            <button className="testimonial-button-next btn border-dark3 icon-btn slider-next default"><i className="fas fa-angle-right" /></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <TestimonialSlider />
                         </div>
                     </section>
                     {/*======== / Testimonial Section ========*/}
                     {/*==============================
     Contact Area
-    ==============================*/}
-                    <section className="contact-area-1 pt-120 pb-120 position-relative overflow-hidden">
-                        <div className="contact-thumb1 wow img-custom-anim-left">
-                            <img src="/assets/img/others/contact1-1.jpg" alt="img" />
-                        </div>
-                        <div className="container">
-                            <div className="row align-items-center justify-content-end">
-                                <div className="col-lg-6">
-                                    <div className="contact-form-wrap">
-                                        <div className="section__title mb-60 wow img-custom-anim-left">
-                                            <h2 className="title">GET IN TOUCH</h2>
-                                            <p className="sec-text mt-3">Got a project you want to collaborate on? <br />
-                                                Or just fancy a chat?
-                                            </p>
-                                        </div>
-                                        <form action="mail.php" method="POST" className="contact__form ajax-contact">
-                                            <div className="row gy-35">
-                                                <div className="col-12 form-group">
-                                                    <label className="form-icon-left"><img src="/assets/img/icon/svg-img/user.svg" alt="icon" /></label>
-                                                    <input type="text" className="form-control style-border" name="name" id="name" placeholder="Name*" />
-                                                </div>
-                                                <div className="col-12 form-group">
-                                                    <label className="form-icon-left"><img src="/assets/img/icon/svg-img/brifcase.svg" alt="icon" /></label>
-                                                    <input type="text" className="form-control style-border" name="website" id="website" placeholder="Organisation*" />
-                                                </div>
-                                                <div className="col-12 form-group">
-                                                    <label className="form-icon-left"><img src="/assets/img/icon/svg-img/envelope.svg" alt="icon" /></label>
-                                                    <input type="text" className="form-control style-border" name="email" id="email" placeholder="Email*" />
-                                                </div>
-                                                <div className="col-12 form-group">
-                                                    <label className="form-icon-left"><img src="/assets/img/icon/svg-img/brush.svg" alt="icon" /></label>
-                                                    <textarea name="message" placeholder="Message*" id="contactForm" className="form-control style-border" />
-                                                </div>
-                                            </div>
-                                            <button type="submit" className="btn btn-three square-btn mt-60">
-                                                SEND MESSAGE
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
+    ==============================*/}                <section className="contact-area-1 pt-120 pb-120 position-relative overflow-hidden">
+                    <div className="contact-thumb1 wow img-custom-anim-left">
+                        <img src="/assets/img/others/contact1-1.jpg" alt="img" />
+                    </div>
+                    <div className="container">
+                        <div className="row align-items-center justify-content-end">
+                            <div className="col-lg-6">
+                                <ContactForm 
+                                    title="GET IN TOUCH"
+                                    subtitle="Got a project you want to collaborate on?\nOr just fancy a chat?"
+                                />
                             </div>
                         </div>
-                    </section>
+                    </div>
+                </section>
                     {/*======== / Contact Section ========*/}
                     {/*==============================
     Marquee Area

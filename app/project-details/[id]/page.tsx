@@ -1,28 +1,42 @@
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
-import Marquee from 'react-fast-marquee'
-import projectsData from "@/util/projects.json"
+import projects from "@/util/projects.json"
+import { generateDynamicMetadata, generateJsonLd } from "@/util/metadata"
+import type { Metadata } from 'next'
+import Script from 'next/script'
+import Marquee from "react-fast-marquee"
 
-// This generates all possible static paths at build time
+// This tells Next.js to pre-render all the project detail pages at build time
 export async function generateStaticParams() {
-  return projectsData.map((project) => ({
-    id: String(project.id),
+  return projects.map((item) => ({
+    id: String(item.id),
   }))
 }
 
 // This makes the page static instead of dynamic
 export const dynamicParams = false
 
+// Generate dynamic metadata for this project
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+    const project = projects.find((item) => String(item.id) === params.id)
+    
+    // Use our utility to generate metadata for this specific project
+    return generateDynamicMetadata(project, 'project')
+}
+
 export default function ProjectDetails({ params }: { params: { id: string } }) {
     const id = params.id;
     
     // Find the current project data
-    const project = projectsData.find(project => String(project.id) === id);
+    const project = projects.find(project => String(project.id) === id);
     
     // Find previous and next projects for navigation
-    const currentIndex = projectsData.findIndex(project => String(project.id) === id);
-    const prevProject = currentIndex > 0 ? projectsData[currentIndex - 1] : projectsData[projectsData.length - 1];
-    const nextProject = currentIndex < projectsData.length - 1 ? projectsData[currentIndex + 1] : projectsData[0];
+    const currentIndex = projects.findIndex(project => String(project.id) === id);
+    const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : projects[projects.length - 1];
+    const nextProject = currentIndex < projects.length - 1 ? projects[currentIndex + 1] : projects[0];
+    
+    // Generate JSON-LD structured data for this project
+    const projectJsonLd = generateJsonLd('project', project);
     
     // If project not found, return a basic error state
     if (!project) {
@@ -40,6 +54,13 @@ export default function ProjectDetails({ params }: { params: { id: string } }) {
     return (
         <>
             <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="Portfolio Details">
+                {/* Add JSON-LD structured data */}
+                <Script
+                    id="project-jsonld"
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+                />
+                
                 <div>
                     <section className="project-details-page-area pt-110 pb-120 overflow-hidden">
                         <div className="container">

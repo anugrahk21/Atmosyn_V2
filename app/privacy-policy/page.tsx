@@ -1,4 +1,16 @@
 import Layout from "@/components/layout/Layout"
+import { generateStaticMetadata } from "@/util/metadata"
+import type { Metadata } from 'next'
+
+// Generate metadata using our utility
+export const metadata: Metadata = generateStaticMetadata({
+  title: 'Privacy Policy',
+  pageName: 'Privacy Policy',
+  shortInfo: 'Data Practices & Protection',
+  description: 'Learn about Atmosyn\'s commitment to protecting your privacy and how we handle your data. Our comprehensive privacy policy outlines our data collection and usage practices.',
+  specificTopic: 'privacy and data protection practices',
+  keywords: ['privacy policy', 'data protection', 'data collection practices', 'personal information', 'GDPR compliance', 'digital agency privacy'],
+});
 
 export default function PrivacyPolicy() {
     return (

@@ -1,8 +1,11 @@
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
 import servicesData from "@/util/services.json"
+import { generateDynamicMetadata, generateJsonLd } from "@/util/metadata"
+import type { Metadata } from 'next'
+import Script from 'next/script'
 
-// This generates all possible static paths at build time
+// This tells Next.js to pre-render all the service detail pages at build time
 export async function generateStaticParams() {
   return servicesData.map((service) => ({
     slug: service.slug,
@@ -11,6 +14,14 @@ export async function generateStaticParams() {
 
 // This makes the page static instead of dynamic
 export const dynamicParams = false
+
+// Generate dynamic metadata for this service
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+    const service = servicesData.find((service) => service.slug === params.slug)
+    
+    // Use our utility to generate metadata for this specific service
+    return generateDynamicMetadata(service, 'service')
+}
 
 interface ServiceItem {
     id: number
@@ -29,16 +40,24 @@ const formatContent = (content: string) => {
     return content.split('\n\n').filter(paragraph => paragraph.trim() !== '');
 };
 
-export default function ServiceDetails({ params }: { params: { slug: string } }) {
-    const slug = params.slug;
+export default function ServiceDetails({ params }: { params: { slug: string } }) {    const slug = params.slug;
     
     // Find the service with the matching slug
     const service = servicesData.find((item: ServiceItem) => item.slug === slug);
+      // Get related services based on the current service and display a more varied selection
+    // First, get all services except the current one
+    const allOtherServices = service 
+        ? servicesData.filter(item => item.slug !== slug)
+        : servicesData;
     
-    // Get other services (excluding current one)
-    const otherServices = service 
-        ? servicesData.filter(item => item.slug !== slug).slice(0, 2)
-        : servicesData.slice(0, 2);
+    // Shuffle the array to get a random selection each time
+    const shuffledServices = [...allOtherServices].sort(() => 0.5 - Math.random());
+    
+    // Take the first 2 services from the shuffled array
+    const otherServices = shuffledServices.slice(0, 2);
+    
+    // Generate JSON-LD structured data for this service
+    const serviceJsonLd = generateJsonLd('service', service);
     
     // If no service is found, show an error state
     if (!service) {
@@ -56,6 +75,13 @@ export default function ServiceDetails({ params }: { params: { slug: string } })
     return (
         <>
             <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="Services Details">
+                {/* Add JSON-LD structured data */}
+                <Script
+                    id="service-jsonld"
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+                />
+                
                 <div>
                     <div className="service-details-page-area pt-110 ">
                         <div className="container">

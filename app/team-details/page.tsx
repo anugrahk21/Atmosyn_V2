@@ -1,6 +1,21 @@
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
 import Marquee from 'react-fast-marquee'
+import { generateStaticMetadata } from "@/util/metadata"
+import type { Metadata } from 'next'
+import ContactForm from "@/components/sections/ContactForm"
+import PartnerMarquee from "@/components/sections/PartnerMarquee"
+
+// Generate metadata using our utility
+export const metadata: Metadata = generateStaticMetadata({
+  title: 'Team Member',
+  pageName: 'Team Details',
+  shortInfo: 'Professional Profile',
+  description: 'Learn more about Atmosyn\'s talented team members, their expertise, experience, and the skills they bring to deliver exceptional digital solutions for our clients.',
+  specificTopic: 'our professional team member profiles',
+  keywords: ['digital expert profile', 'team member bio', 'professional experience', 'digital talent', 'Atmosyn professional', 'team expertise'],
+});
+
 export default function TeamDetails() {
 
     return (
@@ -71,32 +86,10 @@ export default function TeamDetails() {
                         <div className="container">
                             <div className="row align-items-center justify-content-center">
                                 <div className="col-lg-10">
-                                    <div className="contact-form-wrap">
-                                        <div className="section__title mb-60">
-                                            <h2 className="title">Contact with Me</h2>
-                                            <p className="sec-text mt-3">Your email address will not be published. Required fields are marked *
-                                            </p>
-                                        </div>
-                                        <form action="mail.php" method="POST" className="contact__form ajax-contact">
-                                            <div className="row gy-35">
-                                                <div className="col-lg-6 form-group">
-                                                    <label className="form-icon-left"><img src="/assets/img/icon/svg-img/user.svg" alt="icon" /></label>
-                                                    <input type="text" className="form-control style-border" name="name" id="name" placeholder="Name*" />
-                                                </div>
-                                                <div className="col-lg-6 form-group">
-                                                    <label className="form-icon-left"><img src="/assets/img/icon/svg-img/envelope.svg" alt="icon" /></label>
-                                                    <input type="text" className="form-control style-border" name="email" id="email" placeholder="Email*" />
-                                                </div>
-                                                <div className="col-12 form-group">
-                                                    <label className="form-icon-left"><img src="/assets/img/icon/svg-img/brush.svg" alt="icon" /></label>
-                                                    <textarea name="message" placeholder="Message*" id="contactForm" className="form-control style-border" />
-                                                </div>
-                                            </div>
-                                            <button type="submit" className="btn btn-three square-btn mt-60">
-                                                SEND MESSAGE
-                                            </button>
-                                        </form>
-                                    </div>
+                                    <ContactForm 
+                                        title="Contact with Me"
+                                        subtitle="Your email address will not be published. Required fields are marked *"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -105,18 +98,11 @@ export default function TeamDetails() {
                     {/*==============================
     Marquee Area
     ==============================*/}
-                    <div className="container-fluid px-0 overflow-hidden pb-30 pt-30 theme-bg">
-                        <div className="slider__marquee clearfix marquee-wrap style3">
-                            <Marquee className="marquee_mode marquee__group">
-                                <div className="item m-item"><Link href="/#"><img src="/assets/img/partner/partner1-1.svg" alt="img" /></Link></div>
-                                <div className="item m-item"><Link href="/#"><img src="/assets/img/partner/partner1-2.svg" alt="img" /></Link></div>
-                                <div className="item m-item"><Link href="/#"><img src="/assets/img/partner/partner1-3.svg" alt="img" /></Link></div>
-                                <div className="item m-item"><Link href="/#"><img src="/assets/img/partner/partner1-4.svg" alt="img" /></Link></div>
-                                <div className="item m-item"><Link href="/#"><img src="/assets/img/partner/partner1-5.svg" alt="img" /></Link></div>
-                                <div className="item m-item"><Link href="/#"><img src="/assets/img/partner/partner1-6.svg" alt="img" /></Link></div>
-                            </Marquee>
-                        </div>
-                    </div>
+                    <PartnerMarquee 
+                        backgroundColor="theme-bg"
+                        paddingTop={30}
+                        paddingBottom={30}
+                    />
                 </div>
 
             </Layout>

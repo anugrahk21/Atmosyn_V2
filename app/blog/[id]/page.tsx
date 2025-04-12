@@ -1,6 +1,9 @@
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
 import data from "@/util/blog.json"
+import { generateDynamicMetadata, generateJsonLd } from "@/util/metadata"
+import type { Metadata } from 'next'
+import Script from 'next/script'
 
 // This tells Next.js to pre-render all possible blog pages at build time
 export async function generateStaticParams() {
@@ -21,6 +24,14 @@ interface BlogPost {
     date: string
     excerpt?: string
     content?: string
+}
+
+// Generate dynamic metadata for this blog post
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+    const post = data.find((post) => String(post.id) === params.id)
+    
+    // Use our utility to generate metadata for this specific blog post
+    return generateDynamicMetadata(post, 'blog')
 }
 
 // Format content into HTML with proper structure
@@ -98,6 +109,9 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
     const prevPost = currentIndex > 0 ? data[currentIndex - 1] : null;
     const nextPost = currentIndex < data.length - 1 ? data[currentIndex + 1] : null;
     
+    // Generate JSON-LD structured data for this blog post
+    const blogJsonLd = generateJsonLd('blog', blogPost);
+    
     // Set latest posts (excluding current post)
     // First sort by date (newest first)
     const sortedPosts = [...data].sort((a, b) => {
@@ -112,6 +126,13 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
     return (
         <>
             <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="Blog Details">
+                {/* Add JSON-LD structured data */}
+                <Script
+                    id="blog-jsonld"
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
+                />
+                
                 <section className="blog__details-area pt-120 pb-120">
                     <div className="container">
                         <div className="row">

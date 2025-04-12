@@ -31,12 +31,12 @@ export default function MobileMenu() {
     return (
         <>
             <ul className="navigation me-0">
-                <li className={pathname == "/" ? "active" : ""}><Link href="/">HOME</Link></li>
-                <li className={pathname == "/about" ? "active" : ""}><Link href="/about">ABOUT US</Link></li>
-                <li className={pathname == "/service" ? "active" : ""}><Link href="/service">SERVICES</Link></li>
-                <li className={pathname == "/pricing" ? "active" : ""}><Link href="/pricing">PRICING</Link></li>
-                <li className={pathname == "/blog" ? "active" : ""}><Link href="/blog">BLOG</Link></li>
-                <li className={pathname == "/contact" ? "active" : ""}><Link href="/contact">CONTACT</Link></li>
+                <li className={pathname === "/" ? "active" : ""}><Link href="/">HOME</Link></li>
+                <li className={pathname === "/about" ? "active" : ""}><Link href="/about">ABOUT US</Link></li>
+                <li className={pathname === "/service" || pathname.startsWith("/service-details") ? "active" : ""}><Link href="/service">SERVICES</Link></li>
+                <li className={pathname === "/pricing" ? "active" : ""}><Link href="/pricing">PRICING</Link></li>
+                <li className={pathname === "/blog" || pathname.startsWith("/blog/") ? "active" : ""}><Link href="/blog">BLOG</Link></li>
+                <li className={pathname === "/contact" ? "active" : ""}><Link href="/contact">CONTACT</Link></li>
             </ul>
         </>
     )

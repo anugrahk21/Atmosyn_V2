@@ -1,6 +1,22 @@
 'use client'
 import { Autoplay, Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
+import testimonialData from "@/util/testimonials.json"
+
+interface Testimonial {
+  id: number;
+  name: string;
+  designation: string;
+  company: string;
+  photo: string;
+  text: string;
+  tags: string[];
+}
+
+interface TestimonialSlider1Props {
+  filter?: string[];
+  limit?: number;
+}
 
 const swiperOptions = {
     modules: [Autoplay, Pagination, Navigation],
@@ -30,73 +46,47 @@ const swiperOptions = {
         prevEl: '.testimonial-button-prev',
     },
 }
-export default function TestimonialSlider1() {
+
+export default function TestimonialSlider1({ filter = ['homepage'], limit = 8 }: TestimonialSlider1Props) {
+    // Process testimonials directly from the JSON data
+    const allTestimonials = testimonialData as Testimonial[];
+    
+    // Filter testimonials by tags if filter is provided
+    const filteredTestimonials = filter && filter.length > 0
+        ? allTestimonials.filter(testimonial => 
+            filter.some(tag => testimonial.tags.includes(tag))
+          )
+        : allTestimonials;
+    
+    // Apply limit if specified
+    const testimonials = limit ? filteredTestimonials.slice(0, limit) : filteredTestimonials;
     return (
         <>
             <div className="swiper testimonial-active" id="testimonialSlider1">
                 <Swiper {...swiperOptions} className="swiper-wrapper">
-                    <SwiperSlide>
-                        <div className="testimonial__item">
-                            <div className="testimonial__icon">
-                                <img src="/assets/img/icon/quote-left.svg" alt="img" />
-                            </div>
-                            <div className="testimonial__content">
-                                <p className="testimonial__text">Great experience working with the team at
-                                    Atmosyn Digital. They are always very responsive, easy to work with and
-                                    ready to support the clients' needs.</p>
-                                <div className="testimonial__author">
-                                    <div className="testimonial__author-content">
-                                        <h4 className="testimonial__title">NADRA</h4>
-                                        <span className="testimonial__desig">MARKETING DIRECTOR AT
-                                            BOKITTA</span>
+                    {testimonials.map((testimonial) => (
+                        <SwiperSlide key={testimonial.id}>
+                            <div className="testimonial__item">
+                                <div className="testimonial__icon">
+                                    <img src="/assets/img/icon/quote-left.svg" alt="img" className="injectable" />
+                                </div>
+                                <div className="testimonial__content">
+                                    <p className="testimonial__text">{testimonial.text}</p>
+                                    <div className="testimonial__author">
+                                        <div className="testimonial__author-content">
+                                            <h4 className="testimonial__title">{testimonial.name}</h4>
+                                            <span className="testimonial__desig">{testimonial.designation} AT {testimonial.company}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="testimonial__item">
-                            <div className="testimonial__icon">
-                                <img src="/assets/img/icon/quote-left.svg" alt="img" className="injectable" />
-                            </div>
-                            <div className="testimonial__content">
-                                <p className="testimonial__text">The AI integration capabilities at Atmosyn Digital 
-                                    transformed our business operations. Their innovative solutions helped us stay 
-                                    ahead of the curve in our industry.</p>
-                                <div className="testimonial__author">
-                                    <div className="testimonial__author-content">
-                                        <h4 className="testimonial__title">MICHAEL CHEN</h4>
-                                        <span className="testimonial__desig">CTO AT TECHFORGE 
-                                            SOLUTIONS</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="testimonial__item">
-                            <div className="testimonial__icon">
-                                <img src="/assets/img/icon/quote-left.svg" alt="img" className="injectable" />
-                            </div>
-                            <div className="testimonial__content">
-                                <p className="testimonial__text">The web development team at Atmosyn exceeded 
-                                    our expectations. They delivered a beautiful, high-performance website that 
-                                    perfectly captures our brand identity.</p>
-                                <div className="testimonial__author">
-                                    <div className="testimonial__author-content">
-                                        <h4 className="testimonial__title">SARAH WILLIAMS</h4>
-                                        <span className="testimonial__desig">FOUNDER AT MODERN 
-                                            DESIGNS</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
+                        </SwiperSlide>
+                    ))}
                 </Swiper>
             </div>
             <div className="slider-area btn-wrap">
-                <button className="testimonial-button-next btn border-btn icon-btn slider-prev default"><i className="fas fa-angle-left" /></button>
-                <button className="testimonial-button-prev btn border-btn icon-btn slider-next default"><i className="fas fa-angle-right" /></button>
+                <button className="testimonial-button-prev btn border-btn icon-btn slider-prev default"><i className="fas fa-angle-left" /></button>
+                <button className="testimonial-button-next btn border-btn icon-btn slider-next default"><i className="fas fa-angle-right" /></button>
             </div>
         </>
     )

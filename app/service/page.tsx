@@ -2,6 +2,18 @@ import Accordion from '@/components/elements/Accordion'
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
 import servicesData from "@/util/services.json"
+import { generateStaticMetadata } from "@/util/metadata"
+import type { Metadata } from 'next'
+
+// Generate metadata using our utility
+export const metadata: Metadata = generateStaticMetadata({
+  title: 'Our Services',
+  pageName: 'Our Services',
+  shortInfo: 'Digital Solutions',
+  description: 'Explore Atmosyn\'s comprehensive range of digital services including web development, UX/UI design, brand identity, and marketing strategies. Atmosyn merges innovative design with strategic insights to create engaging digital experiences.',
+  specificTopic: 'professional digital services',
+  keywords: ['digital services', 'web development services', 'UI/UX design services', 'branding services', 'marketing services', 'SEO services'],
+});
 
 export default function Service() {
 

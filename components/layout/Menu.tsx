@@ -18,17 +18,28 @@ const porfolioLinks = [
 
 export default function Menu({ menuLeft }: any) {
     const pathname = usePathname()    
-    const isActive = (path: string) => path === pathname
+    
+    // Enhanced function to check if the current path is or starts with the menu item's path
+    const isActive = (path: string) => {
+        if (path === "/") {
+            return pathname === "/"
+        }
+        // Special case for services to highlight when on service-details pages
+        if (path === "/service" && pathname.startsWith("/service-details")) {
+            return true
+        }
+        return pathname === path || pathname.startsWith(`${path}/`)
+    }
     
     return (
         <>
             <ul className={`navigation ${menuLeft ? "ms-xxl-0" : "me-0"} `}>
-                <li className={pathname === "/" ? "active" : ""}><Link href="/">HOME</Link></li>
-                <li className={pathname === "/about" ? "active" : ""}><Link href="/about">ABOUT US</Link></li>
-                <li className={pathname === "/service" ? "active" : ""}><Link href="/service">SERVICES</Link></li>
-                <li className={pathname === "/pricing" ? "active" : ""}><Link href="/pricing">PRICING</Link></li>
-                <li className={pathname === "/blog" ? "active" : ""}><Link href="/blog">BLOG</Link></li>
-                <li className={pathname === "/contact" ? "active" : ""}><Link href="/contact">CONTACT</Link></li>
+                <li className={isActive("/") ? "active" : ""}><Link href="/">HOME</Link></li>
+                <li className={isActive("/about") ? "active" : ""}><Link href="/about">ABOUT US</Link></li>
+                <li className={isActive("/service") ? "active" : ""}><Link href="/service">SERVICES</Link></li>
+                <li className={isActive("/pricing") ? "active" : ""}><Link href="/pricing">PRICING</Link></li>
+                <li className={isActive("/blog") ? "active" : ""}><Link href="/blog">BLOG</Link></li>
+                <li className={isActive("/contact") ? "active" : ""}><Link href="/contact">CONTACT</Link></li>
             </ul>
         </>
     )

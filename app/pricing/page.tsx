@@ -1,6 +1,19 @@
 import Accordion from '@/components/elements/Accordion'
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
+import { generateStaticMetadata } from "@/util/metadata"
+import type { Metadata } from 'next'
+
+// Generate metadata using our utility
+export const metadata: Metadata = generateStaticMetadata({
+  title: 'Pricing',
+  pageName: 'Pricing',
+  shortInfo: 'Service Plans & Packages',
+  description: 'Explore Atmosyn\'s transparent pricing plans for our digital services. Find the perfect package to fit your business needs and budget.',
+  specificTopic: 'service pricing and packages',
+  keywords: ['digital agency pricing', 'web development cost', 'marketing service packages', 'affordable digital services', 'design service pricing'],
+});
+
 export default function Pricing() {
 
     return (

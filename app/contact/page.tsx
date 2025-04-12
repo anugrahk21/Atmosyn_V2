@@ -1,5 +1,18 @@
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
+import { generateStaticMetadata } from "@/util/metadata"
+import type { Metadata } from 'next'
+
+// Generate metadata using our utility
+export const metadata: Metadata = generateStaticMetadata({
+  title: 'Contact Us',
+  pageName: 'Contact Us',
+  shortInfo: 'Get In Touch',
+  description: 'Connect with Atmosyn\'s digital experts for your next project. We\'re here to answer your questions and discuss how we can help transform your digital presence.',
+  specificTopic: 'contacting our team',
+  keywords: ['contact Atmosyn', 'digital agency contact', 'get a quote', 'project inquiry', 'digital consultation'],
+});
+
 export default function Contact() {
 
     return (

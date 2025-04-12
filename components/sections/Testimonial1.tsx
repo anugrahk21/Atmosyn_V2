@@ -18,7 +18,7 @@ export default function Testimonial1() {
                         </div>
                         <div className="col-xl-7">
                             <div className="testimonial__item-wrap wow img-custom-anim-right">
-                                <TestimonialSlider1 />
+                                <TestimonialSlider1 filter={['homepage', 'featured']} limit={10} />
                             </div>
                         </div>
                     </div>
