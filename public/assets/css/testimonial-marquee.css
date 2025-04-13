@@ -1,0 +1,180 @@
+/**
+ * Testimonial Marquee Styling
+ * Creates a horizontal scrolling marquee of testimonial cards
+ */
+
+/* Container styles */
+.testimonial-marquee-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+/* Card styles */
+.testimonial-marquee-card {
+  min-width: 350px;
+  max-width: 450px;
+  margin: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.testimonial-marquee-inner {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Avatar and meta info */
+.testimonial-marquee-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.testimonial-marquee-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.testimonial-marquee-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.testimonial-marquee-meta {
+  flex-grow: 1;
+}
+
+.testimonial-marquee-name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.testimonial-marquee-position {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+/* Testimonial content */
+.testimonial-marquee-content {
+  position: relative;
+  flex-grow: 1;
+}
+
+.testimonial-marquee-icon {
+  margin-bottom: 15px;
+}
+
+.testimonial-marquee-icon img {
+  width: 32px;
+  height: 32px;
+  opacity: 0.5;
+}
+
+.testimonial-marquee-text {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Hover effects */
+.testimonial-marquee-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.testimonial-marquee-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border-color: var(--tg-theme-primary, #00DF8E); /* Exact theme green color */
+}
+
+.testimonial-marquee-card:focus {
+  outline: 2px solid var(--tg-theme-primary, #00DF8E); /* Exact theme green color */
+  transform: translateY(-6px);
+}
+
+/* Light mode (light text on dark backgrounds) */
+.testimonial-light-mode .testimonial-marquee-card .testimonial-marquee-inner {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.testimonial-light-mode .testimonial-marquee-name,
+.testimonial-light-mode .testimonial-marquee-position,
+.testimonial-light-mode .testimonial-marquee-text {
+  color: #ffffff;
+}
+
+.testimonial-light-mode .testimonial-marquee-icon img {
+  filter: brightness(0) invert(1); /* Makes the quote icon white */
+}
+
+/* Dark mode (dark text on light backgrounds) */
+.testimonial-dark-mode .testimonial-marquee-card .testimonial-marquee-inner {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.testimonial-dark-mode .testimonial-marquee-name,
+.testimonial-dark-mode .testimonial-marquee-position,
+.testimonial-dark-mode .testimonial-marquee-text {
+  color: #222222;
+}
+
+.testimonial-dark-mode .testimonial-marquee-icon img {
+  filter: brightness(0); /* Makes the quote icon black */
+}
+
+/* Responsive styles */
+@media (max-width: 767px) {
+  .testimonial-marquee-card {
+    min-width: 280px;
+    max-width: 320px;
+    margin: 10px;
+  }
+
+  .testimonial-marquee-inner {
+    padding: 20px;
+  }
+
+  .testimonial-marquee-avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .testimonial-marquee-name {
+    font-size: 16px;
+  }
+
+  .testimonial-marquee-position {
+    font-size: 12px;
+  }
+
+  .testimonial-marquee-text {
+    font-size: 14px;
+    -webkit-line-clamp: 3;
+  }
+}

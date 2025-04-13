@@ -16,6 +16,7 @@ import "/public/assets/css/magnific-popup.css"
 import "/public/assets/css/select2.min.css"
 import "/public/assets/css/style.css"
 import "/public/assets/css/swiper-bundle.min.css"
+import "/public/assets/css/testimonial-marquee.css"
 
 const poppins = Poppins({
     weight: ['300', '400', '500', '600', '700'],

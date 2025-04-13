@@ -1,24 +1,40 @@
-import TestimonialSlider1 from '../slider/TestimonialSlider1'
+import TestimonialMarquee from '../slider/TestimonialMarquee'
 
-export default function Testimonial1() {
+interface Testimonial1Props {
+  backgroundColor?: string;
+  title?: string;
+  paddingTop?: number;
+  paddingBottom?: number;
+  filter?: string[];
+  limit?: number;
+}
+
+export default function Testimonial1({
+  backgroundColor = "dark-bg",
+  title = "OUR TESTIMONIAL", 
+  paddingTop = 110,
+  paddingBottom = 120,
+  filter = ['homepage', 'featured'],
+  limit = 0
+}: Testimonial1Props) {
     return (
         <>
-            <section className="testimonial-area-1 pb-120 dark-bg">
-                <div className="section__title testimonial-section__title">
+            <section className={`testimonial-area-1 pt-${paddingTop} pb-${paddingBottom} ${backgroundColor}`}>
+                <div className="section__title">
                     <div className="container">
-                        <h2 className="title text-white wow img-custom-anim-left">OUR TESTIMONIAL</h2>
+                        <h2 className={`title ${backgroundColor.includes('dark') ? 'text-white' : ''} wow img-custom-anim-left`}>{title}</h2>
                     </div>
                 </div>
-                <div className="container">
-                    <div className="row gx-60 gy-30 align-items-end">
-                        <div className="col-xl-5">
-                            <div className="testimonial-thumb-1-1 wow img-custom-anim-left">
-                                <img src="/assets/img/others/testimonial1-1.jpg" alt="img" />
-                            </div>
-                        </div>
-                        <div className="col-xl-7">
-                            <div className="testimonial__item-wrap wow img-custom-anim-right">
-                                <TestimonialSlider1 filter={['homepage', 'featured']} limit={10} />
+                <div className="container-fluid px-lg-4">
+                    <div className="row">
+                        <div className="col-12">
+                            <div className="testimonial__marquee-wrap wow img-custom-anim-right">
+                                <TestimonialMarquee 
+                                    filter={filter} 
+                                    limit={limit}
+                                    colorMode={backgroundColor.includes('dark') ? 'light' : 'dark'}
+                                    speed={30}
+                                />
                             </div>
                         </div>
                     </div>

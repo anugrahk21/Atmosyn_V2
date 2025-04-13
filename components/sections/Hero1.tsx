@@ -13,7 +13,7 @@ export default function Hero1() {
                                     </span><br></br> Blend In.</h1>
                             </div>
                             <div className="col-lg-4 align-self-end">
-                                <p className="hero-text wow img-custom-anim-right" data-wow-duration="1.5s" data-wow-delay="0.1s">
+                                <p className="hero-text typing-animation wow img-custom-anim-right" data-wow-duration="1.5s" data-wow-delay="0.1s">
                                 Your brand deserves more. We blend creativity and precision to build experiences that leave a lasting impact.</p>
                             </div>
                         </div>

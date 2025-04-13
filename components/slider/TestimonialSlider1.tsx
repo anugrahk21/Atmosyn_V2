@@ -65,17 +65,20 @@ export default function TestimonialSlider1({ filter = ['homepage'], limit = 8 }:
             <div className="swiper testimonial-active" id="testimonialSlider1">
                 <Swiper {...swiperOptions} className="swiper-wrapper">
                     {testimonials.map((testimonial) => (
-                        <SwiperSlide key={testimonial.id}>
-                            <div className="testimonial__item">
-                                <div className="testimonial__icon">
-                                    <img src="/assets/img/icon/quote-left.svg" alt="img" className="injectable" />
+                        <SwiperSlide key={testimonial.id}>                            <div className="testimonial__item">                                <div className="testimonial__icon">
+                                    <img 
+                                        src="/assets/img/icon/quote-left.svg" 
+                                        alt="img" 
+                                        className="injectable"
+                                        style={{ filter: "brightness(0)" }} // This makes the SVG black
+                                    />
                                 </div>
                                 <div className="testimonial__content">
-                                    <p className="testimonial__text">{testimonial.text}</p>
+                                    <p className="testimonial__text" style={{ color: "#222222" }}>{testimonial.text}</p>
                                     <div className="testimonial__author">
                                         <div className="testimonial__author-content">
-                                            <h4 className="testimonial__title">{testimonial.name}</h4>
-                                            <span className="testimonial__desig">{testimonial.designation} AT {testimonial.company}</span>
+                                            <h4 className="testimonial__title" style={{ color: "#222222" }}>{testimonial.name}</h4>
+                                            <span className="testimonial__desig" style={{ color: "#222222" }}>{testimonial.designation} AT {testimonial.company}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -83,10 +86,27 @@ export default function TestimonialSlider1({ filter = ['homepage'], limit = 8 }:
                         </SwiperSlide>
                     ))}
                 </Swiper>
-            </div>
-            <div className="slider-area btn-wrap">
-                <button className="testimonial-button-prev btn border-btn icon-btn slider-prev default"><i className="fas fa-angle-left" /></button>
-                <button className="testimonial-button-next btn border-btn icon-btn slider-next default"><i className="fas fa-angle-right" /></button>
+            </div>            <div className="slider-area btn-wrap">
+                <button 
+                    className="testimonial-button-prev btn border-btn icon-btn slider-prev default"
+                    style={{ 
+                        backgroundColor: "#97dd00", 
+                        color: "#000000", 
+                        border: "1px solid #000000",
+                        opacity: 0.9,
+                        visibility: "visible"
+                    }}
+                ><i className="fas fa-angle-left" /></button>
+                <button 
+                    className="testimonial-button-next btn border-btn icon-btn slider-next default"
+                    style={{ 
+                        backgroundColor: "#97dd00", 
+                        color: "#000000", 
+                        border: "1px solid #000000",
+                        opacity: 0.9,
+                        visibility: "visible"
+                    }}
+                ><i className="fas fa-angle-right" /></button>
             </div>
         </>
     )
