@@ -70,27 +70,27 @@ export default function Service1() {
                             <ul className="service1-tab-wrap" id="tabs-nav">
                                 <li>
                                     <div className="service1-tab-item" data-bs-toggle="tab" data-bs-target="#tab1">
-                                        <Link className="service1-tab-single" href="/service-details">Web Development <i className="icon-arrow-top-left" /></Link>
+                                        <Link className="service1-tab-single" href="/service">Web Development <i className="icon-arrow-top-left" /></Link>
                                     </div>
                                 </li>
                                 <li>
                                     <div className="service1-tab-item" data-bs-toggle="tab" data-bs-target="#tab2">
-                                        <Link className="service1-tab-single" href="/service-details">AI Agents <span>(coming soon)</span> <i className="icon-arrow-top-left" /></Link>
+                                        <Link className="service1-tab-single" href="/service">AI Agents <span>(coming soon)</span> <i className="icon-arrow-top-left" /></Link>
                                     </div>
                                 </li>
                                 <li>
                                     <div className="service1-tab-item" data-bs-toggle="tab" data-bs-target="#tab3">
-                                        <Link className="service1-tab-single" href="/service-details">UX/UI & Graphic Design <i className="icon-arrow-top-left" /></Link>
+                                        <Link className="service1-tab-single" href="/service">UX/UI & Graphic Design <i className="icon-arrow-top-left" /></Link>
                                     </div>
                                 </li>
                                 <li>
                                     <div className="service1-tab-item" data-bs-toggle="tab" data-bs-target="#tab4">
-                                        <Link className="service1-tab-single" href="/service-details">Brand Identity <i className="icon-arrow-top-left" /></Link>
+                                        <Link className="service1-tab-single" href="/service">Brand Identity <i className="icon-arrow-top-left" /></Link>
                                     </div>
                                 </li>
                                 <li>
                                     <div className="service1-tab-item" data-bs-toggle="tab" data-bs-target="#tab5">
-                                        <Link className="service1-tab-single" href="/service-details">Marketing & SEO <i className="icon-arrow-top-left" /></Link>
+                                        <Link className="service1-tab-single" href="/service">Marketing & SEO <i className="icon-arrow-top-left" /></Link>
                                     </div>
                                 </li>
                             </ul>
