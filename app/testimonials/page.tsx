@@ -1,9 +1,20 @@
-'use client'
 import Layout from "@/components/layout/Layout"
 import ContactForm from "@/components/sections/ContactForm"
 import PartnerMarquee from "@/components/sections/PartnerMarquee"
 import TestimonialSlider1 from "@/components/slider/TestimonialSlider1"
 import Testimonial1 from "@/components/sections/Testimonial1"
+import { generateStaticMetadata } from "@/util/metadata"
+import type { Metadata } from 'next'
+
+// Generate metadata using our utility
+export const metadata: Metadata = generateStaticMetadata({
+  title: 'Client Testimonials',
+  pageName: 'Testimonials',
+  shortInfo: 'Client Success Stories',
+  description: 'Read what our clients have to say about ATMOSYN\'s digital services. Discover success stories and feedback from businesses we\'ve helped transform.',
+  specificTopic: 'client feedback and success stories',
+  keywords: ['client testimonials', 'success stories', 'client feedback', 'project reviews', 'customer satisfaction'],
+});
 
 export default function TestimonialsPage() {
     return (

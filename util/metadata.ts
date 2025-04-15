@@ -63,10 +63,11 @@ export const generateStaticMetadata = (pageInfo: PageMetaInfo): Metadata => {
     specificTopic = title,
     image,
     keywords = [],
-  } = pageInfo;
-
-  // Create meta title following the specified format
-  const metaTitle = `${pageName} | ${shortInfo || title} | ATMOSYN - Digital Agency`;
+  } = pageInfo;  // Create a simpler, more compact meta title format
+  // If the page name is already ATMOSYN (for homepage), just use a single title
+  const metaTitle = pageName === 'ATMOSYN' 
+    ? 'ATMOSYN - Next-Gen Digital Agency'
+    : `${pageName} | ATMOSYN`;
   
   // Create meta description following the specified format
   const metaDescription = 

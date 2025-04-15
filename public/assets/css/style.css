@@ -629,6 +629,21 @@ textarea {
 .btn-three:active:before, .btn-three:focus:before, .btn-three:hover:before {
   background: var(--tg-heading-color);
 }
+
+/* Add this rule for the disabled state */
+.btn-three:disabled,
+.btn-three[disabled] {
+  background: var(--tg-theme-primary); /* Keep the original background */
+  color: var(--tg-heading-color); /* Keep original text color or adjust if needed */
+  opacity: 0.7; /* Slightly fade it to indicate disabled state */
+  cursor: not-allowed; /* Show a 'not allowed' cursor */
+}
+
+/* Override for success state - keep full opacity */
+.btn-three.success-state:disabled {
+  opacity: 1; /* Full opacity for success state */
+  cursor: default; /* Use default cursor to indicate completed state */
+}
 .btn-four {
   background: rgba(255, 255, 255, 0.1);
   color: var(--tg-color-white-default);

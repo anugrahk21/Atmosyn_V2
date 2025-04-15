@@ -2,6 +2,7 @@ import Layout from "@/components/layout/Layout"
 import Link from "next/link"
 import { generateStaticMetadata } from "@/util/metadata"
 import type { Metadata } from 'next'
+import ContactForm from "@/components/sections/ContactForm"
 
 // Generate metadata using our utility
 export const metadata: Metadata = generateStaticMetadata({
@@ -56,29 +57,9 @@ export default function Contact() {
                                             <h4 className="subtitle">Got a project you want to collaborate on?
                                                 Or just fancy a chat?</h4>
                                         </div>
-                                        <form action="mail.php" method="POST" className="contact__form ajax-contact">
-                                            <div className="row gy-35">
-                                                <div className="col-12 form-group">
-                                                    <label className="form-icon-left"><img src="/assets/img/icon/svg-img/user.svg" alt="icon" /></label>
-                                                    <input type="text" className="form-control style-border" name="name" id="name" placeholder="Name*" />
-                                                </div>
-                                                <div className="col-12 form-group">
-                                                    <label className="form-icon-left"><img src="/assets/img/icon/svg-img/brifcase.svg" alt="icon" /></label>
-                                                    <input type="text" className="form-control style-border" name="website" id="website" placeholder="Organisation*" />
-                                                </div>
-                                                <div className="col-12 form-group">
-                                                    <label className="form-icon-left"><img src="/assets/img/icon/svg-img/envelope.svg" alt="icon" /></label>
-                                                    <input type="text" className="form-control style-border" name="email" id="email" placeholder="Email*" />
-                                                </div>
-                                                <div className="col-12 form-group">
-                                                    <label className="form-icon-left"><img src="/assets/img/icon/svg-img/brush.svg" alt="icon" /></label>
-                                                    <textarea name="message" placeholder="Message*" id="contactForm" className="form-control style-border" />
-                                                </div>
-                                            </div>
-                                            <button type="submit" className="btn btn-three square-btn mt-60">
-                                                SEND MESSAGE
-                                            </button>
-                                        </form>
+                                        {/* Replace the static form with the ContactForm component */}
+                                        {/* Pass empty title and subtitle props since we're keeping the existing heading */}
+                                        <ContactForm title="" subtitle="" />
                                     </div>
                                 </div>
                             </div>
