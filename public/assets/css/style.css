@@ -5499,6 +5499,57 @@ textarea.is-invalid {
 /*=============================
     Skill 02
 ===============================*/
+
+/*=============================
+    Service Approach Cards
+===============================*/
+.service-approach-card {
+  background-color: rgba(168, 246, 0, 0.1);
+  border: 1.5px solid black;
+  padding: 30px;
+  height: 100%;
+  border-radius: 0.75rem;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.service-approach-card:hover, 
+.service-approach-card:focus, 
+.service-approach-card:active {
+  transform: translateY(-5px);
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+}
+
+.service-approach-card .card-image {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.service-approach-card .card-image img {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.service-approach-card .service-card-title {
+  font-family: var(--tg-heading2-font-family);
+  color: var(--tg-heading-color);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-bottom: 0;
+  text-align: center;
+  line-height: 1.4;
+}
 .skill-thumb-box2 {
   position: relative;
   bottom: -121px;
@@ -7019,13 +7070,14 @@ textarea.is-invalid {
   width: 44%;
   position: absolute;
   left: 0;
-  top: 120px;
-  bottom: 120px;
+  top: 15%;
+  bottom: 25%;
+  height: 50%;
 }
 .contact-thumb1 img {
   width: 100%;
   height: 100%;
-  object-position: top;
+  object-position: center;
   object-fit: cover;
 }
 @media (max-width: 991.98px) {

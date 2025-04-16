@@ -81,55 +81,86 @@ export default function ServiceDetails({ params }: { params: { slug: string } })
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
                 />
-                
-                <div>
-                    <div className="service-details-page-area pt-110 ">
+                  <div>
+                    <div className="service-details-page-area pt-110 pb-50">
                         <div className="container">
-                            <div className="row align-items-center justify-content-between">
+                            {/* Section 1: Service Title and Highlight Features */}
+                            <div className="row align-items-center justify-content-between mb-60">
                                 <div className="col-xl-6">
-                                    <div className="section__title mb-50">
+                                    <div className="section__title mb-30">
                                         <h2 className="title">{service.title.toUpperCase()}</h2>
-                                        <p className="sec-text">{service.excerpt}</p>
+                                        <p className="sec-text mt-3">{service.excerpt}</p>
                                     </div>
                                 </div>
-                                <div className="col-xl-auto align-self-end">
-                                    <div className="service-list7-wrap">
-                                        <h4 className="service-list7-title">{service.title}</h4>
-                                        <ul>
-                                            {service.features.slice(0, 3).map((feature, index) => (
-                                                <li key={index}><img src="/assets/img/icon/arrow-left.svg" alt="img" /> {feature}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="service-inner-thumb mt-60 mb-60">
-                                <div className="row gy-40 align-items-center">
-                                    <div className="col-lg-6">
-                                        <img className="img-fluid rounded" src={`/assets/img/service/${service.img}`} alt={service.title} />
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <h3 className="page-title mb-30">{service.title} Overview</h3>
-                                        {formatContent(service.content).map((paragraph, index) => (
-                                            <p key={index} className={index === formatContent(service.content).length-1 ? "mb-0" : "mb-20"}>{paragraph}</p>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row gy-40 justify-content-between">
                                 <div className="col-xl-5">
-                                    <h3 className="page-title mb-30">Our {service.title} Approach</h3>
-                                    <p className="mb-30">We provide comprehensive {service.title.toLowerCase()} services tailored to your specific needs and goals.</p>
-                                    <div className="service-list7-wrap">
-                                        <ul>
-                                            {service.features.map((feature, index) => (
-                                                <li key={index}><img src="/assets/img/icon/check-circle2.svg" alt="img" /> {feature}</li>
+                                    <div className="service-highlight-card shadow-sm rounded-4 p-4 bg-white">
+                                        <h4 className="service-card-title mb-3" style={{ color: 'var(--tg-theme-primary)' }}>Key Features</h4>
+                                        <ul className="service-feature-list">
+                                            {service.features.slice(0, 3).map((feature, index) => (
+                                                <li key={index} className="d-flex align-items-center mb-2">
+                                                    <img src="/assets/img/icon/check-circle2.svg" alt="check" className="me-2" width="20" /> 
+                                                    <span>{feature}</span>
+                                                </li>
                                             ))}
                                         </ul>
                                     </div>
                                 </div>
-                                <div className="col-lg-6">
-                                    <img className="w-100" src="/assets/img/service/service-details-1-2.jpg" alt={service.title} />
+                            </div>
+                              {/* Section 2: Overview with Image and Content Card */}
+                            <div className="service-overview-section mb-80">
+                                <div className="row g-4 align-items-center">
+                                    <div className="col-lg-6">
+                                        <img 
+                                            className="img-fluid w-100 rounded-4" 
+                                            src={`/assets/img/service/${service.img}`}
+                                            alt={service.title}
+                                        />
+                                    </div>
+                                    <div className="col-lg-6">
+                                        <div className="service-content-card bg-white p-4 p-lg-5 rounded-4 shadow-sm">
+                                            <h3 className="card-title mb-4" style={{ borderBottom: '2px solid var(--tg-theme-primary)', paddingBottom: '10px' }}>
+                                                {service.title} Overview
+                                            </h3>
+                                            <div className="content-wrapper">
+                                                {formatContent(service.content).map((paragraph, index) => (
+                                                    <p key={index} className={index === formatContent(service.content).length-1 ? "mb-0" : "mb-4"}>{paragraph}</p>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                            {/* Section 3: Approach with Feature Cards */}
+                            <div className="service-approach-section mb-60">
+                                <div className="row justify-content-center mb-4">
+                                    <div className="col-12">
+                                        <div className="section__title text-center mb-30">
+                                            <h2 className="title">Our {service.title} Approach</h2>
+                                            <p className="sec-text mt-3">We provide comprehensive {service.title.toLowerCase()} services tailored to your specific needs and goals.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="row g-4">                                    {service.features.map((feature, index) => (
+                                        <div key={index} className="col-md-6 col-lg-4">
+                                            <div className="service-approach-card wow img-custom-anim-top" 
+                                                data-wow-delay={`0.${index + 1}s`}>
+                                                {/* Card Image */}
+                                                <div className="card-image">
+                                                    <img 
+                                                        src={`/assets/img/service/${
+                                                            ['service-details-1-1.jpg', 'service-details-1-2.jpg', 'web_d.png', 'Ai_agent.png', 'uiux_graphic.png', 'brand_identity.png', 'marketing_seo.png'][index % 7]
+                                                        }`} 
+                                                        alt={feature} 
+                                                    />
+                                                </div>
+                                                
+                                                {/* Card Title */}
+                                                <h4 className="service-card-title">
+                                                    {feature}
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
@@ -162,8 +193,7 @@ export default function ServiceDetails({ params }: { params: { slug: string } })
 
                     {/*==============================
     Project Area 03
-    ==============================*/}
-                    <section className="project-area-3 pt-110 pb-120 overflow-hidden">
+    ==============================*/}                    <section className="project-area-3 pt-110 pb-120 overflow-hidden">
                         <div className="container">
                             <div className="section__title mb-50 text-center">
                                 <h2 className="title">Other Services</h2>

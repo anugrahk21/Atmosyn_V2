@@ -46,22 +46,27 @@ export default function Service1() {
                             <div id="tabs-content">
                                 <div id="tab1" className="service1-tab-content">
                                     <div className="service-thumb">
-                                        <img src="/assets/img/service/1-1.jpg" alt="img" />
+                                        <img src="/assets/img/service/web_d.png" alt="Web Development" />
                                     </div>
                                 </div>
                                 <div id="tab2" className="service1-tab-content" style={{ display: 'none' }}>
                                     <div className="service-thumb">
-                                        <img src="/assets/img/service/1-2.jpg" alt="img" />
+                                        <img src="/assets/img/service/Ai_agent.png" alt="AI Agents" />
                                     </div>
                                 </div>
                                 <div id="tab3" className="service1-tab-content" style={{ display: 'none' }}>
                                     <div className="service-thumb">
-                                        <img src="/assets/img/service/1-1.jpg" alt="img" />
+                                        <img src="/assets/img/service/uiux_graphic.png" alt="UX/UI & Graphic Design" />
                                     </div>
                                 </div>
                                 <div id="tab4" className="service1-tab-content" style={{ display: 'none' }}>
                                     <div className="service-thumb">
-                                        <img src="/assets/img/service/1-2.jpg" alt="img" />
+                                        <img src="/assets/img/service/brand_identity.png" alt="Brand Identity" />
+                                    </div>
+                                </div>
+                                <div id="tab5" className="service1-tab-content" style={{ display: 'none' }}>
+                                    <div className="service-thumb">
+                                        <img src="/assets/img/service/marketing_seo.png" alt="Marketing & SEO" />
                                     </div>
                                 </div>
                             </div>

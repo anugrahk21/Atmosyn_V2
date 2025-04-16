@@ -25,76 +25,24 @@ export default function Service() {
                     <section className="service-area-2 pt-120 pb-120">
                         <div className="container">
                             <div className="row gx-30 gy-30">
-                                <div className="col-xl-4 col-md-6">
-                                    <div className="service-card style2">
-                                        <div className="service-card-img">
-                                            <img src="/assets/img/service/1-3.jpg" alt="img" />
+                                {servicesData.map((service) => (
+                                    <div key={service.id} className="col-xl-4 col-md-6">
+                                        <div className="service-card style2">
+                                            <div className="service-card-img">
+                                                <img src={`/assets/img/service/${service.img}`} alt={service.title} />
+                                            </div>
+                                            <h5 className="service-card-number">{service.number}</h5>
+                                            <h4 className="service-card-title">
+                                                <Link href={`/service-details/${service.slug}`}>{service.title}</Link>
+                                            </h4>
+                                            <p className="service-card-text">{service.excerpt}</p>
+                                            <Link href={`/service-details/${service.slug}`} className="link-btn">
+                                                Learn More
+                                                <i className="icon-arrow-top-left" />
+                                            </Link>
                                         </div>
-                                        <h5 className="service-card-number">01</h5>
-                                        <h4 className="service-card-title"><Link href={`/service-details/${servicesData[0].slug}`}>Web Development</Link></h4>
-                                        <p className="service-card-text">Crafting responsive, high-performance websites and web applications tailored to your business needs. We deliver seamless user experiences across all devices.</p>
-                                        <Link href={`/service-details/${servicesData[0].slug}`} className="link-btn">
-                                            Learn More
-                                            <i className="icon-arrow-top-left" />
-                                        </Link>
                                     </div>
-                                </div>
-                                <div className="col-xl-4 col-md-6">
-                                    <div className="service-card style2">
-                                        <div className="service-card-img">
-                                            <img src="/assets/img/service/1-2.jpg" alt="img" />
-                                        </div>
-                                        <h5 className="service-card-number">02</h5>
-                                        <h4 className="service-card-title"><Link href={`/service-details/${servicesData[1].slug}`}>AI Agents</Link></h4>
-                                        <p className="service-card-text">AI solutions will transform how you engage with customers. Leveraging cutting-edge technology to automate interactions while maintaining a human touch.</p>
-                                        <Link href={`/service-details/${servicesData[1].slug}`} className="link-btn">
-                                            Learn More
-                                            <i className="icon-arrow-top-left" />
-                                        </Link>
-                                    </div>
-                                </div>
-                                <div className="col-xl-4 col-md-6">
-                                    <div className="service-card style2">
-                                        <div className="service-card-img">
-                                            <img src="/assets/img/service/1-3.jpg" alt="img" />
-                                        </div>
-                                        <h5 className="service-card-number">03</h5>
-                                        <h4 className="service-card-title"><Link href={`/service-details/${servicesData[2].slug}`}>UX/UI & Graphic Design</Link></h4>
-                                        <p className="service-card-text">Creating intuitive, visually striking interfaces that delight users. We combine aesthetic appeal with functional design to enhance user engagement and satisfaction.</p>
-                                        <Link href={`/service-details/${servicesData[2].slug}`} className="link-btn">
-                                            Learn More
-                                            <i className="icon-arrow-top-left" />
-                                        </Link>
-                                    </div>
-                                </div>
-                                <div className="col-xl-4 col-md-6">
-                                    <div className="service-card style2">
-                                        <div className="service-card-img">
-                                            <img src="/assets/img/service/1-2.jpg" alt="img" />
-                                        </div>
-                                        <h5 className="service-card-number">04</h5>
-                                        <h4 className="service-card-title"><Link href={`/service-details/${servicesData[3].slug}`}>Brand Identity</Link></h4>
-                                        <p className="service-card-text">Establishing memorable, cohesive brand identities that resonate with your target audience. We develop comprehensive branding packages that communicate your unique value proposition.</p>
-                                        <Link href={`/service-details/${servicesData[3].slug}`} className="link-btn">
-                                            Learn More
-                                            <i className="icon-arrow-top-left" />
-                                        </Link>
-                                    </div>
-                                </div>
-                                <div className="col-xl-4 col-md-6">
-                                    <div className="service-card style2">
-                                        <div className="service-card-img">
-                                            <img src="/assets/img/service/1-3.jpg" alt="img" />
-                                        </div>
-                                        <h5 className="service-card-number">05</h5>
-                                        <h4 className="service-card-title"><Link href={`/service-details/${servicesData[4].slug}`}>Marketing & SEO</Link></h4>
-                                        <p className="service-card-text">Driving targeted traffic and improving search visibility to maximize your online presence. Our data-driven digital marketing strategies help you connect with your ideal audience and achieve measurable results.</p>
-                                        <Link href={`/service-details/${servicesData[4].slug}`} className="link-btn">
-                                            Learn More
-                                            <i className="icon-arrow-top-left" />
-                                        </Link>
-                                    </div>
-                                </div>
+                                ))}
                             </div>
                         </div>
                     </section>

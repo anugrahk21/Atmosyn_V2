@@ -4,7 +4,7 @@
         "title": "Web Development",
         "slug": "web-development",
         "number": "01",
-        "img": "1-3.jpg",
+        "img": "web_d.png",
         "excerpt": "Crafting responsive, high-performance websites and web applications tailored to your business needs. We deliver seamless user experiences across all devices.",
         "content": "Our web development services combine technical expertise with innovative design to create websites and applications that stand out in today's competitive digital landscape. We focus on building solutions that not only look great but also perform exceptionally well, prioritizing speed, security, and scalability.\n\nOur development approach is comprehensive, covering everything from initial planning and architecture to deployment and ongoing maintenance. We specialize in both frontend and backend development, creating cohesive systems that work flawlessly together.\n\nWe use modern frameworks and technologies to ensure your website or application is future-proof, easily maintainable, and capable of evolving with your business needs.",
         "features": [
@@ -22,7 +22,7 @@
         "title": "AI Agents",
         "slug": "ai-agents",
         "number": "02",
-        "img": "1-2.jpg",
+        "img": "Ai_agent.png",
         "excerpt": "AI solutions will transform how you engage with customers. Leveraging cutting-edge technology to automate interactions while maintaining a human touch.",
         "content": "Our AI agent solutions are designed to revolutionize how businesses interact with their customers and streamline internal operations. We create intelligent, conversational agents that can handle complex queries, provide personalized recommendations, and execute tasks with remarkable accuracy.\n\nOur AI agents are built on advanced natural language processing models, allowing them to understand context, remember conversation history, and respond in a natural, human-like manner. These agents continuously learn from interactions, becoming more effective over time.\n\nWe customize each AI solution to align with your brand voice and specific business requirements, ensuring a seamless integration with your existing systems and workflows.",
         "features": [
@@ -40,7 +40,7 @@
         "title": "UX/UI & Graphic Design",
         "slug": "ux-ui-graphic-design",
         "number": "03",
-        "img": "1-3.jpg",
+        "img": "uiux_graphic.png",
         "excerpt": "Creating intuitive, visually striking interfaces that delight users. We combine aesthetic appeal with functional design to enhance user engagement and satisfaction.",
         "content": "Our design philosophy centers on creating experiences that are both beautiful and functional. We believe that exceptional design goes beyond aesthetics to address user needs, business goals, and technical constraints in a harmonious way.\n\nOur UX/UI design process starts with thorough research and user testing to understand the needs and behaviors of your target audience. We then create wireframes and prototypes to test and refine our concepts before moving to the final design phase.\n\nIn graphic design, we focus on creating visual assets that strengthen your brand identity and communicate your message effectively across various platforms and mediums.",
         "features": [
@@ -58,7 +58,7 @@
         "title": "Brand Identity",
         "slug": "brand-identity",
         "number": "04",
-        "img": "1-2.jpg",
+        "img": "brand_identity.png",
         "excerpt": "Establishing memorable, cohesive brand identities that resonate with your target audience. We develop comprehensive branding packages that communicate your unique value proposition.",
         "content": "A strong brand identity is the foundation of successful marketing and customer relationships. Our branding services help businesses establish a unique and consistent presence that resonates with their target audience and differentiates them from competitors.\n\nWe take a strategic approach to brand development, beginning with in-depth research into your industry, competitors, and audience. This insights-driven process ensures that every element of your brand identity is purposeful and aligned with your business objectives.\n\nOur comprehensive branding packages include all the visual and verbal elements needed to present your brand consistently across all touchpoints, from your logo and color palette to your messaging and brand voice.",
         "features": [
@@ -76,7 +76,7 @@
         "title": "Marketing & SEO",
         "slug": "marketing-seo",
         "number": "05",
-        "img": "1-3.jpg",
+        "img": "marketing_seo.png",
         "excerpt": "Driving targeted traffic and improving search visibility to maximize your online presence. Our data-driven digital marketing strategies help you connect with your ideal audience and achieve measurable results.",
         "content": "Our marketing and SEO services are designed to increase your visibility, attract qualified leads, and convert those leads into loyal customers. We combine strategic thinking with data analysis to create campaigns that deliver tangible results and measurable ROI.\n\nOur SEO approach goes beyond keywords to focus on creating valuable content that answers your audience's questions and addresses their needs. We optimize technical elements of your website to ensure search engines can easily crawl and index your content.\n\nOur digital marketing strategies are tailored to your specific goals and target audience, utilizing the most effective channels and tactics to reach potential customers at every stage of their journey.",
         "features": [
