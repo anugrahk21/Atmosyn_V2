@@ -5550,6 +5550,23 @@ textarea.is-invalid {
   text-align: center;
   line-height: 1.4;
 }
+
+/* Service Card Animations */
+@keyframes fadeInTopSeq {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-top-seq {
+  opacity: 0;
+  animation: fadeInTopSeq 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
 .skill-thumb-box2 {
   position: relative;
   bottom: -121px;
@@ -10372,6 +10389,194 @@ blockquote p::first-letter {
 }
 .rfm-marquee-container {
   overflow: hidden;
+}
+
+/* WhatsApp Button */
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.whatsapp-btn {
+  position: fixed;
+  bottom: 90px;
+  right: 45px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--tg-theme-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-size: 26px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  text-decoration: none;
+  animation: floating 2s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+}
+
+/* Adjust position on small screens */
+@media (max-width: 767px) {
+  .whatsapp-btn {
+    bottom: 80px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    font-size: 22px;
+  }
+}
+
+/* Schedule Call Toast */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.schedule-call-toast {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  width: 320px;
+  background-color: #ffffff;
+  border-left: 5px solid var(--tg-theme-primary);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.5s ease;
+}
+
+.schedule-call-toast.visible {
+  opacity: 1;
+  transform: translateX(0);
+  animation: slideInRight 0.5s forwards;
+}
+
+.schedule-call-toast:not(.visible) {
+  animation: slideOutRight 0.5s forwards;
+}
+
+.schedule-toast-content {
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toast-icon {
+  background-color: var(--tg-theme-primary);
+  color: #000000;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.toast-info {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.toast-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--tg-heading-color);
+  margin-bottom: 2px;
+  white-space: normal;
+}
+
+.toast-text {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+.toast-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toast-button {
+  background-color: var(--tg-theme-primary);
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.toast-button:hover {
+  background-color: var(--tg-theme-primary);
+  opacity: 0.9;
+  color: #fff;
+}
+
+.toast-close {
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 6px;
+}
+
+.toast-close:hover {
+  color: var(--tg-heading-color);
+}
+
+@media (max-width: 767px) {
+  .schedule-call-toast {
+    top: auto;
+    bottom: 140px;
+    right: 15px;
+    max-width: 250px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

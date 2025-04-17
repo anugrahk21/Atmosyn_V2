@@ -141,26 +141,31 @@ export default function ServiceDetails({ params }: { params: { slug: string } })
                                 </div>
                                 
                                 <div className="row g-4">                                    {service.features.map((feature, index) => (
-                                        <div key={index} className="col-md-6 col-lg-4">
-                                            <div className="service-approach-card wow img-custom-anim-top" 
-                                                data-wow-delay={`0.${index + 1}s`}>
-                                                {/* Card Image */}
-                                                <div className="card-image">
-                                                    <img 
-                                                        src={`/assets/img/service/${
-                                                            ['service-details-1-1.jpg', 'service-details-1-2.jpg', 'web_d.png', 'Ai_agent.png', 'uiux_graphic.png', 'brand_identity.png', 'marketing_seo.png'][index % 7]
-                                                        }`} 
-                                                        alt={feature} 
-                                                    />
-                                                </div>
-                                                
-                                                {/* Card Title */}
-                                                <h4 className="service-card-title">
-                                                    {feature}
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    ))}
+  <div key={index} className="col-md-6 col-lg-4">
+    <div
+      className="service-approach-card fade-in-top-seq"
+      style={{ animationDelay: `${index * 0.15 + 0.1}s` }}
+    >
+      <div className="card-image">
+        <img
+          src={`/assets/img/service/${
+            [
+              'service-details-1-1.jpg',
+              'service-details-1-2.jpg',
+              'web_d.png',
+              'Ai_agent.png',
+              'uiux_graphic.png',
+              'brand_identity.png',
+              'marketing_seo.png',
+            ][index % 7]
+          }`}
+          alt={feature}
+        />
+      </div>
+      <h4 className="service-card-title">{feature}</h4>
+    </div>
+  </div>
+))}
                                 </div>
                             </div>
                         </div>
