@@ -10469,7 +10469,7 @@ blockquote p::first-letter {
   top: 100px;
   right: 20px;
   width: 320px;
-  background-color: #ffffff;
+  background-color: #000000;
   border-left: 5px solid var(--tg-theme-primary);
   border-radius: 4px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -10518,14 +10518,14 @@ blockquote p::first-letter {
 .toast-title {
   font-size: 14px;
   font-weight: 600;
-  color: var(--tg-heading-color);
+  color: var(--tg-theme-primary);
   margin-bottom: 2px;
   white-space: normal;
 }
 
 .toast-text {
   font-size: 12px;
-  color: #666;
+  color: #e0dede;
   margin: 0;
 }
 
