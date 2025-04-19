@@ -4,6 +4,7 @@ import data from "@/util/blog.json"
 import { generateDynamicMetadata, generateJsonLd } from "@/util/metadata"
 import type { Metadata } from 'next'
 import Script from 'next/script'
+import BlogFAQAccordion from "@/components/elements/BlogFAQAccordion"
 
 // This tells Next.js to pre-render all possible blog pages at build time
 export async function generateStaticParams() {
@@ -18,12 +19,18 @@ export const dynamicParams = false
 interface BlogPost {
     id: number
     title: string
-    img: string
+    img: string[] // Changed from string to string array to support multiple images
     category: string
     author: string
     date: string
     excerpt?: string
     content?: string
+    keyTakeaways?: string[]
+    seoKeywords?: string[]
+    faqs?: {
+        question: string
+        answer: string
+    }[]
 }
 
 // Generate dynamic metadata for this blog post
@@ -35,7 +42,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 }
 
 // Format content into HTML with proper structure
-const formatContent = (content: string) => {
+const formatContent = (content: string, blogImages?: string[]) => {
     if (!content) return { __html: '' };
     
     // Split content into paragraphs
@@ -44,6 +51,9 @@ const formatContent = (content: string) => {
     // Create structured HTML
     let formattedHtml = '';
     let currentParagraph = '';
+    const midPoint = Math.floor(paragraphs.length / 2); // Find the middle of content for image placement
+      // Track paragraph count
+    let paragraphCount = 0;
     
     paragraphs.forEach((sentence, index) => {
         // Add period back except for the last sentence if it doesn't end with period
@@ -56,6 +66,17 @@ const formatContent = (content: string) => {
         // Create a new paragraph every 2-3 sentences
         if ((index + 1) % 3 === 0 && index < paragraphs.length - 1) {
             formattedHtml += `<p class="mb-25">${currentParagraph.trim()}</p>`;
+            paragraphCount++;
+            
+            // Insert the second image after exactly the 1st paragraph
+            if (blogImages && blogImages.length >= 2 && paragraphCount === 1 && !formattedHtml.includes('blog-mid-image')) {
+                formattedHtml += `
+                    <div class="blog-mid-image mb-40 mt-30 text-center">
+                        <img src="/assets/img/blog/${blogImages[1]}" alt="Blog Image" class="img-fluid rounded" />
+                    </div>
+                `;
+            }
+            
             currentParagraph = '';
         }
     });
@@ -65,14 +86,24 @@ const formatContent = (content: string) => {
         formattedHtml += `<p class="mb-25">${currentParagraph.trim()}</p>`;
     }
     
-    // Add a subheading and key points for the content
+    // Add third image before key takeaways
+    if (blogImages && blogImages.length >= 3) {
+        formattedHtml += `
+            <div class="blog-pre-takeaway-image mb-40 mt-30 text-center">
+                <img src="/assets/img/blog/${blogImages[2]}" alt="Blog Image" class="img-fluid rounded" />
+            </div>
+        `;
+    }
+      // Add Key Takeaways section with dynamically added content from blog post
     formattedHtml += `
         <h3 class="mb-20 mt-40">Key Takeaways</h3>
         <ul class="list-wrap mb-35">
-            <li class="mb-10"><i class="fas fa-check-circle me-2"></i>Stay ahead of competitors with cutting-edge strategies</li>
-            <li class="mb-10"><i class="fas fa-check-circle me-2"></i>Improve user engagement through better digital experiences</li>
-            <li className="mb-10"><i className="fas fa-check-circle me-2"></i>Increase conversion rates with optimized user journeys</li>
-            <li className="mb-10"><i className="fas fa-check-circle me-2"></i>Build brand loyalty through consistent, quality interactions</li>
+            ${blogImages && Array.isArray(blogImages) && blogImages.length > 0 ? 
+                `<li class="mb-10"><i class="fas fa-check-circle me-2"></i>Stay ahead of competitors with cutting-edge strategies</li>
+                <li class="mb-10"><i class="fas fa-check-circle me-2"></i>Improve user engagement through better digital experiences</li>
+                <li class="mb-10"><i class="fas fa-check-circle me-2"></i>Increase conversion rates with optimized user journeys</li>
+                <li class="mb-10"><i class="fas fa-check-circle me-2"></i>Build brand loyalty through consistent, quality interactions</li>` 
+                : ''}
         </ul>`;
     
     return { __html: formattedHtml };
@@ -105,7 +136,7 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
         )
     }
     
-    const blogPost = data[currentIndex];
+    const blogPost = data[currentIndex] as BlogPost;
     const prevPost = currentIndex > 0 ? data[currentIndex - 1] : null;
     const nextPost = currentIndex < data.length - 1 ? data[currentIndex + 1] : null;
     
@@ -123,6 +154,33 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
         .filter(post => post.id !== data[currentIndex].id)
         .slice(0, 3);
 
+    // Create a modified version of formatContent that uses the actual key takeaways
+    const formatContentWithTakeaways = (content: string, post: BlogPost) => {
+        // Start with the base formatted content
+        const baseFormatted = formatContent(content, Array.isArray(post.img) ? post.img : [post.img as string]);
+        
+        // Get the HTML string from the base format
+        let htmlString = baseFormatted.__html;
+        
+        // Replace the placeholder key takeaways with the actual ones if available
+        if (post.keyTakeaways && post.keyTakeaways.length > 0) {
+            const takeawaysHtml = post.keyTakeaways.map(
+                takeaway => `<li class="mb-10"><i class="fas fa-check-circle me-2"></i>${takeaway}</li>`
+            ).join('\n');
+            
+            // Use a regex to find and replace the key takeaways section
+            const keyTakeawaysRegex = /<h3 class="mb-20 mt-40">Key Takeaways<\/h3>\s*<ul class="list-wrap mb-35">[\s\S]*?<\/ul>/;
+            htmlString = htmlString.replace(keyTakeawaysRegex, 
+                `<h3 class="mb-20 mt-40">Key Takeaways</h3>
+                <ul class="list-wrap mb-35">
+                    ${takeawaysHtml}
+                </ul>`
+            );
+        }
+        
+        return { __html: htmlString };
+    };
+
     return (
         <>
             <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="Blog Details">
@@ -137,9 +195,9 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-8">
-                                <div className="blog__details-wrap mb-100">
-                                    <div className="blog__details-thumb">
-                                        <img src={`/assets/img/blog/${blogPost.img}`} alt={blogPost.title} />
+                                <div className="blog__details-wrap mb-100">                                    <div className="blog__details-thumb">
+                                        {/* Display the first image at the top */}
+                                        <img src={`/assets/img/blog/${Array.isArray(blogPost.img) ? blogPost.img[0] : blogPost.img}`} alt={blogPost.title} />
                                         <div className="blog__post-meta">
                                             <ul className="list-wrap">
                                                 <li><i className="far fa-user" /><Link href="/blog">{blogPost.author}</Link></li>
@@ -154,10 +212,14 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                                         {blogPost.excerpt && (
                                             <p className="mb-30 lead"><strong>{blogPost.excerpt}</strong></p>
                                         )}
-                                        
-                                        {/* Use dangerouslySetInnerHTML to render the formatted content */}
-                                        <div dangerouslySetInnerHTML={formatContent(blogPost.content || '')} />
-                                        
+                                          {/* Use dangerouslySetInnerHTML to render the formatted content with images */}
+                                        <div dangerouslySetInnerHTML={formatContentWithTakeaways(blogPost.content || '', blogPost)} />                                        {/* FAQ Section */}
+                                        {blogPost.faqs && blogPost.faqs.length > 0 && (
+                                            <div className="blog-faq-section mt-60">
+                                                <h3 className="mb-20">FAQ About</h3>
+                                                <BlogFAQAccordion faqs={blogPost.faqs} />
+                                            </div>
+                                        )}
                                         {/* Category-specific quotes */}
                                         {blogPost.category === "Design" && (
                                             <blockquote className="mb-30 mt-30">
@@ -182,7 +244,6 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                                                 <p>"Your brand is the single most important investment you can make in your business. It's the promise you make to customers about who you are and how you deliver value."</p>
                                             </blockquote>
                                         )}
-                                        
                                         <div className="blog__details-content-bottom">
                                             <div className="row align-items-center">
                                                 <div className="col-xl-6">
@@ -285,10 +346,13 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                                         <h4 className="widget-title">Latest Posts</h4>
                                         <div className="rc-post-wrap">
                                             {latestPosts.map((post, index) => (
-                                                <div className="rc-post-item" key={index}>
-                                                    <div className="thumb">
+                                                <div className="rc-post-item" key={index}>                                        <div className="thumb">
                                                         <Link href={`/blog/${post.id}`}>
-                                                            <img src={`/assets/img/blog/${post.img}`} alt={post.title} />
+                                                            <img src={`/assets/img/blog/${
+                                                                Array.isArray(post.img) 
+                                                                    ? post.img.find(img => img.includes('-main')) || post.img[0]
+                                                                    : post.img
+                                                            }`} alt={post.title} />
                                                         </Link>
                                                     </div>
                                                     <div className="content">

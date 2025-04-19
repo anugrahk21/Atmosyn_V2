@@ -19,7 +19,14 @@ export default function Blog1() {
                             <div className="col-12" key={index}>
                                 <div className="blog__post-item">
                                     <div className="blog__post-thumb wow img-custom-anim-right">
-                                        <Link href={`/blog/${post.id}`}><img src={`/assets/img/blog/${post.img}`} alt={post.title} /></Link>
+                                        <Link href={`/blog/${post.id}`}>
+                                            <img 
+                                                src={`/assets/img/blog/${Array.isArray(post.img) 
+                                                    ? post.img.find(img => img.includes('main')) || post.img[0] 
+                                                    : post.img}`} 
+                                                alt={post.title} 
+                                            />
+                                        </Link>
                                     </div>
                                     <div className="blog__post-content wow img-custom-anim-left">
                                         <span className="blog__post-date">{post.date}</span>

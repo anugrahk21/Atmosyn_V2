@@ -13,10 +13,9 @@ export const getDefaultMetadata = (): Metadata => {
       title: 'ATMOSYN | Innovative Digital Agency',
       description: 'ATMOSYN specializes in web development, UX/UI design, brand identity, and marketing. Elevate your brand with Atmosyn.',
       url: 'https://atmosyn.com',
-      siteName: 'ATMOSYN',
-      images: [
+      siteName: 'ATMOSYN',      images: [
         {
-          url: 'https://atmosyn.com/assets/img/logo/atmosyn-og.jpg',
+          url: 'https://atmosyn.com/assets/img/logo/logomain.svg',
           width: 1200,
           height: 630,
           alt: 'ATMOSYN Digital Agency',
@@ -24,12 +23,11 @@ export const getDefaultMetadata = (): Metadata => {
       ],
       locale: 'en_US',
       type: 'website',
-    },
-    twitter: {
+    },    twitter: {
       card: 'summary_large_image',
       title: 'ATMOSYN | Innovative Digital Agency',
       description: 'ATMOSYN specializes in web development, UX/UI design, brand identity, and marketing. Elevate your brand with Atmosyn.',
-      images: ['https://atmosyn.com/assets/img/logo/atmosyn-og.jpg'],
+      images: ['https://atmosyn.com/assets/img/logo/logomain.svg'],
       creator: '@atmosyn',
     },
   };
@@ -83,9 +81,8 @@ export const generateStaticMetadata = (pageInfo: PageMetaInfo): Metadata => {
     'Atmosyn', 
     specificTopic.toLowerCase()
   ];
-
   // Create the image URL
-  const imageUrl = image || 'https://atmosyn.com/assets/img/logo/atmosyn-og.jpg';
+  const imageUrl = image || 'https://atmosyn.com/assets/img/logo/logomain.svg';
 
   return {
     title: metaTitle,
@@ -135,12 +132,18 @@ export const generateDynamicMetadata = (content: any, type: 'blog' | 'service' |
   let imagePath = '';
   let specificTopic = '';
   let keywords: string[] = [];
-
   if (type === 'blog') {
     pageTitle = content.title;
     shortInfo = 'ATMOSYN Blog';
     description = content.excerpt || 'Insights from Atmosyn digital experts';
-    imagePath = `/assets/img/blog/${content.img}`;
+    // Select the main image for social sharing if img is an array
+    if (Array.isArray(content.img)) {
+      // Try to find the main image first, fall back to first image if not found
+      const mainImage = content.img.find((img: string) => img.includes('main')) || content.img[0];
+      imagePath = `/assets/img/blog/${mainImage}`;
+    } else {
+      imagePath = `/assets/img/blog/${content.img}`;
+    }
     specificTopic = content.category || 'digital marketing trends';
     keywords = [
       content.category?.toLowerCase() || 'blog',

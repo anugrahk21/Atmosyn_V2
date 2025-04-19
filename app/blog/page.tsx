@@ -26,9 +26,15 @@ export default function Blog() {
                             {blogData.map((post, index) => (
                                 <div className="col-xl-4 col-md-6" key={index}>
                                     <div className="blog__post-item-five shine-animate-item">
-                                        <div className="blog__post-thumb">
+                                        <div className="blog__post-thumb" style={{ height: "240px", overflow: "hidden" }}>
                                             <Link className="shine-animate" href={`/blog/${post.id}`}>
-                                                <img src={`/assets/img/blog/${post.img}`} alt={post.title} />
+                                                <img 
+                                                    src={`/assets/img/blog/${Array.isArray(post.img) 
+                                                        ? post.img.find(img => img.includes('main')) || post.img[0] 
+                                                        : post.img}`} 
+                                                    alt={post.title}
+                                                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                                />
                                             </Link>
                                         </div>
                                         <div className="blog__post-content">
