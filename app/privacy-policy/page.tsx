@@ -76,7 +76,7 @@ export default function PrivacyPolicy() {
 
                                     <div className="privacy-section">
                                         <h4 className="title mb-25">6. Contact Us</h4>
-                                        <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:info@atmosyn.com" className="text-theme">info@atmosyn.com</a></p>
+                                        <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:info@atmosyn.com" className="text-theme">info@atmosyn.com</a> or <a href="mailto:workwithatmosyn@gmail.com" className="text-theme">workwithatmosyn@gmail.com</a></p>
                                     </div>
                                 </div>
                             </div>

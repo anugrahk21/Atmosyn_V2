@@ -48,7 +48,6 @@ export default function ContactToastButton() {
       clearInterval(interval);
     };
   }, []);
-
   const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault(); // Prevent default navigation
     setIsVisible(false);
@@ -60,16 +59,16 @@ export default function ContactToastButton() {
     setTimeout(() => {
       setIsRendered(false);
       
-      // After navigation, scroll to the contact form
+      // After navigation, scroll to the contact image
       setTimeout(() => {
-        const contactFormElement = document.getElementById('contact-form');
-        if (contactFormElement) {
-          contactFormElement.scrollIntoView({ 
+        const contactImageElement = document.getElementById('contact-image');
+        if (contactImageElement) {
+          contactImageElement.scrollIntoView({ 
             behavior: 'smooth',
             block: 'start'
           });
         }
-      }); // Small delay to ensure the page has loaded
+      }, 100); // Small delay to ensure the page has loaded
     }, 300); // Match transition duration in CSS
   };
 
@@ -78,7 +77,7 @@ export default function ContactToastButton() {
       {isRendered && (
         <a
           className="btn big-circle-btn gsap-magnetic hero-contact-btn"
-          href="/contact#contact-form"
+          href="/contact#contact-image"
           onClick={handleContactClick}
         >
           LET'S TALK

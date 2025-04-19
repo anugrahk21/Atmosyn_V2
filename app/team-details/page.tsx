@@ -36,7 +36,7 @@ export default function TeamDetails() {
                                         <h2 className="title mb-20">Stephen</h2>
                                         <p className="text">He is an award-winning Executive Creative Director with over a decade of experience.</p>
                                         <div className="team-contact-wrap mt-30">
-                                            <h6 className="team-contact-title mb-20"><span className="me-2">EMAIL:</span> <Link href="mailto:info@atmosyn.com">info@atmosyn.com</Link></h6>
+                                            <h6 className="team-contact-title mb-20"><span className="me-2">EMAIL:</span> <Link href="mailto:info@atmosyn.com">info@atmosyn.com</Link><br></br><Link href="mailto:workwithatmosyn@gmail.com">workwithatmosyn@gmail.com</Link></h6>
                                             <h6 className="team-contact-title"><span className="me-2">PHONE:</span> <Link href="/tel:18408412569">+1 840 841 25 69</Link></h6>
                                             <div className="footer__social2 mt-30 mb-50">
                                                 <ul className="list-wrap">

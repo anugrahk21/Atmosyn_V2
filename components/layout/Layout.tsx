@@ -48,6 +48,9 @@ export default function Layout({ headerStyle, footerStyle, breadcrumbTitle, chil
             setScroll(window.scrollY > 100)
         }
 
+        // Check initial scroll position when component mounts or page refreshes
+        onScroll();
+
         window.addEventListener("scroll", onScroll)
         return () => window.removeEventListener("scroll", onScroll)
     }, [])

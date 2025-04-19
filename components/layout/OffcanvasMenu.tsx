@@ -21,7 +21,8 @@ export default function OffcanvasMenu({ isOffcanvasMenu, handleOffcanvasMenu }: 
                     </div>
                     <div className="contact-list mb-30">
                         <h4>Email Address</h4>
-                        <p>info@atmosyn.com</p>
+                        <p><Link href="mailto:info@atmosyn.com">info@atmosyn.com</Link></p>
+                        <p><Link href="mailto:workwithatmosyn@gmail.com">workwithatmosyn@gmail.com</Link></p>
                     </div>
                 </div>
                 <div className="offCanvas__social-icon mt-30">

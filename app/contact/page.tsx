@@ -36,7 +36,7 @@ export default function Contact() {
                                             </li>
                                             <li>
                                                 <h6 className="title">Email</h6>
-                                                <Link href="mailto:info@atmosyn.com">info@atmosyn.com</Link>
+                                                <Link href="mailto:info@atmosyn.com">info@atmosyn.com</Link><br></br><Link href="mailto:workwithatmosyn@gmail.com">workwithatmosyn@gmail.com</Link>
                                             </li>
                                             <li>
                                                 <h6 className="title">Headquarters</h6>
@@ -49,7 +49,7 @@ export default function Contact() {
                                                 </Link>
                                             </li>
                                         </ul>
-                                        <div style={{ marginTop: '3rem', position: 'relative', width: '100%' }}>
+                                        <div id="contact-image" style={{ marginTop: '3rem', position: 'relative', width: '100%' }}>
                                             <img 
                                                 src="/assets/img/others/contact1-1.svg" 
                                                 alt="Contact illustration" 

@@ -26,8 +26,8 @@ export default function Footer1() {
                                     <div className="footer__widget footer__conversation">
                                         <h4 className="footer__widget-title">Start a conversation</h4>
                                         <div className="footer__content">
-                                            <p><Link href="mailto:info@atmosyn.com">info@atmosyn.com</Link>
-                                            </p>
+                                            <p><Link href="mailto:info@atmosyn.com">info@atmosyn.com</Link></p>
+                                            <p><Link href="mailto:workwithatmosyn@gmail.com">workwithatmosyn@gmail.com</Link></p>
                                         </div>
                                     </div>
                                 </div>

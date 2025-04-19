@@ -52,13 +52,13 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isOffc
                             <Link href="/"><img src="/assets/img/logo/logo-white.svg" alt="Logo" /></Link>
                         </div>
                         <div className="tgmobile__menu-outer">
-                            <MobileMenu />
+                            <MobileMenu handleMobileMenu={handleMobileMenu} />
                         </div>
                         <div className="tgmobile__menu-bottom">
                             <div className="contact-info">
                                 <ul className="list-wrap">
                                     <li><Link href="mailto:info@atmosyn.com">info@atmosyn.com</Link></li>
-                                    <li><Link href="/tel:0123456789">+123 888 9999</Link></li>
+                                    <li><Link href="mailto:workwithatmosyn@gmail.com">workwithatmosyn@gmail.com</Link></li>
                                 </ul>
                             </div>
                             <div className="social-links">
