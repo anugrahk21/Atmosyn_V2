@@ -255,8 +255,8 @@ label {
 }
 
 input[type=color] {
-  appearance: none;
   -moz-appearance: none;
+  appearance: none;
   -webkit-appearance: none;
   background: none;
   border: 0;
@@ -1175,7 +1175,7 @@ textarea {
   -ms-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
   -o-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
   width: 340px;
-  z-index: 999;
+  z-index: 1500;
   overflow-y: scroll;
   -webkit-transform: translateX(100%);
   -moz-transform: translateX(100%);
@@ -1271,7 +1271,7 @@ textarea {
   left: 0;
   height: 100%;
   width: 100%;
-  z-index: 99;
+  z-index: 1400;
   opacity: 0;
   visibility: hidden;
   -webkit-transition: all 0.3s ease-out 0s;
@@ -2131,6 +2131,7 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 input[type=checkbox] {
@@ -3013,7 +3014,7 @@ textarea.is-invalid {
   padding-right: 30px;
   max-width: 100%;
   height: 100%;
-  z-index: 999;
+  z-index: 1500;
   border-radius: 0px;
   transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
   -moz-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
@@ -3346,6 +3347,66 @@ textarea.is-invalid {
 /*=============================
     13. Banner
 ===============================*/
+
+/* Styles for the Contact Toast Button Container */
+.contact-toast-button-container {
+    position: fixed;
+    top: 90px;
+    right: 30px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-toast-button-container.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    animation: fadeInTop 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInTop {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Removed fadeOut animation for smoother transition */
+/* .contact-toast-button-container:not(.visible) {
+    animation: fadeOutTop 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeOutTop {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+} */
+
+/* Optional: Styles for a separate close button if you add one */
+
+/* Custom styles for Hero Contact Button */
+.hero-contact-btn {
+    font-size: 20px; /* Adjust this value as needed */
+    border: none; /* Remove border as we'll use gradient background */
+    background: linear-gradient(90deg, #000000 0%, var(--tg-theme-primary) 50%, #000000 100%);
+    background-size: 200% auto;
+    animation: textGradient 3s ease-in-out infinite;
+    color: rgb(0, 0, 0);
+    transition: transform 0.3s ease;
+    filter: brightness(1.2) contrast(1.2);
+}
 /*hero 1****************/
 .hero-1 {
   background: var(--tg-color-dark);
@@ -4760,7 +4821,6 @@ textarea.is-invalid {
   width: 433px;
   height: 418px;
   object-fit: cover;
-  filter: grayscale(1);
 }
 
 .service1-tab-wrap {
@@ -5504,8 +5564,8 @@ textarea.is-invalid {
     Service Approach Cards
 ===============================*/
 .service-approach-card {
-  background-color: rgba(168, 246, 0, 0.1);
-  border: 1.5px solid black;
+  background-color: rgb(0, 0, 0);
+  border: none;
   padding: 30px;
   height: 100%;
   border-radius: 0.75rem;
@@ -5542,7 +5602,7 @@ textarea.is-invalid {
 
 .service-approach-card .service-card-title {
   font-family: var(--tg-heading2-font-family);
-  color: var(--tg-heading-color);
+  color: var(--tg-theme-primary);
   font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.015em;
@@ -5583,7 +5643,7 @@ textarea.is-invalid {
     Team 01
 ===============================*/
 .team-area-1 {
-  padding-bottom: 240px;
+  padding-bottom: 160px;
 }
 
 .team-card {
@@ -10314,6 +10374,56 @@ blockquote p::first-letter {
     opacity: 1;
   }
 }
+
+/*============================================
+/*  24. Service Details Page
+==============================================*/
+.service-highlight-card {
+  background-color: #000;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+}
+.service-feature-list{
+  color: #ffffff;
+}
+.service-feature-list li,
+.service-feature-list span {
+  color: #ffffff;
+}
+.service-highlight-card .me-2,
+.service-feature-list img {
+  filter: invert(1);
+}
+.service-highlight-card .service-card-title {
+  color: var(--tg-theme-primary);
+  margin-bottom: 0.75rem;
+}
+
+.service-content-card {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 1.5rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+}
+
+.service-content-card .card-title {
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--tg-theme-primary);
+  padding-bottom: 10px;
+  color: var(--tg-theme-primary);
+}
+
+.service-content-card p, 
+.service-content-card .content-wrapper,
+.service-content-card span,
+.service-content-card div {
+  color: #ffffff;
+}
+
 @media (max-width: 767px) {
   .img-custom-anim-right,
   .img-custom-anim-left,

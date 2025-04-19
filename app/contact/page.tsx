@@ -21,7 +21,7 @@ export default function Contact() {
 
             <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="Contact">
                 <div>
-                    <section className="contact-area-1 pt-120 pb-120 overflow-hidden">
+                    <section className="contact-area-1 pt-120 pb-20 overflow-hidden">
                         <div className="container">
                             <div className="section__title mb-60">
                                 <h2 className="title">LET'S GET IN TOUCH</h2>
@@ -49,10 +49,18 @@ export default function Contact() {
                                                 </Link>
                                             </li>
                                         </ul>
+                                        <div style={{ marginTop: '3rem', position: 'relative', width: '100%' }}>
+                                            <img 
+                                                src="/assets/img/others/contact1-1.svg" 
+                                                alt="Contact illustration" 
+                                                className="wow img-custom-anim-left"
+                                                style={{ width: '100%', maxHeight: '420px', objectFit: 'contain' }}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="col-lg-6">
-                                    <div className="contact-form-wrap">
+                                    <div id="contact-form" className="contact-form-wrap">
                                         <div className="section__title mb-60">
                                             <h4 className="subtitle">Got a project you want to collaborate on?
                                                 Or just fancy a chat?</h4>

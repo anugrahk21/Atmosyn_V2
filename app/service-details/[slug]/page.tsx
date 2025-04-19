@@ -4,6 +4,7 @@ import servicesData from "@/util/services.json"
 import { generateDynamicMetadata, generateJsonLd } from "@/util/metadata"
 import type { Metadata } from 'next'
 import Script from 'next/script'
+import FeatureImage from "@/components/elements/FeatureImage"
 
 // This tells Next.js to pre-render all the service detail pages at build time
 export async function generateStaticParams() {
@@ -91,14 +92,13 @@ export default function ServiceDetails({ params }: { params: { slug: string } })
                                         <h2 className="title">{service.title.toUpperCase()}</h2>
                                         <p className="sec-text mt-3">{service.excerpt}</p>
                                     </div>
-                                </div>
-                                <div className="col-xl-5">
-                                    <div className="service-highlight-card shadow-sm rounded-4 p-4 bg-white">
-                                        <h4 className="service-card-title mb-3" style={{ color: 'var(--tg-theme-primary)' }}>Key Features</h4>
+                                </div>                                <div className="col-xl-5">
+                                    <div className="service-highlight-card">
+                                        <h4 className="service-card-title">Key Features</h4>
                                         <ul className="service-feature-list">
                                             {service.features.slice(0, 3).map((feature, index) => (
                                                 <li key={index} className="d-flex align-items-center mb-2">
-                                                    <img src="/assets/img/icon/check-circle2.svg" alt="check" className="me-2" width="20" /> 
+                                                    <img src="/assets/img/icon/check-circle2.svg" alt="check" className="me-2" width="20" />
                                                     <span>{feature}</span>
                                                 </li>
                                             ))}
@@ -115,10 +115,9 @@ export default function ServiceDetails({ params }: { params: { slug: string } })
                                             src={`/assets/img/service/${service.img}`}
                                             alt={service.title}
                                         />
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <div className="service-content-card bg-white p-4 p-lg-5 rounded-4 shadow-sm">
-                                            <h3 className="card-title mb-4" style={{ borderBottom: '2px solid var(--tg-theme-primary)', paddingBottom: '10px' }}>
+                                    </div>                                    <div className="col-lg-6">
+                                        <div className="service-content-card">
+                                            <h3 className="card-title">
                                                 {service.title} Overview
                                             </h3>
                                             <div className="content-wrapper">
@@ -145,27 +144,18 @@ export default function ServiceDetails({ params }: { params: { slug: string } })
     <div
       className="service-approach-card fade-in-top-seq"
       style={{ animationDelay: `${index * 0.15 + 0.1}s` }}
-    >
-      <div className="card-image">
-        <img
-          src={`/assets/img/service/${
-            [
-              'service-details-1-1.jpg',
-              'service-details-1-2.jpg',
-              'web_d.png',
-              'Ai_agent.png',
-              'uiux_graphic.png',
-              'brand_identity.png',
-              'marketing_seo.png',
-            ][index % 7]
-          }`}
-          alt={feature}
+    >      <div className="card-image">
+        <FeatureImage 
+          serviceSlug={service.slug} 
+          index={index} 
+          feature={feature} 
         />
       </div>
       <h4 className="service-card-title">{feature}</h4>
     </div>
   </div>
 ))}
+
                                 </div>
                             </div>
                         </div>

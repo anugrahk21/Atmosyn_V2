@@ -5,8 +5,8 @@ import AddClassBody from '../elements/AddClassBody'
 import BackToTop from '../elements/BackToTop'
 import DataBg from '../elements/DataBg'
 import MagnetsComponent from '../elements/MagnetsComponent'
-import ScheduleCallToast from '../elements/ScheduleCallToast'
 import WhatsAppButton from '../elements/WhatsAppButton'
+import ContactToastButton from '../elements/ContactToastButton'
 import Breadcrumb from './Breadcrumb'
 import Footer1 from './footer/Footer1'
 import Header1 from "./header/Header1"
@@ -68,7 +68,7 @@ export default function Layout({ headerStyle, footerStyle, breadcrumbTitle, chil
             <Footer1 />
 
             <WhatsAppButton />
-            <ScheduleCallToast />
+            <ContactToastButton />
             <BackToTop target="#top" />
         </>
     )

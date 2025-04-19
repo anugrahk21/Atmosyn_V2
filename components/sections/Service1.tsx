@@ -1,8 +1,11 @@
 'use client'
 import Link from "next/link"
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import servicesData from "../../util/services.json"
 
 export default function Service1() {
+    const [services, setServices] = useState(servicesData)
+    
     useEffect(() => {
         const tabs = document.querySelectorAll<HTMLElement>('.service1-tab-wrap li')
 
@@ -44,60 +47,36 @@ export default function Service1() {
                     <div className="row gy-40">
                         <div className="col-lg-5 wow img-custom-anim-left">
                             <div id="tabs-content">
-                                <div id="tab1" className="service1-tab-content">
-                                    <div className="service-thumb">
-                                        <img src="/assets/img/service/web_d.png" alt="Web Development" />
+                                {services.slice(0, 5).map((service, index) => (
+                                    <div 
+                                        key={service.id}
+                                        id={`tab${index + 1}`} 
+                                        className="service1-tab-content" 
+                                        style={{ display: index === 0 ? 'block' : 'none' }}
+                                    >
+                                        <div className="service-thumb">
+                                            <img 
+                                                src={`/assets/img/service/${service.img}`} 
+                                                alt={service.title} 
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                                <div id="tab2" className="service1-tab-content" style={{ display: 'none' }}>
-                                    <div className="service-thumb">
-                                        <img src="/assets/img/service/Ai_agent.png" alt="AI Agents" />
-                                    </div>
-                                </div>
-                                <div id="tab3" className="service1-tab-content" style={{ display: 'none' }}>
-                                    <div className="service-thumb">
-                                        <img src="/assets/img/service/uiux_graphic.png" alt="UX/UI & Graphic Design" />
-                                    </div>
-                                </div>
-                                <div id="tab4" className="service1-tab-content" style={{ display: 'none' }}>
-                                    <div className="service-thumb">
-                                        <img src="/assets/img/service/brand_identity.png" alt="Brand Identity" />
-                                    </div>
-                                </div>
-                                <div id="tab5" className="service1-tab-content" style={{ display: 'none' }}>
-                                    <div className="service-thumb">
-                                        <img src="/assets/img/service/marketing_seo.png" alt="Marketing & SEO" />
-                                    </div>
-                                </div>
+                                ))}
                             </div>
                         </div>
                         <div className="col-lg-7">
                             <ul className="service1-tab-wrap" id="tabs-nav">
-                                <li>
-                                    <div className="service1-tab-item" data-bs-toggle="tab" data-bs-target="#tab1">
-                                        <Link className="service1-tab-single" href="/service">Web Development <i className="icon-arrow-top-left" /></Link>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="service1-tab-item" data-bs-toggle="tab" data-bs-target="#tab2">
-                                        <Link className="service1-tab-single" href="/service">AI Agents <span>(coming soon)</span> <i className="icon-arrow-top-left" /></Link>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="service1-tab-item" data-bs-toggle="tab" data-bs-target="#tab3">
-                                        <Link className="service1-tab-single" href="/service">UX/UI & Graphic Design <i className="icon-arrow-top-left" /></Link>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="service1-tab-item" data-bs-toggle="tab" data-bs-target="#tab4">
-                                        <Link className="service1-tab-single" href="/service">Brand Identity <i className="icon-arrow-top-left" /></Link>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="service1-tab-item" data-bs-toggle="tab" data-bs-target="#tab5">
-                                        <Link className="service1-tab-single" href="/service">Marketing & SEO <i className="icon-arrow-top-left" /></Link>
-                                    </div>
-                                </li>
+                                {services.slice(0, 5).map((service, index) => (
+                                    <li key={service.id}>
+                                        <div className="service1-tab-item" data-bs-toggle="tab" data-bs-target={`#tab${index + 1}`}>
+                                            <Link className="service1-tab-single" href={`/service-details/${service.slug}`}>
+                                                {service.title} 
+                                                {service.title === "AI Agents" && <span>(coming soon)</span>} 
+                                                <i className="icon-arrow-top-left" />
+                                            </Link>
+                                        </div>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>
