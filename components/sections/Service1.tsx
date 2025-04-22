@@ -71,7 +71,7 @@ export default function Service1() {
                                         <div className="service1-tab-item" data-bs-toggle="tab" data-bs-target={`#tab${index + 1}`}>
                                             <Link className="service1-tab-single" href={`/service-details/${service.slug}`}>
                                                 {service.title} 
-                                                {service.title === "AI Agents" && <span>(coming soon)</span>} 
+                                                {service.title ==="AI Agents & Automation" && <span>(coming soon)</span>} 
                                                 <i className="icon-arrow-top-left" />
                                             </Link>
                                         </div>

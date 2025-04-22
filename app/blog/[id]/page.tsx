@@ -194,20 +194,22 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                 <section className="blog__details-area pt-120 pb-120">
                     <div className="container">
                         <div className="row">
-                            <div className="col-lg-8">
-                                <div className="blog__details-wrap mb-100">                                    <div className="blog__details-thumb">
-                                        {/* Display the first image at the top */}
-                                        <img src={`/assets/img/blog/${Array.isArray(blogPost.img) ? blogPost.img[0] : blogPost.img}`} alt={blogPost.title} />
-                                        <div className="blog__post-meta">
+                            <div className="col-lg-8">                                <div className="blog__details-wrap mb-100">
+                                    <div className="blog__details-content">
+                                        <h2 className="page-title">{blogPost.title}</h2>
+                                        
+                                        <div className="blog__post-meta mb-30">
                                             <ul className="list-wrap">
                                                 <li><i className="far fa-user" /><Link href="/blog">{blogPost.author}</Link></li>
                                                 <li><i className="far fa-comments" /><Link href="#">COMMENTS (0)</Link></li>
                                                 <li><i className="far fa-clock" />{blogPost.date}</li>
                                             </ul>
                                         </div>
-                                    </div>
-                                    <div className="blog__details-content">
-                                        <h2 className="page-title mb-30">{blogPost.title}</h2>
+
+                                        <div className="blog__details-thumb mb-30">
+                                            {/* Display the first image after the title and meta info */}
+                                            <img src={`/assets/img/blog/${Array.isArray(blogPost.img) ? blogPost.img[0] : blogPost.img}`} alt={blogPost.title} />
+                                        </div>
                                         
                                         {blogPost.excerpt && (
                                             <p className="mb-30 lead"><strong>{blogPost.excerpt}</strong></p>

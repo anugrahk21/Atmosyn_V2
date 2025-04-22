@@ -1,9 +1,23 @@
 [
     {
         "id": 1,
+        "title": "AI Agents & Automation",
+        "slug": "ai-agents",
+        "number": "01",
+        "img": "Ai_agent.svg",
+        "excerpt": "AI solutions will transform how you engage with customers. Leveraging cutting-edge technology to automate interactions while maintaining a human touch.",
+        "content": "Our AI agent solutions are designed to revolutionize how businesses interact with their customers and streamline internal operations. We create intelligent, conversational agents that can handle complex queries, provide personalized recommendations, and execute tasks with remarkable accuracy.\n\nOur AI agents are built on advanced natural language processing models, allowing them to understand context, remember conversation history, and respond in a natural, human-like manner. These agents continuously learn from interactions, becoming more effective over time.\n\nWe customize each AI solution to align with your brand voice and specific business requirements, ensuring a seamless integration with your existing systems and workflows.",
+        "features": [
+            "Customer Support Automation",
+            "Website Chatbots",
+            "Workflow Automation"
+        ]
+    },
+    {
+        "id": 2,
         "title": "Web Development",
         "slug": "web-development",
-        "number": "01",
+        "number": "02",
         "img": "web_d.svg",
         "excerpt": "Crafting responsive, high-performance websites and web applications tailored to your business needs. We deliver seamless user experiences across all devices.",
         "content": "Our web development services combine technical expertise with innovative design to create websites and applications that stand out in today's competitive digital landscape. We focus on building solutions that not only look great but also perform exceptionally well, prioritizing speed, security, and scalability.\n\nOur development approach is comprehensive, covering everything from initial planning and architecture to deployment and ongoing maintenance. We specialize in both frontend and backend development, creating cohesive systems that work flawlessly together.\n\nWe use modern frameworks and technologies to ensure your website or application is future-proof, easily maintainable, and capable of evolving with your business needs.",
@@ -14,20 +28,6 @@
             "SEO-Friendly Development",
             "Website Maintenance",
             "Performance Optimization"
-        ]
-    },
-    {
-        "id": 2,
-        "title": "AI Agents",
-        "slug": "ai-agents",
-        "number": "02",
-        "img": "Ai_agent.svg",
-        "excerpt": "AI solutions will transform how you engage with customers. Leveraging cutting-edge technology to automate interactions while maintaining a human touch.",
-        "content": "Our AI agent solutions are designed to revolutionize how businesses interact with their customers and streamline internal operations. We create intelligent, conversational agents that can handle complex queries, provide personalized recommendations, and execute tasks with remarkable accuracy.\n\nOur AI agents are built on advanced natural language processing models, allowing them to understand context, remember conversation history, and respond in a natural, human-like manner. These agents continuously learn from interactions, becoming more effective over time.\n\nWe customize each AI solution to align with your brand voice and specific business requirements, ensuring a seamless integration with your existing systems and workflows.",
-        "features": [
-            "Customer Support Automation",
-            "Website Chatbots",
-            "Workflow Automation"
         ]
     },
     {

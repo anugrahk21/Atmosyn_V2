@@ -673,6 +673,9 @@
 .primary-bg {
 	background: #222;
 }
+.green-bg {
+	background: var(--tg-theme-primary)
+}
 /* Color */
 
 .white-color {

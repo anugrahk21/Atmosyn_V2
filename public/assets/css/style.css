@@ -1455,21 +1455,21 @@ textarea {
   z-index: 1;
 }
 .breadcrumb__content {
-  padding: 192px 0 182px;
+  padding: 120px 0 110px;
 }
 @media (max-width: 1199.98px) {
   .breadcrumb__content {
-    padding: 172px 0 162px;
+    padding: 110px 0 100px;
   }
 }
 @media (max-width: 767.98px) {
   .breadcrumb__content {
-    padding: 120px 0;
+    padding: 80px 0;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   .breadcrumb__content {
-    padding: 130px 0;
+    padding: 90px 0;
   }
 }
 .breadcrumb__content .title {
@@ -3441,6 +3441,18 @@ textarea.is-invalid {
   100% {
     background-position: 0% 50%;
   }
+}
+
+/* Service images positioning */
+.service-thumb {
+  padding-top: 15px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.service1-tab-content {
+  padding-top: 15px;
 }
 
 .hero-style1 .hero-title span.text-theme {
@@ -6177,7 +6189,7 @@ textarea.is-invalid {
 .counter-card .counter-card-number {
   font-size: 90px;
   font-weight: 400;
-  color: var(--tg-color-white-default);
+  color: black;
   opacity: 0.15;
   margin-bottom: -0.3em;
   margin-top: -0.13em;

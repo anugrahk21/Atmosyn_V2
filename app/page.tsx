@@ -5,6 +5,7 @@ import Service1 from "@/components/sections/Service1"
 import Team1 from "@/components/sections/Team1"
 import Testimonial1 from "@/components/sections/Testimonial1"
 import Work from "@/components/sections/Work"
+import Overview from "@/components/sections/Overview"
 import { generateStaticMetadata } from "@/util/metadata"
 import type { Metadata } from 'next'
 
@@ -25,6 +26,7 @@ export default function Home() {
             <Layout headerStyle={1} footerStyle={1}>
                 <Hero1 />
                 <Service1 />
+                <Overview />
                 <Work />
                 <Team1 />
                 <Testimonial1 />
