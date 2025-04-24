@@ -16,7 +16,7 @@ export default function PrivacyPolicy() {
     return (
         <>
             <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="Privacy Policy">
-                <section className="privacy-policy-area pt-110 pb-120">
+                <section className="privacy-policy-area pt-60 pb-120">
                     <div className="container">
                         <div className="row justify-content-center">
                             <div className="col-xl-10">

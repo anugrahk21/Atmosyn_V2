@@ -83,7 +83,7 @@ export default function ServiceDetails({ params }: { params: { slug: string } })
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
                 />
                   <div>
-                    <div className="service-details-page-area pt-110 pb-50">
+                    <div className="service-details-page-area pt-60 pb-50">
                         <div className="container">
                             {/* Section 1: Service Title and Highlight Features */}
                             <div className="row align-items-center justify-content-between mb-60">

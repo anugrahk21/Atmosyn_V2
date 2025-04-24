@@ -22,25 +22,27 @@ export default function Service() {
 
             <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="Our Services">
                 <div>
-                    <section className="service-area-2 pt-120 pb-120">
+                    <section className="service-area-2 pt-60 pb-120">
                         <div className="container">
                             <div className="row gx-30 gy-30">
                                 {servicesData.map((service) => (
                                     <div key={service.id} className="col-xl-4 col-md-6">
-                                        <div className="service-card style2">
-                                            <div className="service-card-img">
-                                                <img src={`/assets/img/service/${service.img}`} alt={service.title} />
+                                        <Link href={`/service-details/${service.slug}`}>
+                                            <div className="service-card style2">
+                                                <div className="service-card-img">
+                                                    <img src={`/assets/img/service/${service.img}`} alt={service.title} />
+                                                </div>
+                                                <h5 className="service-card-number">{service.number}</h5>
+                                                <h4 className="service-card-title">
+                                                    <Link href={`/service-details/${service.slug}`}>{service.title}</Link>
+                                                </h4>
+                                                <p className="service-card-text">{service.excerpt}</p>
+                                                <Link href={`/service-details/${service.slug}`} className="link-btn">
+                                                    Learn More
+                                                    <i className="icon-arrow-top-left" />
+                                                </Link>
                                             </div>
-                                            <h5 className="service-card-number">{service.number}</h5>
-                                            <h4 className="service-card-title">
-                                                <Link href={`/service-details/${service.slug}`}>{service.title}</Link>
-                                            </h4>
-                                            <p className="service-card-text">{service.excerpt}</p>
-                                            <Link href={`/service-details/${service.slug}`} className="link-btn">
-                                                Learn More
-                                                <i className="icon-arrow-top-left" />
-                                            </Link>
-                                        </div>
+                                        </Link>
                                     </div>
                                 ))}
                             </div>

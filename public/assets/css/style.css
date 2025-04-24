@@ -33,6 +33,7 @@
     21. Brand
     22. 404 Error
     23. Footer
+    24. Scroll Indicator
 
 ==============================================*/
 /*============================================
@@ -1665,7 +1666,52 @@ textarea {
 }
 
 /*=============================
-	09. Section Title
+    24. Scroll Indicator
+===============================*/
+.scroll__down {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  background-color: var(--tg-theme-primary);
+  text-align: center;
+  display: inline-block;
+  color: #000;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  animation: pulseAnimation 1.5s infinite ease-in-out;
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+}
+
+.scroll__down.hidden {
+  opacity: 0;
+}
+
+.scroll__down i {
+  color: #000;
+  animation: arrowAnimation 2s infinite ease-in-out;
+}
+
+@keyframes pulseAnimation {
+  0% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 10px); }
+  100% { transform: translate(-50%, 0); }
+}
+
+@keyframes arrowAnimation {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+/*=============================
+  09. Section Title
 ===============================*/
 .section__title .sub-title {
   text-transform: uppercase;
@@ -8112,7 +8158,7 @@ textarea.is-invalid {
   font-weight: 400;
   line-height: 1.3333;
   letter-spacing: 0.015em;
-  margin-bottom: 56px;
+  margin-bottom: 20px;
 }
 .blog__post-item-five .blog__post-content .title a {
   color: var(--tg-color-dark);

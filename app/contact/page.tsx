@@ -21,7 +21,7 @@ export default function Contact() {
 
             <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="Contact">
                 <div>
-                    <section className="contact-area-1 pt-120 pb-20 overflow-hidden">
+                    <section className="contact-area-1 pt-60 pb-20 overflow-hidden">
                         <div className="container">
                             <div className="section__title mb-60">
                                 <h2 className="title">LET'S GET IN TOUCH</h2>

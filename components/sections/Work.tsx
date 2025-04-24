@@ -8,7 +8,7 @@ export default function Work() {
     
     return (
         <>
-            <section className="work-area pt-120 pb-120 dark-bg">
+            <section className="work-area pt-120 pb-80 dark-bg">
                 <div className="container">
                     <div className="work-wrap-header">
                         <div className="work-thumb-wrap">
@@ -31,7 +31,7 @@ export default function Work() {
                             Creative solutions for impactful digital experiences.
                         </h3>
                     </div>
-                    <div className="pt-100 pb-120">
+                    <div className="pt-0 pb-120">
                         <div className="row gy-40 align-items-center">
                             <div className="col-lg-6 wow img-custom-anim-left">
                                 <div className="work-img-wrap1">

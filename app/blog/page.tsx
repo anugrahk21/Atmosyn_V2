@@ -20,7 +20,7 @@ export default function Blog() {
     return (
         <>
             <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="Blog">
-                <section className="blog-area-4 pt-110 pb-120">
+                <section className="blog-area-4 pt-60 pb-120">
                     <div className="container">
                         <div className="row gy-80 justify-content-center">
                             {blogData.map((post, index) => (

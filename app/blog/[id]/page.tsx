@@ -191,7 +191,7 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
                 />
                 
-                <section className="blog__details-area pt-120 pb-120">
+                <section className="blog__details-area pt-80 pb-120">
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-8">                                <div className="blog__details-wrap mb-100">

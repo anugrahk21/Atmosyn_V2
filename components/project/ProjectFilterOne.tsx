@@ -43,7 +43,7 @@ export default function ProjectFilterOne() {
 
     return (
         <>
-            <section className="project-area-3 pt-110 pb-120 overflow-hidden">
+            <section className="project-area-3 pt-60 pb-120 overflow-hidden">
                 <div className="container">
                     <div className="section__title mb-50 text-center">
                         <div className="portfolio-tab-menu filter-menu-active">

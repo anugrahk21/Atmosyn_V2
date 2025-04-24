@@ -86,7 +86,7 @@ const [formData, setFormData] = useState({
         </div>
       )}
       <form onSubmit={handleSubmit} className="contact__form ajax-contact">
-        <div className="row gy-35">
+        <div className="row gy-35 pb-30">
           {/* ...existing code... */}
           <div className="col-12 form-group">
             <label className="form-icon-left"><img src="/assets/img/icon/svg-img/user.svg" alt="icon" /></label>            <input
@@ -275,7 +275,7 @@ const [formData, setFormData] = useState({
           {isSubmitting
             ? 'Sending...'
             : submissionStatus.type === 'success'
-            ? 'Sent Successfully!'
+            ? 'Sent Successfully! We will get back to you soon.'
             : 'SEND MESSAGE'}
         </button>
       </form>

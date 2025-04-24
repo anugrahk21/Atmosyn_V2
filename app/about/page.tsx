@@ -23,7 +23,7 @@ export default function About() {
         <>
 
             <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="ABOUT US">
-                <section className="pb-120 pt-120">
+                <section className="pb-120 pt-60">
                     <div className="overflow-hidden">
                         <div className="container">
                             <div className="row gy-40 justify-content-between">

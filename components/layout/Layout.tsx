@@ -7,6 +7,7 @@ import DataBg from '../elements/DataBg'
 import MagnetsComponent from '../elements/MagnetsComponent'
 import WhatsAppButton from '../elements/WhatsAppButton'
 import ContactToastButton from '../elements/ContactToastButton'
+import ScrollIndicator from '../elements/ScrollIndicator'
 import Breadcrumb from './Breadcrumb'
 import Footer1 from './footer/Footer1'
 import Header1 from "./header/Header1"
@@ -16,10 +17,21 @@ interface LayoutProps {
     footerStyle?: Number
     children?: React.ReactNode
     breadcrumbTitle?: string
+    showScrollIndicator?: boolean
+    scrollIndicatorProps?: {
+        className?: string
+    }
 }
 
 
-export default function Layout({ headerStyle, footerStyle, breadcrumbTitle, children }: LayoutProps) {
+export default function Layout({ 
+    headerStyle, 
+    footerStyle, 
+    breadcrumbTitle, 
+    children,
+    showScrollIndicator = true,
+    scrollIndicatorProps = {}
+}: LayoutProps) {
     const [scroll, setScroll] = useState<boolean>(false)
     // Mobile Menu
     const [isMobileMenu, setMobileMenu] = useState<boolean>(false)
@@ -73,6 +85,13 @@ export default function Layout({ headerStyle, footerStyle, breadcrumbTitle, chil
             <WhatsAppButton />
             <ContactToastButton />
             <BackToTop target="#top" />
+            
+            {/* Scroll Indicator */}
+            {showScrollIndicator && (
+                <ScrollIndicator
+                    className={scrollIndicatorProps.className}
+                />
+            )}
         </>
     )
 }

@@ -10,15 +10,15 @@
         z-index: 1;
     }
     &__content {
-        padding: 192px 0 182px;
+        padding: 192px 0 80px;
         @media #{$lg} {
-            padding: 172px 0 162px;
+            padding: 172px 0 70px;
         }
         @media #{$xs} {
-            padding: 120px 0;
+            padding: 120px 0 50px;
         }
         @media #{$sm} {
-            padding: 130px 0;
+            padding: 130px 0 60px;
         }
         & .title {
             margin-bottom: 25px;

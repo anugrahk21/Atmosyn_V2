@@ -52,14 +52,20 @@ export default function ContactToastButton() {
     e.preventDefault(); // Prevent default navigation
     setIsVisible(false);
     
+    // Check if on mobile or tablet (using 1024px as common tablet width threshold)
+    const isMobileOrTablet = window.innerWidth < 1024;
+    
+    // Hide the toast
+    setTimeout(() => {
+      setIsRendered(false);
+    }, 300);
+    
     // Navigate to contact page
     router.push('/contact');
     
-    // Wait for fade-out animation and page transition
-    setTimeout(() => {
-      setIsRendered(false);
-      
-      // After navigation, scroll to the contact image
+    // For mobile and tablet: set up scrolling after navigation
+    if (isMobileOrTablet) {
+      // Use timeout to wait for navigation to complete
       setTimeout(() => {
         const contactImageElement = document.getElementById('contact-image');
         if (contactImageElement) {
@@ -68,8 +74,9 @@ export default function ContactToastButton() {
             block: 'start'
           });
         }
-      }, 100); // Small delay to ensure the page has loaded
-    }, 300); // Match transition duration in CSS
+      }, 800); // Give enough time for the page to fully render
+    }
+    // For desktop, we just navigate to the contact page without any scrolling
   };
 
   return (
@@ -77,7 +84,7 @@ export default function ContactToastButton() {
       {isRendered && (
         <a
           className="btn big-circle-btn gsap-magnetic hero-contact-btn"
-          href="/contact#contact-image"
+          href="/contact"
           onClick={handleContactClick}
         >
           LET'S TALK

@@ -4,7 +4,7 @@ import projects from "@/util/projects.json"
 import { generateDynamicMetadata, generateJsonLd } from "@/util/metadata"
 import type { Metadata } from 'next'
 import Script from 'next/script'
-import Marquee from "react-fast-marquee"
+import PartnerMarquee from "@/components/sections/PartnerMarquee"
 
 // This tells Next.js to pre-render all the project detail pages at build time
 export async function generateStaticParams() {
@@ -62,7 +62,7 @@ export default function ProjectDetails({ params }: { params: { id: string } }) {
                 />
                 
                 <div>
-                    <section className="project-details-page-area pt-110 pb-120 overflow-hidden">
+                    <section className="project-details-page-area pt-60 pb-120 overflow-hidden">
                         <div className="container">
                             <div className="row">
                                 <div className="col-lg-7">
@@ -152,18 +152,7 @@ export default function ProjectDetails({ params }: { params: { id: string } }) {
                     {/*==============================
     Marquee Area
     ==============================*/}
-                    <div className="container-fluid px-0 overflow-hidden pb-30 pt-30 theme-bg">
-                        <div className="slider__marquee clearfix marquee-wrap style3">
-                            <Marquee className="marquee_mode marquee__group">
-                                <div className="item m-item"><Link href="/#"><img src="/assets/img/partner/partner1-1.svg" alt="img" /></Link></div>
-                                <div className="item m-item"><Link href="/#"><img src="/assets/img/partner/partner1-2.svg" alt="img" /></Link></div>
-                                <div className="item m-item"><Link href="/#"><img src="/assets/img/partner/partner1-3.svg" alt="img" /></Link></div>
-                                <div className="item m-item"><Link href="/#"><img src="/assets/img/partner/partner1-4.svg" alt="img" /></Link></div>
-                                <div className="item m-item"><Link href="/#"><img src="/assets/img/partner/partner1-5.svg" alt="img" /></Link></div>
-                                <div className="item m-item"><Link href="/#"><img src="/assets/img/partner/partner1-6.svg" alt="img" /></Link></div>
-                            </Marquee>
-                        </div>
-                    </div>
+                    <PartnerMarquee />
                 </div>
             </Layout>
         </>

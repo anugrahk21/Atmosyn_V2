@@ -23,7 +23,7 @@ export default function TestimonialsPage() {
                 <div>
                     {/*==============================
     Testimonial Area
-    ==============================*/}                    <section className="testimonial-area-2 pt-110 pb-120 theme-bg">
+    ==============================*/}                    <section className="testimonial-area-2 pt-60 pb-120 theme-bg">
                         <div className="container">
                             <div className="row">
                                 <div className="col-lg-6">

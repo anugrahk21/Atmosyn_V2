@@ -12,6 +12,7 @@
   "dependencies": {
     "@lottiefiles/dotlottie-react": "^0.13.3",
     "aos": "^2.3.4",
+    "framer-motion": "^12.9.1",
     "gsap": "^3.12.5",
     "isotope-layout": "^3.0.6",
     "next": "^14.2.28",
