@@ -3505,6 +3505,7 @@ textarea.is-invalid {
   background: linear-gradient(90deg, #000000 0%, var(--tg-theme-primary) 50%, #000000 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: textGradient 3s ease-in-out infinite;
   display: inline-block;

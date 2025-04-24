@@ -46,25 +46,32 @@ export default function Layout({
     }
 
     useEffect(() => {
+        // Only run on client-side
+        if (typeof window === 'undefined') {
+            return;
+        }
+        
+        // Client-side only code
         const WOW: any = require('wowjs');
         (window as any).wow = new WOW.WOW({
             live: false
         });
 
         // Initialize WOW.js
-        (window as any).wow.init()
+        (window as any).wow.init();
 
-        AOS.init()
+        // Initialize AOS
+        AOS.init();
 
         const onScroll = () => {
-            setScroll(window.scrollY > 100)
-        }
+            setScroll(window.scrollY > 100);
+        };
 
         // Check initial scroll position when component mounts or page refreshes
         onScroll();
 
-        window.addEventListener("scroll", onScroll)
-        return () => window.removeEventListener("scroll", onScroll)
+        window.addEventListener("scroll", onScroll);
+        return () => window.removeEventListener("scroll", onScroll);
     }, [])
     return (
         <>

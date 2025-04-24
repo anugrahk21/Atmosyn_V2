@@ -1,10 +1,8 @@
 import Layout from "@/components/layout/Layout"
-import Link from "next/link"
-import BlogPost from "@/components/blog/BlogPost"
-import Pagination from "@/components/blog/Pagination"
 import blogData from "@/util/blog.json"
 import { generateStaticMetadata } from "@/util/metadata"
 import type { Metadata } from 'next'
+import BlogFilterOne from "@/components/blog/BlogFilterOne"
 
 // Generate metadata using our utility
 export const metadata: Metadata = generateStaticMetadata({
@@ -22,32 +20,7 @@ export default function Blog() {
             <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="Blog">
                 <section className="blog-area-4 pt-60 pb-120">
                     <div className="container">
-                        <div className="row gy-80 justify-content-center">
-                            {blogData.map((post, index) => (
-                                <div className="col-xl-4 col-md-6" key={index}>
-                                    <div className="blog__post-item-five shine-animate-item">
-                                        <div className="blog__post-thumb" style={{ height: "240px", overflow: "hidden" }}>
-                                            <Link className="shine-animate" href={`/blog/${post.id}`}>
-                                                <img 
-                                                    src={`/assets/img/blog/${Array.isArray(post.img) 
-                                                        ? post.img.find(img => img.includes('main')) || post.img[0] 
-                                                        : post.img}`} 
-                                                    alt={post.title}
-                                                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                                                />
-                                            </Link>
-                                        </div>
-                                        <div className="blog__post-content">
-                                            <h3 className="title"><Link href={`/blog/${post.id}`}>{post.title}</Link></h3>
-                                            <Link href={`/blog/${post.id}`} className="link-btn">
-                                                Read More
-                                                <i className="icon-arrow-top-left" />
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                        <BlogFilterOne initialBlogs={blogData} />
                     </div>
                 </section>
             </Layout>

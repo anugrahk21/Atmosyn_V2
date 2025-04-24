@@ -252,8 +252,8 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                                                     <div className="post-tags">
                                                         <h5 className="title">TAGS:</h5>
                                                         <ul className="list-wrap">
-                                                            <li><Link href="#">{blogPost.category}</Link></li>
-                                                            <li><Link href="#">Digital</Link></li>
+                                                            <li><Link href={`/blog?category=${blogPost.category}`}>{blogPost.category}</Link></li>
+                                                            <li><Link href={`/blog?category=Digital`}>Digital</Link></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -323,20 +323,12 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                             <div className="col-lg-4">
                                 <aside className="blog-sidebar">
                                     <div className="blog-widget">
-                                        <div className="sidebar-search-form">
-                                            <form action="#">
-                                                <input type="text" placeholder="Search Here..." />
-                                                <button type="submit"><i className="fas fa-search" /></button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div className="blog-widget">
                                         <h4 className="widget-title">Categories</h4>
                                         <div className="sidebar-cat-list">
                                             <ul className="list-wrap">
                                                 {Array.from(new Set(data.map(post => post.category))).map((category, index) => (
                                                     <li key={index}>
-                                                        <Link href="#">
+                                                        <Link href={`/blog?category=${category}`}>
                                                             {category} <span>({data.filter(post => post.category === category).length})</span>
                                                         </Link>
                                                     </li>
@@ -344,6 +336,7 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                                             </ul>
                                         </div>
                                     </div>
+                                    
                                     <div className="blog-widget widget-rc-post">
                                         <h4 className="widget-title">Latest Posts</h4>
                                         <div className="rc-post-wrap">
@@ -372,10 +365,10 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                                         <div className="sidebar-tag-list">
                                             <ul className="list-wrap">
                                                 {Array.from(new Set(data.map(post => post.category))).map((category, index) => (
-                                                    <li key={index}><Link href="#">{category}</Link></li>
+                                                    <li key={index}><Link href={`/blog?category=${category}`}>{category}</Link></li>
                                                 ))}
-                                                <li><Link href="#">Digital</Link></li>
-                                                <li><Link href="#">Agency</Link></li>
+                                                <li><Link href={`/blog?category=Digital`}>Digital</Link></li>
+                                                <li><Link href={`/blog?category=Agency`}>Agency</Link></li>
                                             </ul>
                                         </div>
                                     </div>

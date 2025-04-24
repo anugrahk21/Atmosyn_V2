@@ -1,5 +1,4 @@
 'use client'
-import Isotope from "isotope-layout"
 import Link from "next/link"
 import { useCallback, useEffect, useRef, useState } from "react"
 import projectsData from "@/util/projects.json"
@@ -13,18 +12,26 @@ export default function ProjectFilterOne() {
     const [filterKey, setFilterKey] = useState<string>("*")
 
     useEffect(() => {
-        // Shorter timeout for faster initialization
-        setTimeout(() => {
-            if (isotope.current === null) {
-                isotope.current = new Isotope(".masonary-active", {
-                    itemSelector: ".filter-item",
-                    percentPosition: true,
-                    masonry: {
-                        columnWidth: ".filter-item",
+        // Only run on the client side
+        if (typeof window !== 'undefined') {
+            // Dynamically import Isotope only on client side
+            import('isotope-layout').then(IsotopeModule => {
+                const Isotope = IsotopeModule.default;
+                
+                // Shorter timeout for faster initialization
+                setTimeout(() => {
+                    if (isotope.current === null) {
+                        isotope.current = new Isotope(".masonary-active", {
+                            itemSelector: ".filter-item",
+                            percentPosition: true,
+                            masonry: {
+                                columnWidth: ".filter-item",
+                            }
+                        })
                     }
-                })
-            }
-        }, 1000)
+                }, 1000)
+            });
+        }
     }, [])
 
     useEffect(() => {
@@ -41,6 +48,17 @@ export default function ProjectFilterOne() {
 
     const activeBtn = (value: string) => (value === filterKey ? "active" : "")
 
+    // Add inline styles for active filter buttons to make highlighting more prominent
+    const getButtonStyle = (value: string) => {
+        if (value === filterKey) {
+            return {
+                color: 'var(--tg-theme-primary)',
+                fontWeight: '500'
+            };
+        }
+        return {};
+    };
+
     return (
         <>
             <section className="project-area-3 pt-60 pb-120 overflow-hidden">
@@ -48,11 +66,11 @@ export default function ProjectFilterOne() {
                     <div className="section__title mb-50 text-center">
                         <div className="portfolio-tab-menu filter-menu-active">
                             <span className="portfolio-tab-menu-title">FILTER BY :</span>
-                            <button className={`filter-btn ${activeBtn("*")}`} onClick={handleFilterKeyChange("*")}>Show All</button>
-                            <button className={`filter-btn ${activeBtn("development")}`} onClick={handleFilterKeyChange("development")}>Development</button>
-                            <button className={`filter-btn ${activeBtn("design")}`} onClick={handleFilterKeyChange("design")}>Design</button>
-                            <button className={`filter-btn ${activeBtn("branding")}`} onClick={handleFilterKeyChange("branding")}>Branding</button>
-                            <button className={`filter-btn ${activeBtn("marketing")}`} onClick={handleFilterKeyChange("marketing")}>Marketing</button>
+                            <button className={`filter-btn ${activeBtn("*")}`} onClick={handleFilterKeyChange("*")} style={getButtonStyle("*")}>All</button>
+                            <button className={`filter-btn ${activeBtn("development")}`} onClick={handleFilterKeyChange("development")} style={getButtonStyle("development")}>Web Dev</button>
+                            <button className={`filter-btn ${activeBtn("design")}`} onClick={handleFilterKeyChange("design")} style={getButtonStyle("design")}>Design</button>
+                            <button className={`filter-btn ${activeBtn("branding")}`} onClick={handleFilterKeyChange("branding")} style={getButtonStyle("branding")}>Brand</button>
+                            <button className={`filter-btn ${activeBtn("marketing")}`} onClick={handleFilterKeyChange("marketing")} style={getButtonStyle("marketing")}>Marketing</button>
                         </div>
                     </div>
                     
