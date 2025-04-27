@@ -3,7 +3,6 @@ import { useState } from "react"
 import Link from "next/link"
 import projectsData from "@/util/projects.json"
 import ProjectModal from "@/components/project/ProjectModal"
-import "@/components/project/ProjectModal.css"
 
 export default function Work() {
     // Use the first and second projects from our projects data

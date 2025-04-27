@@ -2,7 +2,6 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import projectsData from "@/util/projects.json"
 import ProjectModal from "@/components/project/ProjectModal"
-import "@/components/project/ProjectModal.css"
 
 interface IsotopeInstance {
     arrange(options: { filter: string }): void
