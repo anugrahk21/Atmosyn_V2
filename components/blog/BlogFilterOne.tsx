@@ -25,7 +25,7 @@ interface BlogFilterProps {
 const categoryMap = {
     "ai-automation": {
         name: "AI & Automation",
-        categories: ["Technology", "Analytics"]
+        categories: ["AI", "Automation"]
     },
     "web-development": {
         name: "Web Dev",
@@ -59,9 +59,14 @@ export default function BlogFilterOne({ initialBlogs }: BlogFilterProps) {
     const searchParams = useSearchParams();
     const categoryParam = searchParams.get('category');
     
+    // Sort the initial blogs by date (newest first) before any filtering
+    const sortedInitialBlogs = [...initialBlogs].sort((a, b) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+    
     // Set initial filter key based on URL parameter if available
     const [filterKey, setFilterKey] = useState<string>("*");
-    const [filteredBlogs, setFilteredBlogs] = useState<BlogPost[]>(initialBlogs);
+    const [filteredBlogs, setFilteredBlogs] = useState<BlogPost[]>(sortedInitialBlogs);
 
     useEffect(() => {
         if (categoryParam) {
@@ -72,11 +77,11 @@ export default function BlogFilterOne({ initialBlogs }: BlogFilterProps) {
 
     useEffect(() => {
         const filtered = filterKey === "*" 
-            ? initialBlogs 
-            : initialBlogs.filter(post => categoryMap[filterKey as keyof typeof categoryMap].categories.includes(post.category));
+            ? sortedInitialBlogs 
+            : sortedInitialBlogs.filter(post => categoryMap[filterKey as keyof typeof categoryMap].categories.includes(post.category));
         
         setFilteredBlogs(filtered);
-    }, [filterKey, initialBlogs]);
+    }, [filterKey, sortedInitialBlogs]);
 
     const handleFilterKeyChange = useCallback((key: string) => () => {
         setFilterKey(key);
@@ -128,9 +133,7 @@ export default function BlogFilterOne({ initialBlogs }: BlogFilterProps) {
                                 <div className="blog__post-thumb" style={{ height: "240px", overflow: "hidden" }}>
                                     <Link className="shine-animate" href={`/blog/${post.id}`}>
                                         <img 
-                                            src={`/assets/img/blog/${Array.isArray(post.img) 
-                                                ? post.img.find((img: string) => img.includes('main')) || post.img[0] 
-                                                : post.img}`} 
+                                            src={`/assets/img/blog/bg_${post.id}/${post.id}-1.jpg`}
                                             alt={post.title}
                                             style={{ width: "100%", height: "100%", objectFit: "cover" }}
                                         />
