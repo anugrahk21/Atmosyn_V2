@@ -36,8 +36,15 @@ export default function Layout({
     // Mobile Menu
     const [isMobileMenu, setMobileMenu] = useState<boolean>(false)
     const handleMobileMenu = (): void => {
-        setMobileMenu(!isMobileMenu)
-        !isMobileMenu ? document.body.classList.add("mobile-menu-visible") : document.body.classList.remove("mobile-menu-visible")
+        const nextState = !isMobileMenu; // Determine the next state
+        setMobileMenu(nextState); // Set the state
+
+        // Apply body class based on the next state
+        if (nextState) {
+            document.body.classList.add("mobile-menu-visible");
+        } else {
+            document.body.classList.remove("mobile-menu-visible");
+        }
     }
 
     const [isOffcanvasMenu, setOffcanvasMenu] = useState<boolean>(false)

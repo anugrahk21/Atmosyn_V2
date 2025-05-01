@@ -14,9 +14,9 @@ export const metadata: Metadata = generateStaticMetadata({
   title: 'Home',
   pageName: 'ATMOSYN',
   shortInfo: 'Creative Digital Agency',
-  description: 'ATMOSYN is a full-service digital agency specializing in web development, UX/UI design, branding, and marketing services. Transform your digital presence with our innovative solutions.',
-  specificTopic: 'comprehensive digital solutions',
-  keywords: ['digital agency', 'web development', 'UI/UX design', 'brand identity', 'marketing', 'SEO', 'digital transformation'],
+  description: 'ATMOSYN is a full-service digital agency specializing in AI solutions, web development, UX/UI design, automation services, branding, and marketing services. Transform your digital presence with our innovative solutions.',
+  specificTopic: 'comprehensive digital and AI solutions',
+  keywords: ['digital agency', 'web development', 'UI/UX design', 'AI solutions', 'automation services', 'brand identity', 'marketing', 'SEO', 'digital transformation'],
   image: '/assets/img/logo/logo.png',
 });
 

@@ -35,13 +35,13 @@ export default function Work() {
                         <div className="work-thumb-wrap">
                             <div className="work-group-thumb wow img-custom-anim-top">
                                 <div className="thumb">
-                                    <img src="/assets/img/others/group-img-1-1.jpg" alt="img" />
+                                    <img src="/assets/img/others/test_3.svg" alt="img" />
                                 </div>
                                 <div className="thumb">
-                                    <img src="/assets/img/others/group-img-1-2.jpg" alt="img" />
+                                    <img src="/assets/img/others/test_2.svg" alt="img" />
                                 </div>
                                 <div className="thumb">
-                                    <img src="/assets/img/others/group-img-1-3.jpg" alt="img" />
+                                    <img src="/assets/img/others/test_1.svg" alt="img" />
                                 </div>
                             </div>
                             <div className="work-counter-wrap wow img-custom-anim-left">
@@ -91,14 +91,14 @@ export default function Work() {
                     </div>
                     <div className="row gy-40 align-items-center flex-row-reverse">
                         <div 
-                            className="col-xl-5 col-lg-6 wow img-custom-anim-right cursor-pointer"
+                            className="col-lg-6 wow img-custom-anim-right cursor-pointer"
                             onClick={() => openProjectModal(featuredProject2.id)}
                         >
                             <div className="work-img-wrap1">
                                 <img src={`/assets/img/project/${featuredProject2.img}`} alt={featuredProject2.title} />
                             </div>
                         </div>
-                        <div className="col-xl-7 col-lg-6">
+                        <div className="col-lg-6">
                             <div className="work-wrap-details wow img-custom-anim-right ">
                                 <div className="section__title mb-40">
                                     <h2 className="title text-white">{featuredProject2.title}</h2>

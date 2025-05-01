@@ -39,12 +39,12 @@ export default function Service1() {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-6">
-                            <div className="section__title mb-50">
+                            <div className="section__title mb-0">
                                 <h2 className="title wow img-custom-anim-left">WHAT WE CAN DO FOR OUR CLIENTS</h2>
                             </div>
                         </div>
                     </div>
-                    <div className="row gy-40">
+                    <div className="row gy-30">
                         <div className="col-lg-5 wow img-custom-anim-left">
                             <div id="tabs-content">
                                 {services.slice(0, 5).map((service, index) => (
@@ -54,7 +54,7 @@ export default function Service1() {
                                         className="service1-tab-content" 
                                         style={{ display: index === 0 ? 'block' : 'none' }}
                                     >
-                                        <div className="service-thumb">
+                                        <div className="service-thumb" style={{ paddingTop: '0', marginTop: '10px' }}>
                                             <img 
                                                 src={`/assets/img/service/${service.img}`} 
                                                 alt={service.title} 

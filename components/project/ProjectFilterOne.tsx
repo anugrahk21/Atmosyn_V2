@@ -13,6 +13,8 @@ export default function ProjectFilterOne() {
     // State for the project modal
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null)
+    // State to track if any projects match the current filter
+    const [noProjectsFound, setNoProjectsFound] = useState<boolean>(false)
 
     useEffect(() => {
         // Only run on the client side
@@ -42,6 +44,20 @@ export default function ProjectFilterOne() {
             filterKey === "*"
                 ? isotope.current.arrange({ filter: `*` })
                 : isotope.current.arrange({ filter: `.${filterKey}` })
+            
+            // After filtering, check if any projects are visible or less than 3
+            setTimeout(() => {
+                if (filterKey === "*") {
+                    setNoProjectsFound(projectsData.length < 3);
+                } else {
+                    const matchingProjects = projectsData.filter(project => 
+                        project.services.some(service => 
+                            service.toLowerCase().replace(/\s+/g, '') === filterKey
+                        )
+                    );
+                    setNoProjectsFound(matchingProjects.length < 3);
+                }
+            }, 300);
         }
     }, [filterKey])
 
@@ -85,6 +101,7 @@ export default function ProjectFilterOne() {
                             <span className="portfolio-tab-menu-title">FILTER BY :</span>
                             <button className={`filter-btn ${activeBtn("*")}`} onClick={handleFilterKeyChange("*")} style={getButtonStyle("*")}>All</button>
                             <button className={`filter-btn ${activeBtn("development")}`} onClick={handleFilterKeyChange("development")} style={getButtonStyle("development")}>Web Dev</button>
+                            <button className={`filter-btn ${activeBtn("ai")}`} onClick={handleFilterKeyChange("ai")} style={getButtonStyle("ai")}>AI</button>
                             <button className={`filter-btn ${activeBtn("design")}`} onClick={handleFilterKeyChange("design")} style={getButtonStyle("design")}>Design</button>
                             <button className={`filter-btn ${activeBtn("branding")}`} onClick={handleFilterKeyChange("branding")} style={getButtonStyle("branding")}>Brand</button>
                             <button className={`filter-btn ${activeBtn("marketing")}`} onClick={handleFilterKeyChange("marketing")} style={getButtonStyle("marketing")}>Marketing</button>
@@ -122,6 +139,26 @@ export default function ProjectFilterOne() {
                             </div>
                         ))}
                     </div>
+                    
+                    {/* No projects found message */}
+                    {noProjectsFound && (
+                        <div className="text-center py-80">
+                            <div className="no-projects-found pt-50">
+                                <img 
+                                    src="assets/img/others/maintenance.svg" 
+                                    alt="Under Development" 
+                                    style={{height: '320px', marginBottom: '80px'}}
+                                    onError={(e) => {
+                                        // Fallback if image doesn't exist
+                                        e.currentTarget.style.display = 'none';
+                                    }}
+                                />
+                                <h3 className="mb-20">More Projects Coming Soon</h3>
+                                <p className="sec-text">We're currently developing exciting new projects in this category for our clients.</p>
+                                <p className="sec-text mt-10">Check back later or explore our other categories!</p>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </section>
 

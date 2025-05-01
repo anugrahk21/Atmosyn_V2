@@ -53,9 +53,9 @@ export default function MobileMenu({ handleMobileMenu }: { handleMobileMenu: () 
             <ul className="navigation me-0">
                 <li className={pathname === "/" ? "active" : ""}><Link href="/" onClick={handleMobileMenu}>HOME</Link></li>
                 <li className={pathname === "/about" ? "active" : ""}><Link href="/about" onClick={handleMobileMenu}>ABOUT US</Link></li>
-                <li className={pathname === "/service" || pathname.startsWith("/service-details") ? "active" : ""}><Link href="/service" onClick={handleMobileMenu}>SERVICES</Link></li>
+                <li className={pathname === "/service" || pathname?.startsWith("/service-details") ? "active" : ""}><Link href="/service" onClick={handleMobileMenu}>SERVICES</Link></li>
                 <li className={pathname === "/pricing" ? "active" : ""}><Link href="/pricing" onClick={handleMobileMenu}>PRICING</Link></li>
-                <li className={pathname === "/blog" || pathname.startsWith("/blog/") ? "active" : ""}><Link href="/blog" onClick={handleMobileMenu}>BLOG</Link></li>
+                <li className={pathname === "/blog" || pathname?.startsWith("/blog/") ? "active" : ""}><Link href="/blog" onClick={handleMobileMenu}>BLOG</Link></li>
                 <li className={pathname === "/contact" ? "active" : ""}><Link href="/contact#contact-image" onClick={(e) => handleContactClick(e)}>CONTACT</Link></li>
             </ul>
         </>

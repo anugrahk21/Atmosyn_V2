@@ -1,4 +1,5 @@
 import Link from "next/link"
+import teamMembers from "@/util/team.json";
 
 interface TeamMember {
   id: number;
@@ -27,53 +28,10 @@ export default function Team1({
   paddingTop = 110,
   paddingBottom = 120,
   showSocials = true,
-  teamMembers = [
-    {
-      id: 1,
-      name: "Terry Souro",
-      designation: "Creative Director",
-      photo: "/assets/img/team/team-1-1.jpg",
-      socialLinks: {
-        facebook: "https://facebook.com/",
-        twitter: "https://twitter.com/",
-        linkedin: "https://linkedin.com/"
-      }
-    },
-    {
-      id: 2,
-      name: "Souro Terry",
-      designation: "Creative Director",
-      photo: "/assets/img/team/team-1-2.jpg",
-      socialLinks: {
-        facebook: "https://facebook.com/",
-        twitter: "https://twitter.com/",
-        linkedin: "https://linkedin.com/"
-      }
-    },
-    {
-      id: 3,
-      name: "Stephen",
-      designation: "Creative Director",
-      photo: "/assets/img/team/team-1-3.jpg",
-      socialLinks: {
-        facebook: "https://facebook.com/",
-        twitter: "https://twitter.com/",
-        linkedin: "https://linkedin.com/"
-      }
-    },
-    {
-      id: 4,
-      name: "Terry Souro",
-      designation: "Creative Director",
-      photo: "/assets/img/team/team-1-4.jpg",
-      socialLinks: {
-        facebook: "https://facebook.com/",
-        twitter: "https://twitter.com/",
-        linkedin: "https://linkedin.com/"
-      }
-    }
-  ]
+  teamMembers: _teamMembers
 }: Team1Props) {
+    // Use imported teamMembers if no override is provided
+    const members = _teamMembers || teamMembers;
     return (
         <>
             <section className={`team-area-1 pt-${paddingTop} pb-${paddingBottom} ${backgroundColor}`}>
@@ -82,7 +40,7 @@ export default function Team1({
                         <h2 className="title wow img-custom-anim-top">{title}</h2>
                     </div>
                     <div className="row gx-30 gy-30 justify-content-center">
-                        {teamMembers.map((member, index) => (
+                        {members.map((member, index) => (
                             <div className="col-xl-3 col-lg-4 col-md-6 wow img-custom-anim-top" key={member.id || index}>
                                 <div className="team-card">
                                     <div className="team-card-thumb">
@@ -97,12 +55,12 @@ export default function Team1({
                                             <div className="team-social">
                                                 <button className="icon-btn"><i className="fas fa-plus" /></button>
                                                 <div className="social-icon-wrap">
-                                                    {member.socialLinks.facebook && (
-                                                        <Link href={member.socialLinks.facebook}><i className="fab fa-facebook-f" /></Link>
-                                                    )}
-                                                    {member.socialLinks.twitter && (
-                                                        <Link href={member.socialLinks.twitter}><i className="fab fa-twitter" /></Link>
-                                                    )}
+                                                    {/* {member.socialLinks.facebook && (
+                                                            <Link href={member.socialLinks.facebook}><i className="fab fa-facebook-f" /></Link>
+                                                        )} */}
+                                                        {/*{member.socialLinks.twitter && (
+                                                            <Link href={member.socialLinks.twitter}><i className="fab fa-twitter" /></Link>
+                                                        )} */}
                                                     {member.socialLinks.linkedin && (
                                                         <Link href={member.socialLinks.linkedin}><i className="fab fa-linkedin-in" /></Link>
                                                     )}

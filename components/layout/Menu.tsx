@@ -25,10 +25,10 @@ export default function Menu({ menuLeft }: any) {
             return pathname === "/"
         }
         // Special case for services to highlight when on service-details pages
-        if (path === "/service" && pathname.startsWith("/service-details")) {
+        if (path === "/service" && pathname?.startsWith("/service-details")) {
             return true
         }
-        return pathname === path || pathname.startsWith(`${path}/`)
+        return pathname === path || pathname?.startsWith(`${path}/`) || false;
     }
     
     return (

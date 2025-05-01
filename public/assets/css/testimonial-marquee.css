@@ -41,11 +41,11 @@
 }
 
 .testimonial-marquee-avatar {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   overflow: hidden;
-  margin-right: 15px;
+  margin-right: 10px;
   flex-shrink: 0;
 }
 
@@ -61,15 +61,15 @@
 
 .testimonial-marquee-name {
   margin: 0;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 
 .testimonial-marquee-position {
   margin: 0;
-  font-size: 14px;
-  opacity: 0.85;
+  font-size: 11px;
+  opacity: 0.8;
 }
 
 /* Testimonial content */

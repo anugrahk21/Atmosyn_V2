@@ -14,7 +14,7 @@ export default function PartnerMarquee({
   backgroundColor = "theme-bg",
   paddingTop = 30,
   paddingBottom = 30,
-  partners = [
+  /*partners = [
     { img: "/assets/img/partner/partner1-1.svg", url: "/#" },
     { img: "/assets/img/partner/partner1-2.svg", url: "/#" },
     { img: "/assets/img/partner/partner1-3.svg", url: "/#" },
@@ -22,6 +22,8 @@ export default function PartnerMarquee({
     { img: "/assets/img/partner/partner1-5.svg", url: "/#" },
     { img: "/assets/img/partner/partner1-6.svg", url: "/#" },
   ]
+    */
+   partners=Array(6).fill({ img: "/assets/img/logo/logo.svg", url: "/" })
 }: PartnerMarqueeProps) {
   return (
     <div className={`container-fluid px-0 overflow-hidden pb-${paddingBottom} pt-${paddingTop} ${backgroundColor}`}>

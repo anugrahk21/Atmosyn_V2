@@ -6,7 +6,7 @@ export default function BackToTop({ target }: any) {
 
     useEffect(() => {
         const onScroll = () => {
-            setHasScrolled(window.scrollY > 100)
+            setHasScrolled(window.scrollY > 250)
         }
 
         window.addEventListener("scroll", onScroll)

@@ -1,0 +1,59 @@
+# Custom 404 error page
+ErrorDocument 404 /404.html
+
+# URL rewriting for clean URLs
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  
+  # DIRECT ACCESS for critical files - these rules take precedence
+  # These rules ensure direct file access without interference from other rules
+  RewriteRule ^robots\.txt$ - [L]
+  RewriteRule ^sitemap\.xml$ - [L]
+  
+  # If the requested resource doesn't exist as a file or directory
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  
+  # Skip rewriting for specific file types - Added XML and TXT to the list
+  RewriteCond %{REQUEST_URI} !\.(?:css|js|jpe?g|gif|png|svg|woff2?|eot|ttf|ico|xml|txt)$ [NC]
+  
+  # Handle nested paths like /blog/1/ - convert to /blog/1.html
+  RewriteRule ^([^/]+)/([^/]+)/?$ /$1/$2.html [L,QSA]
+  
+  # Handle top-level paths like /blog/ - convert to /blog.html
+  RewriteCond %{REQUEST_URI} !\.html$ [NC]
+  RewriteRule ^([^/]+)/?$ /$1.html [L,QSA]
+  
+  # Handle even deeper paths like /path/to/page/ - convert to /path/to/page.html
+  RewriteRule ^([^/]+)/([^/]+)/([^/]+)/?$ /$1/$2/$3.html [L,QSA]
+  
+  # Handle 404 errors with custom page
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule . /404.html [L]
+</IfModule>
+
+# Ensure correct MIME types
+<IfModule mod_mime.c>
+  AddType text/html .html
+  AddType text/css .css
+  AddType application/javascript .js
+  AddType image/svg+xml .svg
+  AddType application/font-woff .woff
+  AddType application/font-woff2 .woff2
+  AddType font/ttf .ttf
+  AddType font/eot .eot
+  AddType image/jpeg .jpg .jpeg
+  AddType image/png .png
+  AddType image/gif .gif
+  AddType text/xml .xml
+  AddType text/plain .txt
+</IfModule>
+
+# Set security headers
+<IfModule mod_headers.c>
+  # Enable CORS for fonts and other assets
+  <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font.css|css|js)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>

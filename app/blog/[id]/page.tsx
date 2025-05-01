@@ -48,6 +48,29 @@ interface BlogPost {
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
     const post = data.find((post) => String(post.id) === params.id)
     
+    if (!post) {
+        return {
+            title: 'Blog Post Not Found | ATMOSYN',
+            description: 'The requested blog post could not be found.',
+            openGraph: {
+                title: 'Blog Post Not Found | ATMOSYN',
+                description: 'The requested blog post could not be found.',
+                url: 'https://atmosyn.com/blog',
+                siteName: 'ATMOSYN',
+                images: [
+                    {
+                        url: 'https://atmosyn.com/assets/img/logo/logomain.svg',
+                        width: 1200,
+                        height: 630,
+                        alt: 'ATMOSYN Digital Agency',
+                    },
+                ],
+                locale: 'en_US',
+                type: 'website',
+            },
+        }
+    }
+    
     // Use our utility to generate metadata for this specific blog post
     return generateDynamicMetadata(post, 'blog')
 }
@@ -362,7 +385,7 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
 
                                         <div className="blog__post-meta mb-30">
                                             <ul className="list-wrap">
-                                                <li><i className="far fa-user" /><Link href="/blog">{blogPost.author}</Link></li>
+                                                <li><i className="far fa-user" />{blogPost.author}</li>
                                                 <li><i className="far fa-clock" />{formatDate(blogPost.date)}</li>
                                                 <li><i className="far fa-file-alt" />{calculateReadTime(blogPost)} min read</li>
                                             </ul>
@@ -378,7 +401,7 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                                         )}
 
                                         {/* Table of Contents */}
-                                        {(blogPost.subsections && blogPost.subsections.length > 0 || blogPost.keyTakeaways && blogPost.keyTakeaways.length > 0 || blogPost.faqs && blogPost.faqs.length > 0) && ( // Show TOC if any section exists
+                                        {(blogPost.subsections && blogPost.subsections.length > 0 || blogPost.keyTakeaways && blogPost.keyTakeaways.length > 0 || blogPost.faqs && blogPost.faqs.length > 0 || blogPost.references && blogPost.references.length > 0) && ( // Show TOC if any section exists, including references
                                             <div className="blog-table-of-contents mb-40">
                                                 <div className="toc-container">
                                                     <h3 className="mb-20">Table of Contents</h3>
@@ -404,6 +427,14 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                                                             <li>
                                                                 <a href="#faq-section" className="toc-link">
                                                                     FAQ
+                                                                </a>
+                                                            </li>
+                                                        )}
+                                                        {/* Add References link if references exist */}
+                                                        {blogPost.references && blogPost.references.length > 0 && (
+                                                            <li>
+                                                                <a href="#references-section" className="toc-link">
+                                                                    References
                                                                 </a>
                                                             </li>
                                                         )}
@@ -546,7 +577,8 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
 
                                     {/* References Section */}
                                     {blogPost.references && blogPost.references.length > 0 && (
-                                        <div className="blog-widget">
+                                        // Add ID for TOC navigation
+                                        <div id="references-section" className="blog-widget mb-5"> {/* Added mb-5 for more bottom margin */}
                                             <h4 className="widget-title">References</h4>
                                             <div className="sidebar-references-list">
                                                 <ol className="list-wrap references-list">
@@ -569,7 +601,7 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                         </div>
 
                         {/* Related Articles Section - Moved outside the column layout to span full width */}
-                        <div className="related-articles-section mt-0 mb-20">
+                        <div className="related-articles-section mt-0 mb-20"> {/* Changed mt-0 to mt-5 for more top margin */}
                             <h3 className="widget-title mb-40">Related Articles</h3>
                             <div className="row gy-40">
                                 {(() => { // Use IIFE to calculate related posts once

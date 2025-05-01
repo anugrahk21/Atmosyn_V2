@@ -19,7 +19,7 @@ export default function Project() {
     return (
         <>
 
-            <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="Portfolio">
+            <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="Projects">
                 <div>
                     <ProjectFilterOne />
                     {/*======== / Project Section ========*/}

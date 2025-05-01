@@ -1,0 +1,21 @@
+# robots.txt for https://atmosyn.com/
+# Last updated: April 26, 2025
+
+# 1) Block only truly private or dev areas
+User-agent: *
+Disallow: /admin/
+Disallow: /dev/
+Disallow: /test/
+Disallow: /_next/         # Next.js build artifacts
+Disallow: /.next/         # (if your setup uses this)
+Disallow: /node_modules/  # if exposed
+
+# 2) Allow everything else
+#    (No need for Crawl-delay or Allow directives)
+
+# 3) Point crawlers to your sitemap
+Sitemap: https://atmosyn.com/sitemap.xml
+
+# 4) (Optional) Block Archive.org if you really must
+#User-agent: ia_archiver
+#Disallow: /

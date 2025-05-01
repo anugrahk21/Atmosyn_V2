@@ -1,10 +1,24 @@
 'use client'
 
+import { useEffect, useState } from 'react';
+
 export default function WhatsAppButton() {
     // Phone number (without '+' sign) and message
-    const phoneNumber = '919876543210'; // Replace with your actual WhatsApp number
-    const message = 'Hello! I have a question about your services.';
+    const phoneNumber = '919539694902'; // Replace with your actual WhatsApp number
+    const message = 'Hello! I would like to know more about your services.';
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+    const [hasScrolled, setHasScrolled] = useState(false);
+
+    useEffect(() => {
+        const onScroll = () => {
+            setHasScrolled(window.scrollY > 200);
+        };
+        window.addEventListener('scroll', onScroll);
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+
+    if (!hasScrolled) return null;
 
     return (
         <a 

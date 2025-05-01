@@ -57,7 +57,7 @@ const findFilterKeyByCategory = (categoryName: string): string => {
 
 export default function BlogFilterOne({ initialBlogs }: BlogFilterProps) {
     const searchParams = useSearchParams();
-    const categoryParam = searchParams.get('category');
+    const categoryParam = searchParams?.get('category') || null;
     
     // Sort the initial blogs by date (newest first) before any filtering
     const sortedInitialBlogs = [...initialBlogs].sort((a, b) => {

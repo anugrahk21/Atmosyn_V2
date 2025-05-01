@@ -7,15 +7,16 @@ import { Metadata } from 'next';
 export const getDefaultMetadata = (): Metadata => {
   return {
     title: 'ATMOSYN | Innovative Digital Agency',
-    description: 'ATMOSYN specializes in web development, UX/UI design, brand identity, and marketing. Elevate your brand with Atmosyn.',
-    keywords: ['digital agency', 'web development', 'UI/UX design', 'brand identity', 'marketing', 'SEO', 'Atmosyn'],
+    description: 'ATMOSYN specializes in AI solutions, web development, UX/UI design, automation services, brand identity, and marketing. Elevate your brand with Atmosyn.',
+    keywords: ['digital agency', 'web development', 'UI/UX design', 'AI solutions', 'automation services', 'brand identity', 'marketing', 'SEO', 'Atmosyn'],
     openGraph: {
       title: 'ATMOSYN | Innovative Digital Agency',
-      description: 'ATMOSYN specializes in web development, UX/UI design, brand identity, and marketing. Elevate your brand with Atmosyn.',
+      description: 'ATMOSYN specializes in AI solutions, web development, UX/UI design, automation services, brand identity, and marketing. Elevate your brand with Atmosyn.',
       url: 'https://atmosyn.com',
-      siteName: 'ATMOSYN',      images: [
+      siteName: 'ATMOSYN',
+      images: [
         {
-          url: 'https://atmosyn.com/assets/img/logo/logomain.svg',
+          url: 'https://atmosyn.com/assets/img/logo/logo.png',
           width: 1200,
           height: 630,
           alt: 'ATMOSYN Digital Agency',
@@ -23,11 +24,12 @@ export const getDefaultMetadata = (): Metadata => {
       ],
       locale: 'en_US',
       type: 'website',
-    },    twitter: {
+    },
+    twitter: {
       card: 'summary_large_image',
       title: 'ATMOSYN | Innovative Digital Agency',
-      description: 'ATMOSYN specializes in web development, UX/UI design, brand identity, and marketing. Elevate your brand with Atmosyn.',
-      images: ['https://atmosyn.com/assets/img/logo/logomain.svg'],
+      description: 'ATMOSYN specializes in AI solutions, web development, UX/UI design, automation services, brand identity, and marketing. Elevate your brand with Atmosyn.',
+      images: ['https://atmosyn.com/assets/img/logo/logo.png'],
       creator: '@atmosyn',
     },
   };
@@ -64,8 +66,8 @@ export const generateStaticMetadata = (pageInfo: PageMetaInfo): Metadata => {
   } = pageInfo;  // Create a simpler, more compact meta title format
   // If the page name is already ATMOSYN (for homepage), just use a single title
   const metaTitle = pageName === 'ATMOSYN' 
-    ? 'ATMOSYN - Next-Gen Digital Agency'
-    : `${pageName} | ATMOSYN`;
+    ? 'ATMOSYN - Next-Gen Digital Agency'  // Keep dash for homepage
+    : `${pageName} | ATMOSYN`;  // Use pipe for all other pages
   
   // Create meta description following the specified format
   const metaDescription = 
@@ -78,11 +80,13 @@ export const generateStaticMetadata = (pageInfo: PageMetaInfo): Metadata => {
     'digital agency', 
     'web development', 
     'UI/UX design', 
+    'AI solutions',
+    'automation services',
     'Atmosyn', 
     specificTopic.toLowerCase()
   ];
   // Create the image URL
-  const imageUrl = image || 'https://atmosyn.com/assets/img/logo/logomain.svg';
+  const imageUrl = image || 'https://atmosyn.com/assets/img/logo/logo.png';
 
   return {
     title: metaTitle,
@@ -132,18 +136,33 @@ export const generateDynamicMetadata = (content: any, type: 'blog' | 'service' |
   let imagePath = '';
   let specificTopic = '';
   let keywords: string[] = [];
+  
+  // Default logo image for non-blog pages
+  const defaultLogoImage = 'https://atmosyn.com/assets/img/logo/logo.png';
+  
   if (type === 'blog') {
     pageTitle = content.title;
     shortInfo = 'ATMOSYN Blog';
     description = content.excerpt || 'Insights from Atmosyn digital experts';
-    // Select the main image for social sharing if img is an array
-    if (Array.isArray(content.img)) {
+    
+    // Generate absolute image URL for better social sharing
+    // For newer blog structure with ID-based folders
+    if (content.id) {
+      imagePath = `https://atmosyn.com/assets/img/blog/bg_${content.id}/${content.id}-1.jpg`;
+    } else if (Array.isArray(content.img)) {
       // Try to find the main image first, fall back to first image if not found
       const mainImage = content.img.find((img: string) => img.includes('main')) || content.img[0];
-      imagePath = `/assets/img/blog/${mainImage}`;
+      imagePath = `https://atmosyn.com/assets/img/blog/${mainImage}`;
     } else {
-      imagePath = `/assets/img/blog/${content.img}`;
+      // Handle string case
+      imagePath = `https://atmosyn.com/assets/img/blog/${content.img}`;
     }
+    
+    // If there's any issue with the blog image path, use the default logo
+    if (!imagePath || imagePath.includes('undefined')) {
+      imagePath = defaultLogoImage;
+    }
+    
     specificTopic = content.category || 'digital marketing trends';
     keywords = [
       content.category?.toLowerCase() || 'blog',
@@ -151,11 +170,18 @@ export const generateDynamicMetadata = (content: any, type: 'blog' | 'service' |
       content.title.toLowerCase().split(' ').slice(0, 3).join(' '),
       'industry trends'
     ];
+    
+    // Add tags as keywords if available
+    if (content.tags && Array.isArray(content.tags)) {
+      content.tags.slice(0, 5).forEach((tag: string) => keywords.push(tag));
+    }
+    
   } else if (type === 'service') {
     pageTitle = content.title;
     shortInfo = 'Innovative Digital Solutions';
     description = content.excerpt || `Professional ${content.title} services from Atmosyn`;
-    imagePath = `/assets/img/service/${content.img}`;
+    // Use default logo for service pages
+    imagePath = defaultLogoImage;
     specificTopic = content.title;
     keywords = [
       content.title.toLowerCase(),
@@ -167,7 +193,8 @@ export const generateDynamicMetadata = (content: any, type: 'blog' | 'service' |
     pageTitle = content.title;
     shortInfo = 'Case Study';
     description = content.excerpt || 'Case study showcasing Atmosyn\'s digital expertise';
-    imagePath = `/assets/img/project/${content.img}`;
+    // Use default logo for project pages
+    imagePath = defaultLogoImage;
     specificTopic = content.category || 'project showcase';
     keywords = [
       content.category?.toLowerCase() || 'case study',
@@ -177,15 +204,43 @@ export const generateDynamicMetadata = (content: any, type: 'blog' | 'service' |
     ];
   }
 
-  return generateStaticMetadata({
-    title: pageTitle,
-    pageName: pageTitle,
-    shortInfo: shortInfo,
-    description: `${description}. Atmosyn merges innovative design with strategic insights to create engaging digital experiences. Learn more about ${specificTopic}.`,
-    specificTopic: specificTopic,
-    image: imagePath,
+  // Create a full metadata object with proper OpenGraph properties
+  const metaTitle = `${pageTitle} | ATMOSYN`;
+  const metaDescription = description || 
+    `${shortInfo}. Atmosyn merges innovative design with strategic insights to create engaging digital experiences. Learn more about ${specificTopic}.`;
+
+  return {
+    title: metaTitle,
+    description: metaDescription,
     keywords: keywords,
-  });
+    openGraph: {
+      title: metaTitle,
+      description: metaDescription,
+      url: type === 'blog' 
+        ? `https://atmosyn.com/blog/${content.id}` 
+        : type === 'service'
+        ? `https://atmosyn.com/service-details/${content.slug}`
+        : 'https://atmosyn.com',
+      siteName: 'ATMOSYN',
+      images: [
+        {
+          url: imagePath,
+          width: 1200,
+          height: 630,
+          alt: pageTitle,
+        },
+      ],
+      locale: 'en_US',
+      type: type === 'blog' ? 'article' : 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: metaTitle,
+      description: metaDescription,
+      images: [imagePath],
+      creator: '@atmosyn',
+    },
+  };
 };
 
 /**
@@ -209,10 +264,10 @@ export const generateJsonLd = (type: string, data?: any) => {
       "https://www.linkedin.com/company/atmosyn",
       "https://www.instagram.com/atmosyn/"
     ],
-    "description": "Atmosyn is a cutting-edge digital agency specializing in web development, UX/UI and graphic design, brand identity, and marketing & SEO.",
+    "description": "Atmosyn is a cutting-edge digital agency specializing in web development, UX/UI and graphic design, AI solutions, automation services, brand identity, and marketing & SEO.",
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+1-123-456-7890",
+      "telephone": "919539694902",
       "contactType": "customer service",
       "email": "info@atmosyn.com"
     }
@@ -225,12 +280,38 @@ export const generateJsonLd = (type: string, data?: any) => {
 
   // Blog post schema
   if (type === 'blog') {
+    // Prepare image URL with the correct format
+    let imageUrl = '';
+    if (data.id) {
+      // Use the new folder structure for blog images
+      imageUrl = `https://atmosyn.com/assets/img/blog/bg_${data.id}/${data.id}-1.jpg`;
+    } else if (Array.isArray(data.img)) {
+      // Try to find the main image first, fall back to first image
+      const mainImage = data.img.find((img: string) => img.includes('main')) || data.img[0];
+      imageUrl = `https://atmosyn.com/assets/img/blog/${mainImage}`;
+    } else {
+      // Handle string case
+      imageUrl = `https://atmosyn.com/assets/img/blog/${data.img}`;
+    }
+
+    // Get keywords from tags if available
+    const keywords = [
+      data.category || "Digital Marketing",
+      "Atmosyn Blog", 
+      "Digital Agency"
+    ];
+    
+    // Add tags if they exist
+    if (data.tags && Array.isArray(data.tags)) {
+      data.tags.slice(0, 5).forEach((tag: string) => keywords.push(tag));
+    }
+    
     return {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": data.title,
       "description": data.excerpt || "Insights from Atmosyn digital experts",
-      "image": `https://atmosyn.com/assets/img/blog/${data.img}`,
+      "image": imageUrl,
       "datePublished": data.date,
       "dateModified": data.date,
       "author": {
@@ -242,11 +323,7 @@ export const generateJsonLd = (type: string, data?: any) => {
         "@type": "WebPage",
         "@id": `https://atmosyn.com/blog/${data.id}`
       },
-      "keywords": [
-        data.category || "Digital Marketing",
-        "Atmosyn Blog", 
-        "Digital Agency"
-      ]
+      "keywords": keywords
     };
   }
 
@@ -259,7 +336,7 @@ export const generateJsonLd = (type: string, data?: any) => {
       "provider": orgSchema,
       "description": data.excerpt || `Professional ${data.title} services from Atmosyn`,
       "name": data.title,
-      "image": `https://atmosyn.com/assets/img/service/${data.img}`,
+      "image": "https://atmosyn.com/assets/img/logo/logo.png",
       "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": `https://atmosyn.com/service-details/${data.slug}`
@@ -274,7 +351,7 @@ export const generateJsonLd = (type: string, data?: any) => {
       "@type": "CreativeWork",
       "name": data.title,
       "description": data.excerpt || "Case study showcasing Atmosyn's digital expertise",
-      "image": `https://atmosyn.com/assets/img/project/${data.img}`,
+      "image": "https://atmosyn.com/assets/img/logo/logo.png",
       "creator": orgSchema,
       "mainEntityOfPage": {
         "@type": "WebPage",
