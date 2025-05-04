@@ -1,9 +1,9 @@
+import OfferMarquee from "./OfferMarquee"
 import Link from "next/link"
 
 export default function Hero1() {
     return (
         <>
-
             <section className="hero-wrapper hero-1">
                 <div className="container">
                     <div className="hero-style1">

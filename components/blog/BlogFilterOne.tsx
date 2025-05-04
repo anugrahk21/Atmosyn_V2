@@ -55,6 +55,23 @@ const findFilterKeyByCategory = (categoryName: string): string => {
     return "*"; // Default to "Show All" if no match found
 };
 
+// Helper function to get blog image URL with consistent structure
+const getBlogImageUrl = (blogId: number, imageType: 'main' | 'subsection', index: number = 0): string => {
+    // Handle main article images
+    if (imageType === 'main') {
+        // Main images follow the pattern bg_[id]/[id]-[1,2,3].png
+        return `/assets/img/blog/bg_${blogId}/${blogId}-${index + 1}.png`;
+    } 
+    // Handle subsection images
+    else if (imageType === 'subsection') {
+        // Subsection images follow the pattern bg_[id]/sb-[number].png
+        return `/assets/img/blog/bg_${blogId}/sb-${index}.png`;
+    }
+    
+    // Fallback image if something goes wrong
+    return `/assets/img/blog/default-thumbnail.jpg`;
+};
+
 export default function BlogFilterOne({ initialBlogs }: BlogFilterProps) {
     const searchParams = useSearchParams();
     const categoryParam = searchParams?.get('category') || null;
@@ -130,10 +147,10 @@ export default function BlogFilterOne({ initialBlogs }: BlogFilterProps) {
                     filteredBlogs.map((post, index) => (
                         <div className="col-xl-4 col-md-6" key={index}>
                             <div className="blog__post-item-five shine-animate-item">
-                                <div className="blog__post-thumb" style={{ height: "240px", overflow: "hidden" }}>
+                                <div className="blog__post-thumb" style={{height: "100%", overflow: "hidden" }}>
                                     <Link className="shine-animate" href={`/blog/${post.id}`}>
                                         <img 
-                                            src={`/assets/img/blog/bg_${post.id}/${post.id}-1.jpg`}
+                                            src={getBlogImageUrl(post.id, 'main', 0)}
                                             alt={post.title}
                                             style={{ width: "100%", height: "100%", objectFit: "cover" }}
                                         />

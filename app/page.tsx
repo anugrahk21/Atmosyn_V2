@@ -6,8 +6,10 @@ import Team1 from "@/components/sections/Team1"
 import Testimonial1 from "@/components/sections/Testimonial1"
 import Work from "@/components/sections/Work"
 import Overview from "@/components/sections/Overview"
+import Pricing from "@/components/sections/Pricing"
 import { generateStaticMetadata } from "@/util/metadata"
 import type { Metadata } from 'next'
+import OfferMarquee from "@/components/sections/OfferMarquee"
 
 // Generate metadata using our utility
 export const metadata: Metadata = generateStaticMetadata({
@@ -25,11 +27,14 @@ export default function Home() {
         <>
             <Layout headerStyle={1} footerStyle={1}>
                 <Hero1 />
+                <OfferMarquee></OfferMarquee>
                 <Service1 />
                 <Overview />
+                <Pricing />
                 <Work />
                 <Team1 />
                 <Testimonial1 />
+                <OfferMarquee></OfferMarquee>
                 <Blog1 />
             </Layout>
         </>

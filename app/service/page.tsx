@@ -4,15 +4,16 @@ import Link from "next/link"
 import servicesData from "@/util/services.json"
 import { generateStaticMetadata } from "@/util/metadata"
 import type { Metadata } from 'next'
+import OfferMarquee from "@/components/sections/OfferMarquee"
 
 // Generate metadata using our utility
 export const metadata: Metadata = generateStaticMetadata({
   title: 'Our Services',
-  pageName: 'Our Services',
-  shortInfo: 'Digital Solutions',
-  description: 'Explore Atmosyn\'s comprehensive range of digital services including web development, UX/UI design, brand identity, and marketing strategies. Atmosyn merges innovative design with strategic insights to create engaging digital experiences.',
-  specificTopic: 'professional digital services',
-  keywords: ['digital services', 'web development services', 'UI/UX design services', 'branding services', 'marketing services', 'SEO services'],
+  pageName: 'Services',
+  shortInfo: 'Digital & AI services',
+  description: 'ATMOSYN offers comprehensive digital services including AI Solutions, Web Development, Brand Identity, Marketing Services, and Automation.',
+  specificTopic: 'our professional digital services',
+  keywords: ['AI solutions', 'web development services', 'UX/UI design', 'branding agency', 'digital marketing', 'automation services'],
 });
 
 export default function Service() {
@@ -21,6 +22,7 @@ export default function Service() {
         <>
 
             <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="Our Services">
+                <OfferMarquee></OfferMarquee>
                 <div>
                     <section className="service-area-2 pt-60 pb-120">
                         <div className="container">

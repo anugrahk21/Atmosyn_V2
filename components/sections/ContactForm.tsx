@@ -122,11 +122,12 @@ const [formData, setFormData] = useState({
                     value={formData.countryCode || ''}
                     onChange={handleChange}
                     style={{ paddingLeft: '40px' }}
+                    required={formData.contactPreference === 'call'}
                   >
                     <option value="" disabled>Select Country Code*</option>
+                    <option value="+91">+91 (India)</option>
                     <option value="+1">+1 (US)</option>
                     <option value="+44">+44 (UK)</option>
-                    <option value="+91">+91 (India)</option>
                     <option value="+61">+61 (Australia)</option>
                     <option value="+33">+33 (France)</option>
                     <option value="+49">+49 (Germany)</option>
@@ -141,10 +142,11 @@ const [formData, setFormData] = useState({
                     type="tel"
                     className="form-control style-border"
                     name="phone"
-                    placeholder="Phone Number"
+                    placeholder={formData.contactPreference === 'call' ? "Phone Number*" : "Phone Number"}
                     value={formData.phone || ''}
                     onChange={handleChange}
                     style={{ paddingLeft: '40px' }}
+                    required={formData.contactPreference === 'call'}
                   />
                 </div>
               </div>
@@ -275,7 +277,7 @@ const [formData, setFormData] = useState({
           {isSubmitting
             ? 'Sending...'
             : submissionStatus.type === 'success'
-            ? 'Sent Successfully! We will get back to you soon.'
+            ? 'Message sent! We\'ll reply soon.'
             : 'SEND MESSAGE'}
         </button>
       </form>

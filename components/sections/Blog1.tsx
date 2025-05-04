@@ -1,6 +1,22 @@
 import Link from "next/link"
 import blogData from "@/util/blog.json"
 
+// Helper function to get blog image URL with consistent structure
+const getBlogImageUrl = (blogId: number, imageType: 'main' | 'subsection', index: number = 0): string => {
+    // Handle main article images
+    if (imageType === 'main') {
+        // Main images follow the pattern bg_[id]/[id]-[1,2,3].png
+        return `/assets/img/blog/bg_${blogId}/${blogId}-${index + 1}.png`;
+    } 
+    // Handle subsection images
+    else if (imageType === 'subsection') {
+        // Subsection images follow the pattern bg_[id]/sb-[number].png
+        return `/assets/img/blog/bg_${blogId}/sb-${index}.png`;
+    }
+    
+    // Fallback image if something goes wrong
+    return `/assets/img/blog/default-thumbnail.jpg`;
+};
 export default function Blog1() {
     // Get the 3 most recent blog posts
     const latestPosts = [...blogData].sort((a, b) => {
@@ -18,13 +34,17 @@ export default function Blog1() {
                         {latestPosts.map((post, index) => (
                             <div className="col-12" key={index}>
                                 <div className="blog__post-item">
-                                    <div className="blog__post-thumb wow img-custom-anim-right">
-                                        <Link href={`/blog/${post.id}`}>
+                                    <div className="blog__post-thumb wow img-custom-anim-right" style={{ overflow: 'hidden', height: '300px' }}>
+                                        <Link href={`/blog/${post.id}`} style={{ display: 'block', height: '100%' }}>
                                             <img 
-                                                src={`/assets/img/blog/${Array.isArray(post.img) 
-                                                    ? post.img.find(img => img.includes('main')) || post.img[0] 
-                                                    : post.img}`} 
-                                                alt={post.title} 
+                                                src={getBlogImageUrl(post.id, 'main', 0)}
+                                                alt={post.title}
+                                                style={{ 
+                                                    width: '100%', 
+                                                    height: '100%', 
+                                                    objectFit: 'cover',
+                                                    objectPosition: 'center top'
+                                                }}
                                             />
                                         </Link>
                                     </div>

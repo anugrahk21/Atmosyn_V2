@@ -139,7 +139,7 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
       // Variables to track scroll position and state
       let scrollPosition = 0;
       let isScrollingDown = true;
-      const scrollSpeed = 1; // Pixels to scroll per frame - adjust for faster/slower scroll
+      const scrollSpeed = 3; // Pixels to scroll per frame - adjust for faster/slower scroll
       const fastScrollSpeed = 20; // Speed for fast scroll back to top
       
       const scrollStep = () => {
@@ -347,7 +347,17 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
               <div className="single-project-info">
                 <h6 className="title">Services</h6>
                 {project.services.map((service: string, index: number) => (
-                  <p key={index} className="text">{service}</p>
+                  <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
+                    <img 
+                      src="/assets/img/icon/check-circle.svg" 
+                      alt="check" 
+                      className="me-2" 
+                      width={18} 
+                      height={18}
+                      style={{ flexShrink: 0 }}
+                    />
+                    <p className="text mb-0">{service}</p>
+                  </div>
                 ))}
               </div>
               <div className="single-project-info">
@@ -356,28 +366,38 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
               </div>
             </div>
             
-            {/* Project Details Section */}
+            {/* Project Details Section - Updated layout with overview and highlights side by side */}
             <div className="project-modal-main-content mb-40">
-              <h3 className="page-title mb-30">Project Details</h3>
-              <p className="mb-40">{project.projectDetails}</p>
-              
-              <div className="row gy-40">
-                <div className="col-lg-6">
-                  <h3 className="page-title mb-30">Target Audience</h3>
-                  <p className="mb-0">{project.targetAudience}</p>
-                </div>
-                <div className="col-lg-6">
-                  <h3 className="page-title mb-30">Creativity and Innovation</h3>
-                  <p className="mb-0">{project.creativityAndInnovation}</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Solution Section */}
-            <div className="project-modal-solution mb-40">
               <div className="row">
-                <div className="col-lg-12">
-                  <p className="mb-0">{project.solution}</p>
+                <div className="col-lg-7">
+                  <h3 className="page-title mb-30">Project Overview</h3>
+                  <p className="mb-0">{project.overview}</p>
+                </div>
+                <div className="col-lg-5">
+                  {project.highlights && project.highlights.length > 0 && (
+                    <div className="project-highlights">
+                      <h3 className="page-title mb-30">Key Highlights</h3>
+                      <ul className="list-wrap project-highlights-list" style={{ paddingLeft: 0 }}>
+                        {project.highlights.map((highlight: string, index: number) => (
+                          <li key={index} style={{ 
+                            display: 'flex', 
+                            alignItems: 'flex-start',
+                            marginBottom: '12px'
+                          }}>
+                            <img 
+                              src="/assets/img/icon/check-circle.svg" 
+                              alt="check" 
+                              className="me-2" 
+                              width={22} 
+                              height={22}
+                              style={{ marginTop: '1px', flexShrink: 0 }}
+                            />
+                            <span>{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { WhatsAppButtonOffcanvas } from "../elements/WhatsAppButton"
 
 export default function OffcanvasMenu({ isOffcanvasMenu, handleOffcanvasMenu }: any) {
     return (
@@ -17,7 +18,7 @@ export default function OffcanvasMenu({ isOffcanvasMenu, handleOffcanvasMenu }: 
                     </div>
                     <div className="contact-list mb-30">
                         <h4>Phone Number</h4>
-                        <p>Coming soon</p>
+                        <p><Link href="tel:+919539694902">+91 9539694902</Link></p>
                     </div>
                     <div className="contact-list mb-30">
                         <h4>Email Address</h4>
@@ -27,11 +28,10 @@ export default function OffcanvasMenu({ isOffcanvasMenu, handleOffcanvasMenu }: 
                 </div>
                 <div className="offCanvas__social-icon mt-30">
                     <ul className="list-wrap">
-                        <li><Link href="https://www.facebook.com/" target="_blank"><i className="fab fa-facebook-f" /></Link></li>
-                        <li><Link href="https://twitter.com" target="_blank"><i className="fab fa-twitter" /></Link></li>
-                        <li><Link href="https://www.whatsapp.com/" target="_blank"><i className="fab fa-whatsapp" /></Link></li>
                         <li><Link href="https://www.instagram.com/" target="_blank"><i className="fab fa-instagram" /></Link></li>
-                        <li><Link href="https://www.youtube.com/" target="_blank"><i className="fab fa-youtube" /></Link></li>
+                        <li><WhatsAppButtonOffcanvas /></li>
+                        <li><Link href="https://twitter.com" target="_blank"><i className="fab fa-twitter" /></Link></li>
+                        <li><Link href="https://www.facebook.com/" target="_blank"><i className="fab fa-facebook-f" /></Link></li>
                     </ul>
                 </div>
             </div >

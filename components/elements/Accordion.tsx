@@ -34,7 +34,7 @@ export default function Accordion() {
                     </div>
                     <div id="collapse-1" className={isActive.key == 1 ? "accordion-collapse collapse show" : "accordion-collapse collapse"} aria-labelledby="collapse-item-1" data-bs-parent="#faqAccordion">
                         <div className="accordion-body">
-                            <p className="faq-text">We provide web development, AI solutions, UX/UI design, brand identity, and digital marketing services. Our focus is creating innovative digital experiences that help businesses thrive. <Link href="/contact" className="text-theme">Contact us</Link> to discuss your specific needs.</p>
+                            <p className="faq-text">We provide web development, AI solutions, UX/UI design, brand identity, SEO and digital marketing services. Our focus is creating innovative digital experiences that help businesses thrive. <Link href="/contact" className="text-theme">Contact us</Link> to discuss your specific needs.</p>
                         </div>
                     </div>
                 </div>

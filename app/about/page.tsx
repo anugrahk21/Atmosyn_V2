@@ -6,6 +6,7 @@ import type { Metadata } from 'next'
 import Team1 from "@/components/sections/Team1"
 import ContactForm from "@/components/sections/ContactForm"
 import PartnerMarquee from "@/components/sections/PartnerMarquee"
+import OfferMarquee from "@/components/sections/OfferMarquee"
 
 // Generate metadata using our utility
 export const metadata: Metadata = generateStaticMetadata({
@@ -23,6 +24,9 @@ export default function About() {
         <>
 
             <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="ABOUT US">
+                {/* Offer Marquee added as first element in the page */}
+                <OfferMarquee backgroundColor="bg-dark" paddingTop={10} paddingBottom={10} />
+                
                 <section className="pb-120 pt-60">
                     <div className="overflow-hidden">
                         <div className="container">
@@ -187,7 +191,7 @@ Commitments Area
                 {/*==============================
 Contact Area
 ==============================*/}
-                <section className="contact-area-1 pt-120 pb-120 position-relative overflow-hidden">
+                <section className="contact-area-1 pt-120 position-relative overflow-hidden">
                     <div className="contact-thumb1 wow img-custom-anim-left">
                         <img src="/assets/img/others/contact1-1.svg" alt="img" />
                     </div>

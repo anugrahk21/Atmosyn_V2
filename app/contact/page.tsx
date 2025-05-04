@@ -3,23 +3,30 @@ import Link from "next/link"
 import { generateStaticMetadata } from "@/util/metadata"
 import type { Metadata } from 'next'
 import ContactForm from "@/components/sections/ContactForm"
+import OfferMarquee from "@/components/sections/OfferMarquee"
+import { WhatsAppButtonOffcanvas } from "@/components/elements/WhatsAppButton"
 
 // Generate metadata using our utility
 export const metadata: Metadata = generateStaticMetadata({
   title: 'Contact Us',
-  pageName: 'Contact Us',
-  shortInfo: 'Get In Touch',
-  description: 'Connect with Atmosyn\'s digital experts for your next project. We\'re here to answer your questions and discuss how we can help transform your digital presence.',
+  pageName: 'Contact',
+  shortInfo: 'Get in touch',
+  description: 'Connect with Atmosyn for your next project. Our team is ready to discuss your ideas, answer questions, and provide expert consultation. Reach out today!',
   specificTopic: 'contacting our team',
-  keywords: ['contact Atmosyn', 'digital agency contact', 'get a quote', 'project inquiry', 'digital consultation'],
+  keywords: ['contact digital agency', 'web development inquiry', 'digital project consultation', 'hire design team'],
 });
 
 export default function Contact() {
+    // Phone number (without '+' sign) and message for WhatsApp
+    const phoneNumber = '919539694902';
+    const message = 'Hello! I would like to know more about your services.';
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
     return (
         <>
 
-            <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="Contact">
+            <Layout headerStyle={8} footerStyle={3} breadcrumbTitle="CONTACT US">
+                <OfferMarquee></OfferMarquee>
                 <div>
                     <section className="contact-area-1 pt-60 pb-20 overflow-hidden">
                         <div className="container">
@@ -32,7 +39,7 @@ export default function Contact() {
                                         <ul className="list-wrap">
                                             <li>
                                                 <h6 className="title">Phone</h6>
-                                                <Link href="#">Coming soon</Link>
+                                                <Link href="tel:+919539694902">+91 9539694902</Link>
                                             </li>
                                             <li>
                                                 <h6 className="title">Email</h6>
@@ -61,10 +68,34 @@ export default function Contact() {
                                 </div>
                                 <div className="col-lg-6">
                                     <div id="contact-form" className="contact-form-wrap">
-                                        <div className="section__title mb-60">
+                                        <div className="section__title mb-20">
                                             <h4 className="subtitle">Got a project you want to collaborate on?
                                                 Or just fancy a chat?</h4>
                                         </div>
+                                        
+                                        {/* WhatsApp section */}
+                                        <div className="whatsapp-section mb-40">
+                                            <h5 className="subtitle">Just WhatsApp us?</h5>
+                                            <div className="whatsapp-button-container d-flex align-items-center">
+                                                <a 
+                                                    href={whatsappUrl}
+                                                    className="btn btn-three"
+                                                    target="_blank" 
+                                                    rel="noopener noreferrer"
+                                                    style={{
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        gap: '10px',
+                                                        fontSize: '16px',
+                                                        padding: '12px 24px'
+                                                    }}
+                                                >
+                                                    <i className="fab fa-whatsapp" style={{ fontSize: '20px' }}></i>
+                                                    WhatsApp Us
+                                                </a>
+                                            </div>
+                                        </div>
+                                        
                                         {/* Replace the static form with the ContactForm component */}
                                         {/* Pass empty title and subtitle props since we're keeping the existing heading */}
                                         <ContactForm title="" subtitle="" />

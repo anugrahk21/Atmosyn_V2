@@ -272,7 +272,7 @@
                 "img": "sb-4.jpg"
             },
             {
-                "title": "My Perspective: The Future of SEO is Holistic and User-Centric",
+                "title": "Our Perspective: The Future of SEO is Holistic and User-Centric",
                 "content": "The future of SEO combines technical excellence, content quality, and user experience, prioritizing user intent and delivering value over keyword density. AI and search algorithms evolve, understanding user intent and delivering real value will matter more than ever.",
                 "points": [
                     "User intent and experience will outweigh keyword density",
@@ -380,7 +380,7 @@
                 "img": "sb-4.jpg"
             },
             {
-                "title": "My Perspective: The Future of Brand Identity",
+                "title": "Our Perspective: The Future of Brand Identity",
                 "content": "Brand identities are evolving into dynamic systems balancing consistency with adaptability, authenticity with polish, and broadcast with conversation.",
                 "points": [
                     "Brand identity systems are evolving from static guidelines to dynamic, responsive frameworks",
@@ -510,7 +510,7 @@
                 "img": "sb-6.jpg"
             },
             {
-                "title": "My Perspective: The Evolution of Performance Expectations",
+                "title": "Our Perspective: The Evolution of Performance Expectations",
                 "content": "Users now intuitively sense slow performance, making speed a fundamental expectation rather than a competitive advantage.",
                 "points": [
                     "Performance budgets will become as standard as financial budgets in web projects",
@@ -661,7 +661,7 @@
                 "img": "sb-7.jpg"
             },
             {
-                "title": "My Perspective: The Future of AI-Human Collaboration in Web Design",
+                "title": "our Perspective: The Future of AI-Human Collaboration in Web Design",
                 "content": "The future is AI augmenting designers—handling repetitive tasks, providing insights, and expanding creativity, while humans focus on strategy and ethics.",
                 "points": [
                     "The future belongs to designers who learn to collaborate effectively with AI tools",
@@ -1015,7 +1015,7 @@
                 "img": "sb-3.jpg"
             },
             {
-                "title": "My Perspective: The Future of AI Agents",
+                "title": "Our Perspective: The Future of AI Agents",
                 "content": "AI agents will become more autonomous, collaborative, and ethical, deeply integrated into digital experiences.",
                 "points": [
                     "AI agents will increasingly handle complex, multi-step tasks across domains",
@@ -1060,7 +1060,7 @@
     {
         "id": 9,
         "title": "The Power of Visual Identity: How Logos, Color Palettes, and Design Shape Your Brand",
-        "img": ["9-1.jpg", "9-2.jpg", "9-3.jpg", "9-main.jpg"],
+        "img": ["9-1.png", "9-2.png", "9-3.png", "9-main.jpg"],
         "category": "Branding",
         "tags": ["Visual Identity", "Logo Design", "Color Palette", "Brand Recognition", "Brand Consistency", "Brand Perception"],
         "author": "Anugrah K",
@@ -1129,7 +1129,7 @@
                 "img": "sb-5.jpg"
             },
             {
-                "title": "My Perspective: The Future of Visual Identity in a Digital World",
+                "title": "Our Perspective: The Future of Visual Identity in a Digital World",
                 "content": "Visual identity will be dynamic and interactive, balancing consistency with innovation and personalization.",
                 "points": [
                     "Visual identity systems will become more dynamic and responsive to digital contexts",

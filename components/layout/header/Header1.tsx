@@ -2,8 +2,13 @@ import Link from 'next/link'
 import Menu from '../Menu'
 import MobileMenu from '../MobileMenu'
 import OffcanvasMenu from '../OffcanvasMenu'
+import OfferMarquee from '@/components/sections/OfferMarquee'
+import { usePathname } from 'next/navigation'
 
 export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isOffcanvasMenu, handleOffcanvasMenu }: any) {
+    // Get current pathname to determine if we're on the home page
+    const pathname = usePathname()
+    const isHomePage = pathname === '/'
 
     return (
         <>
@@ -43,6 +48,12 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isOffc
                             </div>
                         </div >
                     </div >
+                    {/* Only show OfferMarquee when not scrolling AND on the home page */}
+                    {!scroll && isHomePage && (
+                        <div style={{ paddingTop: '5px' }}> {/* Added padding top here */}
+                            <OfferMarquee />
+                        </div>
+                    )}
                 </div >
                 {/* Mobile Menu  */}
                 < div className="tgmobile__menu" >
@@ -53,25 +64,6 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isOffc
                         </div>
                         <div className="tgmobile__menu-outer">
                             <MobileMenu handleMobileMenu={handleMobileMenu} />
-                        </div>
-                        <div className="tgmobile__menu-bottom">
-                            <div className="contact-info">
-                                <ul className="list-wrap">
-                                    <li><Link href="mailto:info@atmosyn.com">info@atmosyn.com</Link></li>
-                                    <li><Link href="mailto:workwithatmosyn@gmail.com">workwithatmosyn@gmail.com</Link></li>
-                                </ul>
-                            </div>
-                            <div className="social-links">
-                                <ul className="list-wrap">
-                                    <li><Link href="https://www.facebook.com/" target="_blank"><i className="fab fa-facebook-f" /></Link></li>
-                                    <li><Link href="https://twitter.com" target="_blank"><i className="fab fa-twitter" /></Link></li>
-                                    <li><Link href="https://www.whatsapp.com/" target="_blank"><i className="fab fa-whatsapp" /></Link>
-                                    </li>
-                                    <li><Link href="https://www.instagram.com/" target="_blank"><i className="fab fa-instagram" /></Link></li>
-                                    <li><Link href="https://www.youtube.com/" target="_blank"><i className="fab fa-youtube" /></Link>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </nav >
                 </div >

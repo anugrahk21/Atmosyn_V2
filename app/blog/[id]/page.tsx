@@ -96,27 +96,20 @@ const createSectionId = (title: string): string => {
 };
 
 // Helper function to get blog image URL safely with new folder structure
-const getBlogImageUrl = (imgData: string | string[], index: number = 0, fallbackImage: string = 'default-thumbnail.jpg', blogId?: number): string => {
-    // If blogId is provided, use the new folder structure based on blog ID
-    if (blogId) {
-        // Special case for subsection images (index > 1)
-        if (index > 1) {
-            // Calculate subsection number (subtract 2 to get 0-based subsection index, then add 1 for 1-based numbering)
-            const subsectionNumber = index - 1;
-            return `/assets/img/blog/bg_${blogId}/sb-${subsectionNumber}.jpg`;
-        }
-        // Main images still use the original format
-        return `/assets/img/blog/bg_${blogId}/${blogId}-${index + 1}.jpg`;
+const getBlogImageUrl = (blogId: number, imageType: 'main' | 'subsection', index: number = 0): string => {
+    // Handle main article images
+    if (imageType === 'main') {
+        // Main images follow the pattern bg_[id]/[id]-[1,2,3].png
+        return `/assets/img/blog/bg_${blogId}/${blogId}-${index + 1}.png`;
+    } 
+    // Handle subsection images
+    else if (imageType === 'subsection') {
+        // Subsection images follow the pattern bg_[id]/sb-[number].png
+        return `/assets/img/blog/bg_${blogId}/sb-${index}.png`;
     }
     
-    // Otherwise use the original logic
-    if (Array.isArray(imgData) && imgData.length > index) {
-        return `/assets/img/blog/${imgData[index]}`;
-    } else if (typeof imgData === 'string') {
-        return `/assets/img/blog/${imgData}`;
-    } else {
-        return `/assets/img/blog/${fallbackImage}`;
-    }
+    // Fallback image if something goes wrong
+    return `/assets/img/blog/default-thumbnail.jpg`;
 };
 
 
@@ -124,7 +117,6 @@ const getBlogImageUrl = (imgData: string | string[], index: number = 0, fallback
 const renderBlogContent = (post: BlogPost) => {
     let htmlString = '';
     const content = post.content || '';
-    const blogImages = Array.isArray(post.img) ? post.img : (post.img ? [post.img] : []);
     const categoryQuote = getCategoryQuote(post.category);
     let quoteInserted = false;
 
@@ -153,7 +145,7 @@ const renderBlogContent = (post: BlogPost) => {
             if (paragraphCount === 1 && !image2Inserted) {
                 htmlString += `
                     <div class="blog-mid-image mb-40 mt-30 text-center">
-                        <img src="${getBlogImageUrl(post.img, 1, 'default-thumbnail.jpg', post.id)}" alt="Blog Image" class="img-fluid rounded" />
+                        <img src="${getBlogImageUrl(post.id, 'main', 1)}" alt="Blog Image" class="img-fluid rounded" />
                     </div>
                 `;
                 image2Inserted = true; // Ensure it's inserted only once
@@ -177,11 +169,10 @@ const renderBlogContent = (post: BlogPost) => {
                 formattedSectionContent += `<p class="mb-25">${section.content}</p>`;
             }
             
-            // Add subsection image - NEW CODE
-            const bgNumber = index + 1; // Calculate the background folder number (bg_1, bg_2, etc.)
+            // Add subsection image with updated path structure
             formattedSectionContent += `
                 <div class="blog-subsection-image mb-30 mt-25 text-center">
-                    <img src="${getBlogImageUrl(post.img, bgNumber + 2, 'default-thumbnail.jpg', post.id)}" alt="${section.title}" class="img-fluid rounded" />
+                    <img src="${getBlogImageUrl(post.id, 'subsection', index + 1)}" alt="${section.title}" class="img-fluid rounded" />
                 </div>
             `;
             
@@ -227,7 +218,7 @@ const renderBlogContent = (post: BlogPost) => {
     // 3. Insert Third Image (if exists) before Key Takeaways
     htmlString += `
         <div class="blog-pre-takeaway-image mb-40 mt-30 text-center">
-            <img src="${getBlogImageUrl(post.img, 2, 'default-thumbnail.jpg', post.id)}" alt="Blog Image" class="img-fluid rounded" />
+            <img src="${getBlogImageUrl(post.id, 'main', 2)}" alt="Blog Image" class="img-fluid rounded" />
         </div>
     `;
 
@@ -393,7 +384,7 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
 
                                         <div className="blog__details-thumb mb-30">
                                             {/* Display the first image */}
-                                            <img src={getBlogImageUrl(blogPost.img, 0, 'default-thumbnail.jpg', blogPost.id)} alt={blogPost.title} />
+                                            <img src={getBlogImageUrl(blogPost.id, 'main', 0)} alt={blogPost.title} />
                                         </div>
 
                                         {blogPost.excerpt && (
@@ -531,21 +522,15 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                                         <h4 className="widget-title">Latest Posts</h4>
                                         <div className="rc-post-wrap">
                                             {latestPosts.map((post, index) => (
-                                                <div className="rc-post-item" key={`latest-${index}`}>
-                                                    <div className="thumb">
-                                                        <Link href={`/blog/${post.id}`}>
+                                                <div className="rc-post-item" key={`latest-${index}`} style={{ marginBottom: '15px' }}>
+                                                    <div className="thumb shine-animate-item" style={{ width: '100%' }}>
+                                                        <Link href={`/blog/${post.id}`} className="shine-animate">
                                                             <img 
-                                                                src={`/assets/img/blog/bg_${post.id}/${post.id}-1.jpg`} 
+                                                                src={getBlogImageUrl(post.id, 'main', 0)}
                                                                 alt={post.title} 
-                                                                style={{ width: '80px', height: '80px', objectFit: 'cover' }}
+                                                                style={{ width: '100%', height: '120%', objectFit: 'cover', borderRadius: '6px' }}
                                                             />
                                                         </Link>
-                                                    </div>
-                                                    <div className="content">
-                                                        <h4 className="title">
-                                                            <Link href={`/blog/${post.id}`}>{post.title}</Link>
-                                                        </h4>
-                                                        <span className="date">{formatDate(post.date)}</span>
                                                     </div>
                                                 </div>
                                             ))}
@@ -628,17 +613,17 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                                                 <div className="blog__post-thumb">
                                                     <Link href={`/blog/${relatedPost.id}`}>
                                                         <img 
-                                                            src={getBlogImageUrl(relatedPost.img, 0, 'default-thumbnail.jpg', relatedPost.id)} 
+                                                            src={getBlogImageUrl(relatedPost.id, 'main', 0)} 
                                                             alt={relatedPost.title} 
                                                             style={{ width: '100%', height: '200px', objectFit: 'cover' }}
                                                         />
                                                     </Link>
                                                 </div>
                                                 <div className="blog__post-content">
-                                                    <span className="blog__post-date">{formatDate(relatedPost.date)}</span>
-                                                    <h4 className="title">
+                                                    <h4 className="title mt-10">
                                                         <Link href={`/blog/${relatedPost.id}`}>{relatedPost.title}</Link>
                                                     </h4>
+                                                    <span className="blog__post-date">{formatDate(relatedPost.date)}</span>
                                                     <div className="related-post-meta">
                                                         <span className="category">{relatedPost.category}</span>
                                                     </div>

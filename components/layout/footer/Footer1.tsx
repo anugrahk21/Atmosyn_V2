@@ -8,7 +8,7 @@ export default function Footer1() {
                     <div className="container">
                         <div className="footer__cta-wrap pt-115 pb-120">
                             <p className="footer__cta-wrap-text text-white pb-115"><i className="fas fa-circle" /> Just send us your
-                                idea and we will turn it into beautiful designs!</p>
+                                idea and we will turn it into a reality!</p>
                             <h2 className="footer__cta-wrap-title"><Link className="link-btn text-white" href="/contact">Let's start a
                                 project <i className="icon-arrow-top-left" /></Link></h2>
                         </div>
@@ -44,9 +44,10 @@ export default function Footer1() {
                                 <div className="col-xl-auto col-md-6 col-sm-6">
                                     <div className="footer__widget footer__social">
                                         <ul className="list-wrap">
-                                            <li><Link href="https://www.facebook.com/" target="_blank"><i className="social-icon fab fa-facebook-f" />FACEBOOK <i className="icon-arrow-top-left" /></Link></li>
                                             <li><Link href="https://www.instagram.com/" target="_blank"><i className="social-icon fab fa-instagram" />INSTAGRAM <i className="icon-arrow-top-left" /></Link></li>
-                                            <li><Link href="https://twitter.com" target="_blank"><i className="social-icon fab fa-pinterest" />PINTEREST <i className="icon-arrow-top-left" /></Link></li>
+                                            <li><Link href="https://www.linkedin.com/" target="_blank"><i className="social-icon fab fa-linkedin-in" />LINKEDIN <i className="icon-arrow-top-left" /></Link></li>
+                                            <li><Link href="https://www.twitter.com/" target="_blank"><i className="social-icon fab fa-twitter" />TWITTER <i className="icon-arrow-top-left" /></Link></li>
+                                            <li><Link href="https://www.facebook.com/" target="_blank"><i className="social-icon fab fa-facebook-f" />FACEBOOK <i className="icon-arrow-top-left" /></Link></li>
                                         </ul>
                                     </div>
                                 </div>

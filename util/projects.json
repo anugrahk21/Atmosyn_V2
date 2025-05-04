@@ -13,10 +13,13 @@
         "path": "project_1_2.png"
       }
     ],
-    "projectDetails": "AI Personal Life Coach leverages artificial intelligence to create a supportive, non-judgmental environment where users can discuss their concerns, set goals, and receive personalized guidance. The system combines therapeutic techniques with practical advice to deliver a holistic coaching experience.",
-    "targetAudience": "Individuals seeking personal growth, emotional support, goal setting assistance, and strategies for navigating life's challenges. Suitable for users looking for a confidential and accessible coaching resource.",
-    "creativityAndInnovation": "Utilizes advanced AI algorithms for personalized interaction, sentiment analysis, and tailored guidance. Incorporates techniques from cognitive behavioral therapy (CBT) and positive psychology. Continuously learns and adapts to user needs.",
-    "solution": "Provides a scalable, accessible, and personalized life coaching experience through an AI-driven platform. Offers 24/7 support, goal tracking, and actionable insights to empower users in their personal development journey."
+    "overview": "An AI-powered platform offering personalized guidance and emotional support through intelligent conversation. Users can discuss concerns, set goals, and receive actionable feedback.",
+    "highlights": [
+      "24/7 personalized coaching and emotional support",
+      "Goal tracking with actionable insights",
+      "Sentiment analysis and adaptive learning capabilities",
+      "Confidential and accessible coaching experience" 
+    ]
   },
   {
     "id": 2,
@@ -40,10 +43,13 @@
         "path": "voyagex-booking-screenshot.jpg"
       }
     ],
-    "projectDetails": "VoyageX is an AI-powered travel platform designed to revolutionize trip planning and booking. It offers personalized itineraries, seamless booking processes, and exclusive perks for travelers. The platform covers a wide range of destinations, from popular cities like Paris and Tokyo to futuristic concepts like space hotels.",
-    "targetAudience": "Travelers seeking personalized, convenient, and unique travel experiences. This includes individuals, families, and business travelers looking for curated adventures and real-time assistance.",
-    "creativityAndInnovation": "Leverages AI for personalized recommendations, itinerary optimization, and 24/7 concierge support. Integrates booking systems for flights, accommodations, and activities seamlessly. Offers exclusive rewards and verification features for enhanced user trust and benefits.",
-    "solution": "Provides a comprehensive travel platform that simplifies planning and booking while offering unique perks and support. Delivers curated adventures and real-time assistance, ensuring a high level of satisfaction for travelers exploring both traditional and futuristic destinations."
+    "overview": "A next-gen travel platform using AI to create personalized trip experiences with seamless booking. From popular destinations to space tourism concepts.",
+    "highlights": [
+      "AI-driven personalized recommendations and itinerary optimization",
+      "Integrated booking system for flights, accommodations, and activities",
+      "24/7 concierge support for real-time assistance",
+      "Exclusive rewards and verification features for enhanced trust"
+    ]
   },
   {
     "id": 3,
@@ -67,9 +73,12 @@
         "path": "project_3_services.png"
       }
     ],
-    "projectDetails": "This is our own Atmosyn website - the very platform you're browsing right now! Built with Next.js and TypeScript, it serves as both our digital presence and a demonstration of our capabilities. The site features a sleek, contemporary design with interactive elements, smooth animations, and responsive layouts that adapt seamlessly to all device sizes.",
-    "targetAudience": "Businesses and individuals seeking digital transformation services, including AI solutions, web development, design, branding, and digital marketing. The platform targets forward-thinking clients looking for innovative technological solutions.",
-    "creativityAndInnovation": "Implements cutting-edge web technologies including Next.js for server-side rendering, dynamic content loading, and optimized performance. Features custom animations, interactive project galleries, and a modern aesthetic that reflects the innovative nature of the company's services.",
-    "solution": "Atmosyn.com serves as both our company's digital headquarters and a living portfolio piece. As you navigate through the site, you're experiencing firsthand the quality, performance, and design philosophy we bring to all our client projects."
+    "overview": "Our flagship website built with Next.js and TypeScript, demonstrating our digital capabilities while serving businesses seeking AI solutions, development, and design services.",
+    "highlights": [
+      "Next.js-powered server-side rendering for optimal performance",
+      "Responsive layouts that adapt seamlessly to all device sizes",
+      "Custom animations and interactive project galleries",
+      "Modern aesthetic reflecting our innovative approach to digital solutions"
+    ]
   }
 ]
