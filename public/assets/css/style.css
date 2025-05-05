@@ -5734,14 +5734,14 @@ textarea.is-invalid {
 .team-card .team-card-title {
   font-size: 24px;
   font-weight: 400;
-  color: var(--tg-color-white-default);
+  color: black;
   margin-bottom: 2px;
   margin-top: -0.15em;
 }
 .team-card .team-card-text {
   font-size: 16px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
+  color: black;
   margin-bottom: -0.5em;
 }
 .team-card .team-social {
@@ -5761,7 +5761,7 @@ textarea.is-invalid {
   height: auto;
 }
 .team-card .team-social .icon-btn:hover {
-  color: var(--tg-color-white-default);
+  color: black
 }
 .team-card .team-social .social-icon-wrap {
   position: absolute;
@@ -5781,7 +5781,7 @@ textarea.is-invalid {
   margin-bottom: 0;
 }
 .team-card .team-social .social-icon-wrap a:hover {
-  color: var(--tg-color-white-default);
+  color:black;
 }
 .team-card .team-social:hover .social-icon-wrap {
   opacity: 1;
@@ -7437,7 +7437,7 @@ textarea.is-invalid {
   background: var(--tg-color-white-default);
   position: relative;
   z-index: 1;
-  border: 2px solid var(--tg-theme-primary);
+  border: 2px solid black;
 }
 @media (max-width: 1199.98px) {
   .pricing-card {
@@ -7475,7 +7475,6 @@ textarea.is-invalid {
   text-transform: capitalize;
   color: var(--tg-theme-primary);
   margin-bottom: 4px;
-  transition: 0.4s;
 }
 .pricing-card_price .duration {
   font-size: 30px;
@@ -7565,7 +7564,6 @@ textarea.is-invalid {
 /*pricing-card 2******************/
 .pricing-card.style2 {
   background: var(--tg-theme-primary);
-  border-color: black;
   transition: 0.4s;
 }
 .pricing-card.style2 .pricing-card_price {
@@ -7573,6 +7571,7 @@ textarea.is-invalid {
 }
 .pricing-card.style2.active, .pricing-card.style2:hover {
   background: var(--tg-color-dark);
+  border: 3px solid var(--tg-theme-primary);
 }
 .pricing-card.style2.active .pricing-card_price, .pricing-card.style2:hover .pricing-card_price {
   color: var(--tg-color-white-default);

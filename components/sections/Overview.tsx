@@ -57,19 +57,19 @@ export default function Overview() {
                         <div className="col-lg-4 col-md-4 d-none d-md-block">
                             <div ref={setCardRef(0)} className="counter-card text-center wow img-custom-anim-left scroll-card">
                                 <h2 className="counter-card-number">01</h2>
-                                <h3 className="counter-card-title">Fresh Startup Energy</h3>
+                                <h3 className="counter-card-title" style={{ border: '1px solid black' }}>Fresh Startup Energy</h3>
                             </div>
                         </div>
                         <div className="col-lg-4 col-md-4 d-none d-md-block">
                             <div ref={setCardRef(1)} className="counter-card text-center wow img-custom-anim-left scroll-card">
                                 <h2 className="counter-card-number">02</h2>
-                                <h3 className="counter-card-title">AI-Powered Solutions</h3>
+                                <h3 className="counter-card-title" style={{ border: '1px solid black' }}>AI-Powered Solutions</h3>
                             </div>
                         </div>
                         <div className="col-lg-4 col-md-4 d-none d-md-block">
                             <div ref={setCardRef(2)} className="counter-card text-center wow img-custom-anim-left scroll-card">
                                 <h2 className="counter-card-number">03</h2>
-                                <h3 className="counter-card-title">Client-Focused Results</h3>
+                                <h3 className="counter-card-title" style={{ border: '1px solid black' }}>Client-Focused Results</h3>
                             </div>
                         </div>
 

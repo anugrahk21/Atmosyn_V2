@@ -25,9 +25,9 @@ export default function Blog1() {
 
     return (
         <>
-            <section className="blog-area-1 pt-110 pb-120">
+            <section className="blog-area-1 pt-60 pb-120">
                 <div className="container">
-                    <div className="section__title mb-50">
+                    <div className="section__title mb-10">
                         <h2 className="title wow img-custom-anim-left">INSIGHTS</h2>
                     </div>
                     <div className="row gy-30 align-items-end">
