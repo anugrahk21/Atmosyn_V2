@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { WhatsAppButtonOffcanvas } from "../elements/WhatsAppButton"
+import XLogo from '../elements/XLogo'
 
 export default function OffcanvasMenu({ isOffcanvasMenu, handleOffcanvasMenu }: any) {
     return (
@@ -30,7 +31,7 @@ export default function OffcanvasMenu({ isOffcanvasMenu, handleOffcanvasMenu }: 
                     <ul className="list-wrap">
                         <li><Link href="https://www.instagram.com/" target="_blank"><i className="fab fa-instagram" /></Link></li>
                         <li><WhatsAppButtonOffcanvas /></li>
-                        <li><Link href="https://twitter.com" target="_blank"><i className="fab fa-twitter" /></Link></li>
+                        <li><Link href="https://twitter.com" target="_blank"><XLogo /></Link></li>
                         <li><Link href="https://www.facebook.com/" target="_blank"><i className="fab fa-facebook-f" /></Link></li>
                     </ul>
                 </div>

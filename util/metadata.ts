@@ -5,6 +5,9 @@ import { Metadata } from 'next';
  * @returns Metadata object with default values
  */
 export const getDefaultMetadata = (): Metadata => {
+  // Define the absolute URL for the logo to ensure it works for social sharing
+  const logoAbsoluteUrl = 'https://atmosyn.com/assets/img/logo/logo.png';
+  
   return {
     title: 'ATMOSYN | Innovative Digital Agency',
     description: 'ATMOSYN specializes in AI solutions, web development, UX/UI design, automation services, brand identity, and marketing. Elevate your brand with Atmosyn.',
@@ -16,7 +19,7 @@ export const getDefaultMetadata = (): Metadata => {
       siteName: 'ATMOSYN',
       images: [
         {
-          url: 'https://atmosyn.com/assets/img/logo/logo.png',
+          url: logoAbsoluteUrl,
           width: 1200,
           height: 630,
           alt: 'ATMOSYN Digital Agency',
@@ -29,7 +32,7 @@ export const getDefaultMetadata = (): Metadata => {
       card: 'summary_large_image',
       title: 'ATMOSYN | Innovative Digital Agency',
       description: 'ATMOSYN specializes in AI solutions, web development, UX/UI design, automation services, brand identity, and marketing. Elevate your brand with Atmosyn.',
-      images: ['https://atmosyn.com/assets/img/logo/logo.png'],
+      images: [logoAbsoluteUrl],
       creator: '@atmosyn',
     },
   };
@@ -85,8 +88,25 @@ export const generateStaticMetadata = (pageInfo: PageMetaInfo): Metadata => {
     'Atmosyn', 
     specificTopic.toLowerCase()
   ];
-  // Create the image URL
-  const imageUrl = image || 'https://atmosyn.com/assets/img/logo/logo.png';
+  
+  // Always use absolute URL for image with https protocol
+  let imageUrl = image || 'https://atmosyn.com/assets/img/logo/logo.png';
+  
+  // Ensure URL starts with https:// for social media crawlers
+  if (!imageUrl.startsWith('http')) {
+    imageUrl = `https://atmosyn.com${imageUrl.startsWith('/') ? '' : '/'}${imageUrl}`;
+  }
+
+  // Verify image URL is valid and accessible
+  // If image is from our domain but path is incorrect, fallback to logo
+  if (imageUrl.includes('atmosyn.com') && 
+      !imageUrl.endsWith('.jpg') && 
+      !imageUrl.endsWith('.jpeg') && 
+      !imageUrl.endsWith('.png') && 
+      !imageUrl.endsWith('.svg')) {
+    console.warn(`Warning: Image URL format may be invalid: ${imageUrl}`);
+    imageUrl = 'https://atmosyn.com/assets/img/logo/logo.png';
+  }
 
   return {
     title: metaTitle,
@@ -145,10 +165,15 @@ export const generateDynamicMetadata = (content: any, type: 'blog' | 'service' |
     shortInfo = 'ATMOSYN Blog';
     description = content.excerpt || 'Insights from Atmosyn digital experts';
     
-    // Generate absolute image URL for better social sharing
-    // For newer blog structure with ID-based folders
-    if (content.id) {
-      imagePath = `https://atmosyn.com/assets/img/blog/bg_${content.id}/${content.id}-1.jpg`;
+    // First check if a specific socialImage is provided
+    if (content.socialImage) {
+      // Use the pre-generated social image URL
+      imagePath = content.socialImage;
+    }
+    // If no specific social image, generate from ID or img property
+    else if (content.id) {
+      // Generate absolute image URL for better social sharing
+      imagePath = `https://atmosyn.com/assets/img/blog/bg_${content.id}/${content.id}-1.png`;
     } else if (Array.isArray(content.img)) {
       // Try to find the main image first, fall back to first image if not found
       const mainImage = content.img.find((img: string) => img.includes('main')) || content.img[0];
@@ -282,9 +307,16 @@ export const generateJsonLd = (type: string, data?: any) => {
   if (type === 'blog') {
     // Prepare image URL with the correct format
     let imageUrl = '';
-    if (data.id) {
-      // Use the new folder structure for blog images
-      imageUrl = `https://atmosyn.com/assets/img/blog/bg_${data.id}/${data.id}-1.jpg`;
+    
+    // First check if a specific socialImage is provided
+    if (data.socialImage) {
+      // Use the pre-generated social image URL
+      imageUrl = data.socialImage;
+    }
+    // If no specific social image, generate from ID or img property
+    else if (data.id) {
+      // Use the new folder structure for blog images with consistent extension
+      imageUrl = `https://atmosyn.com/assets/img/blog/bg_${data.id}/${data.id}-1.png`;
     } else if (Array.isArray(data.img)) {
       // Try to find the main image first, fall back to first image
       const mainImage = data.img.find((img: string) => img.includes('main')) || data.img[0];

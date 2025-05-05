@@ -1,5 +1,5 @@
 import Link from 'next/link'
-
+import XLogo from '@/components/elements/XLogo'
 export default function Footer1() {
     return (
         <>
@@ -46,7 +46,7 @@ export default function Footer1() {
                                         <ul className="list-wrap">
                                             <li><Link href="https://www.instagram.com/" target="_blank"><i className="social-icon fab fa-instagram" />INSTAGRAM <i className="icon-arrow-top-left" /></Link></li>
                                             <li><Link href="https://www.linkedin.com/" target="_blank"><i className="social-icon fab fa-linkedin-in" />LINKEDIN <i className="icon-arrow-top-left" /></Link></li>
-                                            <li><Link href="https://www.twitter.com/" target="_blank"><i className="social-icon fab fa-twitter" />TWITTER <i className="icon-arrow-top-left" /></Link></li>
+                                            <li><Link href="https://www.twitter.com/" target="_blank"><i className="social-icon"/><XLogo /> TWITTER <i className="icon-arrow-top-left" /></Link></li>
                                             <li><Link href="https://www.facebook.com/" target="_blank"><i className="social-icon fab fa-facebook-f" />FACEBOOK <i className="icon-arrow-top-left" /></Link></li>
                                         </ul>
                                     </div>

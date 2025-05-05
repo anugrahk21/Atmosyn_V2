@@ -139,10 +139,17 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
       // Variables to track scroll position and state
       let scrollPosition = 0;
       let isScrollingDown = true;
+      let waitingAtTop = false; // New flag to track if we're waiting at the top
       const scrollSpeed = 3; // Pixels to scroll per frame - adjust for faster/slower scroll
       const fastScrollSpeed = 20; // Speed for fast scroll back to top
+      const topDelayMs = 2000; // Delay at top in milliseconds (same as the initial delay)
       
       const scrollStep = () => {
+        if (waitingAtTop) {
+          // We're in the waiting period, don't scroll
+          return;
+        }
+        
         if (isScrollingDown) {
           // Normal scroll down
           scrollPosition += scrollSpeed;
@@ -159,8 +166,23 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
           // If we've reached the top
           if (scrollPosition <= 0) {
             scrollPosition = 0; // Ensure we start exactly at 0
-            isScrollingDown = true; // Switch back to scroll-down mode
-            console.log("Reached top, starting scroll down again");
+            
+            // Instead of immediately starting to scroll down again,
+            // set the waiting flag and schedule the next animation after delay
+            waitingAtTop = true;
+            console.log("Reached top, waiting before scrolling down again");
+            
+            // After the delay, start scrolling down again
+            timeoutId.current = setTimeout(() => {
+              waitingAtTop = false;
+              isScrollingDown = true;
+              console.log("Wait complete, starting scroll down again");
+              
+              // Resume the animation
+              animationFrameId.current = requestAnimationFrame(scrollStep);
+            }, topDelayMs);
+            
+            return; // Exit this iteration of scrollStep
           }
         }
         
@@ -176,7 +198,7 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
       // Start the animation
       animationFrameId.current = requestAnimationFrame(scrollStep);
 
-    }, 2000); // 2-second delay
+    }, 2000); // 2-second initial delay
 
     // Cleanup function: Cancel animation and timeout on unmount or dependency change
     return () => {
@@ -339,13 +361,13 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
             </div>
             
             {/* Project Info */}
-            <div className="project-details-info-wrap mb-40">
+            <div className="project-modal-main-content mb-60">
               <div className="single-project-info">
-                <h6 className="title">Description</h6>
+                <h6 className="page-title mb-10">Description</h6>
                 <p className="text">{project.description}</p>
               </div>
               <div className="single-project-info">
-                <h6 className="title">Services</h6>
+                <h6 className="page-title mt-30 mb-10">Services</h6>
                 {project.services.map((service: string, index: number) => (
                   <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
                     <img 
@@ -361,22 +383,22 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
                 ))}
               </div>
               <div className="single-project-info">
-                <h6 className="title">Client</h6>
+                <h6 className="page-title mt-30 mb-10">Client</h6>
                 <p className="text">{project.client}</p>
               </div>
             </div>
             
             {/* Project Details Section - Updated layout with overview and highlights side by side */}
-            <div className="project-modal-main-content mb-40">
+            <div className="project-modal-main-content mb-20">
               <div className="row">
-                <div className="col-lg-7">
-                  <h3 className="page-title mb-30">Project Overview</h3>
+                <div className="col-lg-7 mb-30">
+                  <h3 className="page-title mb-10">Project Overview</h3>
                   <p className="mb-0">{project.overview}</p>
                 </div>
                 <div className="col-lg-5">
                   {project.highlights && project.highlights.length > 0 && (
                     <div className="project-highlights">
-                      <h3 className="page-title mb-30">Key Highlights</h3>
+                      <h3 className="page-title mb-10">Key Highlights</h3>
                       <ul className="list-wrap project-highlights-list" style={{ paddingLeft: 0 }}>
                         {project.highlights.map((highlight: string, index: number) => (
                           <li key={index} style={{ 
@@ -402,17 +424,8 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
               </div>
             </div>
             
-            {/* View Live/Demo Button */}
-            {project.liveUrl && (
-              <div className="project-modal-cta mb-40">
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                  <i className="fas fa-external-link-alt me-2"></i> View Live
-                </a>
-              </div>
-            )}
-            
             {/* Project Navigation */}
-            <div className="inner__page-nav mt-40 pt-40 border-top">
+            <div className="inner__page-nav pt-40 border-top">
               <div 
                 className="nav-btn text-md-start cursor-pointer" 
                 onClick={() => {
@@ -426,7 +439,6 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
                 }}
               >
                 <div className="text-wrap mb-0">
-                  <i className="fa fa-arrow-left me-4" />
                   <i className="fa fa-arrow-left me-4" />
                   <span>Previous Project</span>
                 </div>

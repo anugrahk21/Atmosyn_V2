@@ -44,7 +44,7 @@ export default function Team1({
                             <div className="col-xl-3 col-lg-4 col-md-6 wow img-custom-anim-top" key={member.id || index}>
                                 <div className="team-card">
                                     <div className="team-card-thumb">
-                                        <img src={member.photo} alt={member.name} />
+                                        <img src={`/assets/img/team/${member.photo}`} alt={member.name} />
                                     </div>
                                     <div className="team-card-details">
                                         <div className="media-left">

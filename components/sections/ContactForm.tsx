@@ -102,7 +102,7 @@ const [formData, setFormData] = useState({
       )}
 
       {/* WhatsApp section - moved outside conditional rendering */}
-      <div className="whatsapp-section mb-40 mt-4">
+      <div className="whatsapp-section mb-20">
         <h5 className="subtitle">Just WhatsApp us?</h5>
         <div className="whatsapp-button-container d-flex align-items-center">
           <a 
@@ -122,7 +122,7 @@ const [formData, setFormData] = useState({
             WhatsApp Us
           </a>
         </div>
-<h5 className="subtitle mt-3">Or just send us a message</h5>
+<h5 className="subtitle mt-40">Or just fill out the form below</h5>
       </div>
       
       <form onSubmit={handleSubmit} className="contact__form ajax-contact">

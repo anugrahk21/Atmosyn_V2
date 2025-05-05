@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useState } from 'react'
+import XLogo from "../elements/XLogo"
 import { WhatsAppButtonOffcanvas } from "../elements/WhatsAppButton"
 
 interface ActiveState {
@@ -78,7 +79,7 @@ export default function MobileMenu({ handleMobileMenu }: { handleMobileMenu: () 
                     <ul className="list-wrap">
                         <li><Link href="https://www.instagram.com/" target="_blank"><i className="fab fa-instagram" /></Link></li>
                         <li><WhatsAppButtonOffcanvas /></li>
-                        <li><Link href="https://twitter.com" target="_blank"><i className="fab fa-twitter" /></Link></li>
+                        <li><Link href="https://twitter.com" target="_blank"><XLogo/></Link></li>
                         <li><Link href="https://www.facebook.com/" target="_blank"><i className="fab fa-facebook-f" /></Link></li>
                     </ul>
                 </div>

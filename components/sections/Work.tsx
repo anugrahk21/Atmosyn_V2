@@ -29,7 +29,7 @@ export default function Work() {
     
     return (
         <>
-            <section className="work-area pt-120 pb-80 dark-bg">
+            <section className="work-area pt-80 pb-80 dark-bg">
                 <div className="container">
                     <div className="work-wrap-header">
                         <div className="work-thumb-wrap">

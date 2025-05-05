@@ -5,6 +5,7 @@ import { generateDynamicMetadata, generateJsonLd } from "@/util/metadata";
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import BlogFAQAccordion from "@/components/elements/BlogFAQAccordion";
+import XLogo from '@/components/elements/XLogo';
 
 // This tells Next.js to pre-render all possible blog pages at build time
 export async function generateStaticParams() {
@@ -44,6 +45,12 @@ interface BlogPost {
     }[];
 }
 
+// Get correct image URL for blog post specifically for social sharing
+const getSocialShareImageUrl = (blogId: number): string => {
+    // Use absolute URL with consistent extension (png) for social sharing
+    return `https://atmosyn.com/assets/img/blog/bg_${blogId}/${blogId}-1.png`;
+};
+
 // Generate dynamic metadata for this blog post
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
     const post = data.find((post) => String(post.id) === params.id)
@@ -71,8 +78,14 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
         }
     }
     
+    // Add image URL explicitly to the post object for better social sharing
+    const postWithImage = {
+        ...post,
+        socialImage: getSocialShareImageUrl(post.id)
+    };
+    
     // Use our utility to generate metadata for this specific blog post
-    return generateDynamicMetadata(post, 'blog')
+    return generateDynamicMetadata(postWithImage, 'blog')
 }
 
 // Format date to more readable format
@@ -109,7 +122,7 @@ const getBlogImageUrl = (blogId: number, imageType: 'main' | 'subsection', index
     }
     
     // Fallback image if something goes wrong
-    return `/assets/img/blog/default-thumbnail.jpg`;
+    return `/assets/img/blog/default-thumbnail.png`;
 };
 
 
@@ -320,6 +333,19 @@ const getCategoryQuote = (category: string): string => {
 };
 
 
+// Helper to generate share URLs for each platform with a custom message
+const getShareUrls = (post: BlogPost) => {
+    const baseUrl = `https://atmosyn.com/blog/${post.id}`;
+    const text = encodeURIComponent(post.title);
+    const customMessage = encodeURIComponent("Check out this insightful blog from ATMOSYN! 🚀\n");
+    return {
+        twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(baseUrl)}&text=${customMessage}%20${text}`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(baseUrl)}`,
+        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(baseUrl)}`,
+        whatsapp: `https://wa.me/?text=${text}%20${encodeURIComponent(baseUrl)}`,
+    };
+};
+
 export default function BlogDetails({ params }: { params: { id: string } }) {
     const id = params.id;
     const currentIndex = data.findIndex((post: BlogPost) => String(post.id) === String(id));
@@ -366,7 +392,7 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
                 />
 
-                <section className="blog__details-area pt-80 pb-120">
+                <section className="blog__details-area pt-20 pb-120">
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-8">
@@ -466,10 +492,17 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                                                         <h5 className="title">SHARE:</h5>
                                                         <div className="footer__social2">
                                                             <ul className="list-wrap">
-                                                                <li><Link href="https://twitter.com" target="_blank"><i className="fab fa-twitter" /></Link></li>
-                                                                <li><Link href="https://www.facebook.com/" target="_blank"><i className="fab fa-facebook-f" /></Link></li>
-                                                                <li><Link href="https://www.linkedin.com/" target="_blank"><i className="fab fa-linkedin-in" /></Link></li>
-                                                                <li><Link href="https://www.instagram.com/" target="_blank"><i className="fab fa-instagram" /></Link></li>
+                                                                {(() => {
+                                                                    const shareUrls = getShareUrls(blogPost);
+                                                                    return (
+                                                                        <>
+                                                                            <li><a href={shareUrls.twitter} target="_blank" rel="noopener noreferrer"><XLogo /></a></li>
+                                                                            <li><a href={shareUrls.facebook} target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-f" /></a></li>
+                                                                            <li><a href={shareUrls.linkedin} target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin-in" /></a></li>
+                                                                            <li><a href={shareUrls.whatsapp} target="_blank" rel="noopener noreferrer"><i className="fab fa-whatsapp" /></a></li>
+                                                                        </>
+                                                                    );
+                                                                })()}
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -623,10 +656,6 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                                                     <h4 className="title mt-10">
                                                         <Link href={`/blog/${relatedPost.id}`}>{relatedPost.title}</Link>
                                                     </h4>
-                                                    <span className="blog__post-date">{formatDate(relatedPost.date)}</span>
-                                                    <div className="related-post-meta">
-                                                        <span className="category">{relatedPost.category}</span>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

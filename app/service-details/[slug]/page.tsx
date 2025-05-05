@@ -4,6 +4,7 @@ import servicesData from "@/util/services.json"
 import { generateDynamicMetadata, generateJsonLd } from "@/util/metadata"
 import type { Metadata } from 'next'
 import Script from 'next/script'
+import OfferMarquee from "@/components/sections/OfferMarquee"
 import FeatureImage from "@/components/elements/FeatureImage"
 
 // This tells Next.js to pre-render all the service detail pages at build time
@@ -76,6 +77,7 @@ export default function ServiceDetails({ params }: { params: { slug: string } })
     return (
         <>
             <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="Services Details">
+                <OfferMarquee></OfferMarquee>
                 {/* Add JSON-LD structured data */}
                 <Script
                     id="service-jsonld"
@@ -83,7 +85,7 @@ export default function ServiceDetails({ params }: { params: { slug: string } })
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
                 />
                   <div>
-                    <div className="service-details-page-area pt-60 pb-50">
+                    <div className="service-details-page-area pt-30 pb-50">
                         <div className="container">
                             {/* Section 1: Service Title and Highlight Features */}
                             <div className="row align-items-center justify-content-between mb-60">
