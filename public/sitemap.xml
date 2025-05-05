@@ -3,7 +3,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://atmosyn.com/</loc>
-    <lastmod>2025-04-27</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -11,208 +11,152 @@
   <!-- Main sections -->
   <url>
     <loc>https://atmosyn.com/about/</loc>
-    <lastmod>2025-04-01</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/service/</loc>
-    <lastmod>2025-04-10</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/blog/</loc>
-    <lastmod>2025-04-27</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/team/</loc>
-    <lastmod>2025-03-20</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/testimonials/</loc>
-    <lastmod>2025-04-15</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/pricing/</loc>
-    <lastmod>2025-04-05</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/faq/</loc>
-    <lastmod>2025-04-01</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/contact/</loc>
-    <lastmod>2025-03-15</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/privacy-policy/</loc>
-    <lastmod>2025-02-28</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
-  
+    
   <!-- Blog posts -->
   <url>
     <loc>https://atmosyn.com/blog/1/</loc>
-    <lastmod>2025-04-27</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/blog/2/</loc>
-    <lastmod>2025-04-27</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/blog/3/</loc>
-    <lastmod>2025-04-27</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/blog/4/</loc>
-    <lastmod>2025-04-27</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/blog/5/</loc>
-    <lastmod>2025-04-27</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/blog/6/</loc>
-    <lastmod>2025-04-27</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/blog/7/</loc>
-    <lastmod>2025-04-27</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/blog/8/</loc>
-    <lastmod>2025-04-27</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/blog/9/</loc>
-    <lastmod>2025-04-27</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+    
   <!-- Service detail pages -->
   <url>
     <loc>https://atmosyn.com/service-details/ai-agents/</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/service-details/web-development/</loc>
-    <lastmod>2025-04-18</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/service-details/ux-ui-graphic-design/</loc>
-    <lastmod>2025-04-16</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/service-details/brand-identity/</loc>
-    <lastmod>2025-04-15</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://atmosyn.com/service-details/marketing-seo/</loc>
-    <lastmod>2025-04-14</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+    
   <!-- Project pages -->
   <url>
     <loc>https://atmosyn.com/project/</loc>
-    <lastmod>2025-04-12</lastmod>
+    <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- Project detail pages -->
-  <url>
-    <loc>https://atmosyn.com/project-details/1/</loc>
-    <lastmod>2025-04-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://atmosyn.com/project-details/2/</loc>
-    <lastmod>2025-04-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://atmosyn.com/project-details/3/</loc>
-    <lastmod>2025-04-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://atmosyn.com/project-details/4/</loc>
-    <lastmod>2025-04-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://atmosyn.com/project-details/5/</loc>
-    <lastmod>2025-04-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://atmosyn.com/project-details/6/</loc>
-    <lastmod>2025-04-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://atmosyn.com/project-details/7/</loc>
-    <lastmod>2025-04-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://atmosyn.com/project-details/8/</loc>
-    <lastmod>2025-04-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://atmosyn.com/project-details/9/</loc>
-    <lastmod>2025-04-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-</urlset>
+  </urlset>
