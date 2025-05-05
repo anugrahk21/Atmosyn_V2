@@ -73,29 +73,6 @@ export default function Contact() {
                                                 Or just fancy a chat?</h4>
                                         </div>
                                         
-                                        {/* WhatsApp section */}
-                                        <div className="whatsapp-section mb-40">
-                                            <h5 className="subtitle">Just WhatsApp us?</h5>
-                                            <div className="whatsapp-button-container d-flex align-items-center">
-                                                <a 
-                                                    href={whatsappUrl}
-                                                    className="btn btn-three"
-                                                    target="_blank" 
-                                                    rel="noopener noreferrer"
-                                                    style={{
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        gap: '10px',
-                                                        fontSize: '16px',
-                                                        padding: '12px 24px'
-                                                    }}
-                                                >
-                                                    <i className="fab fa-whatsapp" style={{ fontSize: '20px' }}></i>
-                                                    WhatsApp Us
-                                                </a>
-                                            </div>
-                                        </div>
-                                        
                                         {/* Replace the static form with the ContactForm component */}
                                         {/* Pass empty title and subtitle props since we're keeping the existing heading */}
                                         <ContactForm title="" subtitle="" />

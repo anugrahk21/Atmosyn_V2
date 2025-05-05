@@ -35,7 +35,7 @@ export default function Service1() {
     }
     return (
         <>
-            <section className="service-area pt-110 pb-120">
+            <section className="service-area pt-60 pb-120">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-6">
@@ -64,7 +64,7 @@ export default function Service1() {
                                 ))}
                             </div>
                         </div>
-                        <div className="col-lg-7">
+                        <div className="col-lg-7 pt-30">
                             <ul className="service1-tab-wrap" id="tabs-nav">
                                 {services.slice(0, 5).map((service, index) => (
                                     <li key={service.id}>

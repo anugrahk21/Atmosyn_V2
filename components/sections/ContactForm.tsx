@@ -1,5 +1,5 @@
 'use client'
-
+import { WhatsAppButtonOffcanvas } from "@/components/elements/WhatsAppButton"
 import React, { useState } from 'react'
 import services from '../../util/services.json'; // Import the services data
 
@@ -24,6 +24,11 @@ const [formData, setFormData] = useState({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionStatus, setSubmissionStatus] = useState<{ type: 'success' | 'error' | 'idle'; message: string }>({ type: 'idle', message: '' }); // Added state for submission status
 
+  // Phone number (without '+' sign) and message for WhatsApp
+  const phoneNumber = '919539694902';
+  const message = 'Hello! I would like to know more about your services.';
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -37,6 +42,16 @@ const [formData, setFormData] = useState({
     setIsSubmitting(true);
     setSubmissionStatus({ type: 'idle', message: '' }); // Reset status on new submission
 
+    // Store the current contact preference to preserve it after form reset
+    const currentPreference = formData.contactPreference;
+    
+    // Prepare form data to send - add a prefix to country code to prevent Google Sheets from interpreting it as a date
+    const formDataToSend = {
+      ...formData,
+      // Add a text prefix to the country code to ensure it's treated as text in Google Sheets
+      countryCode: formData.countryCode ? `'${formData.countryCode}` : ''
+    };
+
     try {
       // Using no-cors mode to bypass CORS issues during development
       const response = await fetch('https://script.google.com/macros/s/AKfycbwFD6BpE99nBy7UzmoKp4s5TYSvJZYmmOdH96hNNczFiWs_Cacczr377qroeav1ZladcA/exec', {
@@ -45,7 +60,7 @@ const [formData, setFormData] = useState({
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formDataToSend)
       });
       
       // When using no-cors mode, response.ok will always be false
@@ -59,7 +74,7 @@ const [formData, setFormData] = useState({
         countryCode: '',
         phone: '',
         service: '',
-        contactPreference: 'message',
+        contactPreference: currentPreference, // Preserve the user's contact preference
         message: '', 
         callDate: '',
         callTime: ''
@@ -85,6 +100,31 @@ const [formData, setFormData] = useState({
           )}
         </div>
       )}
+
+      {/* WhatsApp section - moved outside conditional rendering */}
+      <div className="whatsapp-section mb-40 mt-4">
+        <h5 className="subtitle">Just WhatsApp us?</h5>
+        <div className="whatsapp-button-container d-flex align-items-center">
+          <a 
+            href={whatsappUrl}
+            className="btn btn-three"
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              fontSize: '16px',
+              padding: '12px 24px'
+            }}
+          >
+            <i className="fab fa-whatsapp" style={{ fontSize: '20px' }}></i>
+            WhatsApp Us
+          </a>
+        </div>
+<h5 className="subtitle mt-3">Or just send us a message</h5>
+      </div>
+      
       <form onSubmit={handleSubmit} className="contact__form ajax-contact">
         <div className="row gy-35 pb-30">
           {/* ...existing code... */}
@@ -264,9 +304,7 @@ const [formData, setFormData] = useState({
              color: 'var(--tg-color-red-default)',
              textAlign: 'center',
              fontWeight: '500'
-           }}>
-            {submissionStatus.message}
-          </p>
+           }}>{submissionStatus.message}</p>
         )}
         <button 
           type="submit" 
@@ -282,5 +320,5 @@ const [formData, setFormData] = useState({
         </button>
       </form>
     </div>
-  )
+  );
 }

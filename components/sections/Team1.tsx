@@ -25,8 +25,8 @@ interface Team1Props {
 export default function Team1({
   title = "MEET THE MAKERS",
   backgroundColor = "theme-bg",
-  paddingTop = 110,
-  paddingBottom = 120,
+  paddingTop = 60,
+  paddingBottom = 60,
   showSocials = true,
   teamMembers: _teamMembers
 }: Team1Props) {

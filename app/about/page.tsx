@@ -198,10 +198,7 @@ Contact Area
                     <div className="container">
                         <div className="row align-items-center justify-content-end">
                             <div className="col-lg-6">
-                                <ContactForm 
-                                    title="GET IN TOUCH"
-                                    subtitle="Got a project you want to collaborate on?\nOr just fancy a chat?"
-                                />
+                                <ContactForm></ContactForm>
                             </div>
                         </div>
                     </div>
