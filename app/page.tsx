@@ -10,6 +10,7 @@ import Pricing from "@/components/sections/Pricing"
 import { generateStaticMetadata } from "@/util/metadata"
 import type { Metadata } from 'next'
 import OfferMarquee from "@/components/sections/OfferMarquee"
+import SplashScreen from "@/components/layout/SplashScreen"
 
 // Generate metadata using our utility
 export const metadata: Metadata = generateStaticMetadata({
@@ -27,16 +28,19 @@ export default function Home() {
         <>
             <Layout headerStyle={1} footerStyle={1}>
                 <Hero1 />
-                <OfferMarquee></OfferMarquee>
+                <OfferMarquee />
                 <Service1 />
                 <Overview />
                 <Pricing />
                 <Work />
                 <Team1 />
                 <Testimonial1 />
-                <OfferMarquee></OfferMarquee>
+                <OfferMarquee />
                 <Blog1 />
             </Layout>
+            
+            {/* 5-second splash screen on homepage load */}
+            <SplashScreen duration={1000} />
         </>
     )
 }

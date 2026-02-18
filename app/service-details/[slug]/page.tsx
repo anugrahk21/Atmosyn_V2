@@ -6,6 +6,7 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import OfferMarquee from "@/components/sections/OfferMarquee"
 import FeatureImage from "@/components/elements/FeatureImage"
+import { notFound } from 'next/navigation'; // Import notFound
 
 // This tells Next.js to pre-render all the service detail pages at build time
 export async function generateStaticParams() {
@@ -20,6 +21,11 @@ export const dynamicParams = false
 // Generate dynamic metadata for this service
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
     const service = servicesData.find((service) => service.slug === params.slug)
+    
+    // If no service is found, call notFound()
+    if (!service) {
+        notFound();
+    }
     
     // Use our utility to generate metadata for this specific service
     return generateDynamicMetadata(service, 'service')
@@ -63,15 +69,8 @@ export default function ServiceDetails({ params }: { params: { slug: string } })
     
     // If no service is found, show an error state
     if (!service) {
-        return (
-            <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="Services Details">
-                <section className="service-details-page-area pt-110">
-                    <div className="container">
-                        <p>Service not found</p>
-                    </div>
-                </section>
-            </Layout>
-        )
+        // Call notFound() if the service doesn't exist
+        notFound();
     }
 
     return (
@@ -84,17 +83,22 @@ export default function ServiceDetails({ params }: { params: { slug: string } })
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
                 />
-                  <div>
+                
+                {/* Remove hidden H1 - we'll place a proper visible one in the content */}
+                
+                <div>
                     <div className="service-details-page-area pt-30 pb-50">
                         <div className="container">
                             {/* Section 1: Service Title and Highlight Features */}
                             <div className="row align-items-center justify-content-between mb-60">
-                                <div className="col-xl-6">
+                                <div className="col-xl-7">
                                     <div className="section__title mb-30">
-                                        <h2 className="title">{service.title.toUpperCase()}</h2>
+                                        {/* Replace H2 with proper H1 that matches our SEO title format */}
+                                        <h1 className="title">{service.title} | ATMOSYN</h1>
                                         <p className="sec-text mt-3">{service.excerpt}</p>
                                     </div>
-                                </div>                                <div className="col-xl-5">
+                                </div>
+                                <div className="col-xl-4">
                                     <div className="service-highlight-card">
                                         <h4 className="service-card-title">Key Features</h4>
                                         <ul className="service-feature-list">

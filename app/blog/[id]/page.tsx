@@ -6,6 +6,7 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import BlogFAQAccordion from "@/components/elements/BlogFAQAccordion";
 import XLogo from '@/components/elements/XLogo';
+import { notFound } from 'next/navigation'; // Import notFound
 
 // This tells Next.js to pre-render all possible blog pages at build time
 export async function generateStaticParams() {
@@ -56,26 +57,8 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     const post = data.find((post) => String(post.id) === params.id)
     
     if (!post) {
-        return {
-            title: 'Blog Post Not Found | ATMOSYN',
-            description: 'The requested blog post could not be found.',
-            openGraph: {
-                title: 'Blog Post Not Found | ATMOSYN',
-                description: 'The requested blog post could not be found.',
-                url: 'https://atmosyn.com/blog',
-                siteName: 'ATMOSYN',
-                images: [
-                    {
-                        url: 'https://atmosyn.com/assets/img/logo/logomain.svg',
-                        width: 1200,
-                        height: 630,
-                        alt: 'ATMOSYN Digital Agency',
-                    },
-                ],
-                locale: 'en_US',
-                type: 'website',
-            },
-        }
+        // Call notFound() if the post doesn't exist
+        notFound();
     }
     
     // Add image URL explicitly to the post object for better social sharing
@@ -352,15 +335,8 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
 
     // Handle case if blog post is not found
     if (currentIndex === -1) {
-        return (
-            <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="Blog Details">
-                <section className="blog__details-area pt-120 pb-120">
-                    <div className="container">
-                        <p>Blog post not found</p>
-                    </div>
-                </section>
-            </Layout>
-        )
+        // Call notFound() if the post doesn't exist
+        notFound();
     }
     
     const blogPost = data[currentIndex] as BlogPost;
@@ -398,7 +374,7 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                             <div className="col-lg-8">
                                 <div className="blog__details-wrap mb-50">
                                     <div className="blog__details-content">
-                                        <h2 className="page-title">{blogPost.title}</h2>
+                                        <h1 className="page-title">{blogPost.title} | ATMOSYN</h1>
 
                                         <div className="blog__post-meta mb-30">
                                             <ul className="list-wrap">

@@ -26,6 +26,13 @@ export default function Service() {
                 <div>
                     <section className="service-area-2 pt-60 pb-120">
                         <div className="container">
+                            {/* Adding SEO-friendly H1 heading that matches title format */}
+                            <div className="row mb-60">
+                                <div className="col-12 text-center">
+                                    <h1 className="title">Our Services | ATMOSYN</h1>
+                                    <p className="sec-text mt-3">Comprehensive digital and AI solutions to elevate your business</p>
+                                </div>
+                            </div>
                             <div className="row gx-30 gy-30">
                                 {servicesData.map((service) => (
                                     <div key={service.id} className="col-xl-4 col-md-6">

@@ -2328,12 +2328,17 @@ textarea.is-invalid {
 	11. Header
 ===============================*/
 .transparent-header {
+  background: var(--tg-heading-color);
   position: absolute;
   left: 0;
   top: 0px;
   width: 100%;
   z-index: 9;
   height: auto;
+}
+.black-header {
+  background: var(--tg-heading-color);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 991.98px) {

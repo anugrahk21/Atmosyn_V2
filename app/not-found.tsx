@@ -4,8 +4,8 @@ export default function Error() {
 
     return (
         <>
-            <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="404 Not Found">
-                <div className="error-wrapper text-center pt-60 pb-60">
+            <Layout headerStyle={8} footerStyle={2}>
+                <div className="error-wrapper text-center pt-80 pb-60">
                     <div className="container">
                         <img className="mb-50" src="/assets/img/others/error-img.svg" alt="error" />
                         <div className="section__title mb-40 mt-0">

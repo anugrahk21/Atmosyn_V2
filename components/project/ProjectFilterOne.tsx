@@ -97,6 +97,8 @@ export default function ProjectFilterOne() {
             <section className="project-area-3 pt-60 pb-120 overflow-hidden">
                 <div className="container">
                     <div className="section__title mb-50 text-center">
+                        {/* Adding proper H1 tag that matches the SEO title format */}
+                        <h1 className="title mb-40">Our Projects | ATMOSYN</h1>
                         <div className="portfolio-tab-menu filter-menu-active">
                             <span className="portfolio-tab-menu-title">FILTER BY :</span>
                             <button className={`filter-btn ${activeBtn("*")}`} onClick={handleFilterKeyChange("*")} style={getButtonStyle("*")}>All</button>

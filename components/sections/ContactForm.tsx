@@ -86,7 +86,7 @@ const [formData, setFormData] = useState({
       setIsSubmitting(false);
     }
   };  return (
-    <div className="contact-form-wrap" style={{ height: '950px' }}>
+    <div className="contact-form-wrap">
       {/* Only render section title if title or subtitle is provided */}
       {(title || subtitle) && (
         <div className="section__title mb-60 wow img-custom-anim-left">

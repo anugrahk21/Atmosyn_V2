@@ -2,33 +2,33 @@ import Link from "next/link"
 import teamMembers from "@/util/team.json";
 
 interface TeamMember {
-  id: number;
-  name: string;
-  designation: string;
-  photo: string;
-  socialLinks?: {
-    facebook?: string;
-    twitter?: string;
-    linkedin?: string;
-  };
+    id: number;
+    name: string;
+    designation: string;
+    photo: string;
+    socialLinks?: {
+        facebook?: string;
+        twitter?: string;
+        linkedin?: string;
+    };
 }
 
 interface Team1Props {
-  title?: string;
-  backgroundColor?: string;
-  paddingTop?: number;
-  paddingBottom?: number;
-  showSocials?: boolean;
-  teamMembers?: TeamMember[];
+    title?: string;
+    backgroundColor?: string;
+    paddingTop?: number;
+    paddingBottom?: number;
+    showSocials?: boolean;
+    teamMembers?: TeamMember[];
 }
 
 export default function Team1({
-  title = "MEET THE MAKERS",
-  backgroundColor = "theme-bg",
-  paddingTop = 60,
-  paddingBottom = 60,
-  showSocials = true,
-  teamMembers: _teamMembers
+    title = "MEET THE MAKERS",
+    backgroundColor = "theme-bg",
+    paddingTop = 60,
+    paddingBottom = 60,
+    showSocials = true,
+    teamMembers: _teamMembers
 }: Team1Props) {
     // Use imported teamMembers if no override is provided
     const members = _teamMembers || teamMembers;
@@ -48,7 +48,7 @@ export default function Team1({
                                     </div>
                                     <div className="team-card-details">
                                         <div className="media-left">
-                                            <h4 className="team-card-title"><Link href="/team-details">{member.name}</Link></h4>
+                                            <h4 className="team-card-title">{member.name}</h4>
                                             <p className="team-card-text">{member.designation}</p>
                                         </div>
                                         {showSocials && member.socialLinks && (
@@ -58,11 +58,11 @@ export default function Team1({
                                                     {/* {member.socialLinks.facebook && (
                                                             <Link href={member.socialLinks.facebook}><i className="fab fa-facebook-f" /></Link>
                                                         )} */}
-                                                        {/*{member.socialLinks.twitter && (
+                                                    {/*{member.socialLinks.twitter && (
                                                             <Link href={member.socialLinks.twitter}><i className="fab fa-twitter" /></Link>
                                                         )} */}
                                                     {member.socialLinks.linkedin && (
-                                                        <Link href={member.socialLinks.linkedin}><i className="fab fa-linkedin-in" /></Link>
+                                                        <Link href={member.socialLinks.linkedin} target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin-in" /></Link>
                                                     )}
                                                 </div>
                                             </div>

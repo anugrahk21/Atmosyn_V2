@@ -191,7 +191,7 @@ Commitments Area
                 {/*==============================
 Contact Area
 ==============================*/}
-                <section className="contact-area-1 pt-120 position-relative overflow-hidden">
+                <section className="contact-area-1 pt-120 pb-60 position-relative overflow-hidden">
                     <div className="contact-thumb1 wow img-custom-anim-left">
                         <img src="/assets/img/others/contact1-1.svg" alt="img" />
                     </div>

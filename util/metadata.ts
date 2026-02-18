@@ -8,13 +8,14 @@ export const getDefaultMetadata = (): Metadata => {
   // Define the absolute URL for the logo to ensure it works for social sharing
   const logoAbsoluteUrl = 'https://atmosyn.com/assets/img/logo/logo.png';
   
+  // Using a consistent pipe format for better recognition by search engines
   return {
-    title: 'ATMOSYN | Innovative Digital Agency',
-    description: 'ATMOSYN specializes in AI solutions, web development, UX/UI design, automation services, brand identity, and marketing. Elevate your brand with Atmosyn.',
+    title: 'ATMOSYN | Digital Agency for AI & Web Solutions',
+    description: 'ATMOSYN delivers AI solutions, web development, UX/UI design, and brand identity services to elevate your digital presence.',
     keywords: ['digital agency', 'web development', 'UI/UX design', 'AI solutions', 'automation services', 'brand identity', 'marketing', 'SEO', 'Atmosyn'],
     openGraph: {
-      title: 'ATMOSYN | Innovative Digital Agency',
-      description: 'ATMOSYN specializes in AI solutions, web development, UX/UI design, automation services, brand identity, and marketing. Elevate your brand with Atmosyn.',
+      title: 'ATMOSYN | Digital Agency for AI & Web Solutions',
+      description: 'ATMOSYN delivers AI solutions, web development, UX/UI design, and brand identity services to elevate your digital presence.',
       url: 'https://atmosyn.com',
       siteName: 'ATMOSYN',
       images: [
@@ -30,8 +31,8 @@ export const getDefaultMetadata = (): Metadata => {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'ATMOSYN | Innovative Digital Agency',
-      description: 'ATMOSYN specializes in AI solutions, web development, UX/UI design, automation services, brand identity, and marketing. Elevate your brand with Atmosyn.',
+      title: 'ATMOSYN | Digital Agency for AI & Web Solutions',
+      description: 'ATMOSYN delivers AI solutions, web development, UX/UI design, and brand identity services to elevate your digital presence.',
       images: [logoAbsoluteUrl],
       creator: '@atmosyn',
     },
@@ -66,16 +67,22 @@ export const generateStaticMetadata = (pageInfo: PageMetaInfo): Metadata => {
     specificTopic = title,
     image,
     keywords = [],
-  } = pageInfo;  // Create a simpler, more compact meta title format
-  // If the page name is already ATMOSYN (for homepage), just use a single title
-  const metaTitle = pageName === 'ATMOSYN' 
-    ? 'ATMOSYN - Next-Gen Digital Agency'  // Keep dash for homepage
-    : `${pageName} | ATMOSYN`;  // Use pipe for all other pages
+  } = pageInfo;
   
-  // Create meta description following the specified format
-  const metaDescription = 
-    description || 
-    `${shortInfo || title}. Atmosyn merges innovative design with strategic insights to create engaging digital experiences. Learn more about ${specificTopic}.`;
+  // Create a consistent title format that's under 60 chars
+  // Always use the pipe format for SEO consistency and readability
+  const metaTitle = pageName === 'ATMOSYN' 
+    ? 'ATMOSYN | Digital Agency for AI & Web Solutions' 
+    : `${pageName} | ATMOSYN`;
+  
+  // Trim description to optimal SEO length (between 120-155 chars)
+  let metaDescription = description || 
+    `${shortInfo || title}. Atmosyn creates engaging digital experiences with ${specificTopic}.`;
+  
+  // Ensure description is within optimal length range
+  if (metaDescription.length > 155) {
+    metaDescription = metaDescription.substring(0, 152) + '...';
+  }
 
   // Create merged keywords with default SEO terms
   const metaKeywords = [
@@ -113,7 +120,7 @@ export const generateStaticMetadata = (pageInfo: PageMetaInfo): Metadata => {
     description: metaDescription,
     keywords: metaKeywords,
     openGraph: {
-      title: metaTitle,
+      title: metaTitle, // Use exact same title as HTML title
       description: metaDescription,
       url: 'https://atmosyn.com',
       siteName: 'ATMOSYN',
@@ -130,7 +137,7 @@ export const generateStaticMetadata = (pageInfo: PageMetaInfo): Metadata => {
     },
     twitter: {
       card: 'summary_large_image',
-      title: metaTitle,
+      title: metaTitle, // Use exact same title as HTML title
       description: metaDescription,
       images: [imageUrl],
       creator: '@atmosyn',
@@ -203,8 +210,8 @@ export const generateDynamicMetadata = (content: any, type: 'blog' | 'service' |
     
   } else if (type === 'service') {
     pageTitle = content.title;
-    shortInfo = 'Innovative Digital Solutions';
-    description = content.excerpt || `Professional ${content.title} services from Atmosyn`;
+    shortInfo = 'Digital Services';
+    description = content.excerpt || `${content.title} services optimized for your business needs`;
     // Use default logo for service pages
     imagePath = defaultLogoImage;
     specificTopic = content.title;
@@ -229,10 +236,17 @@ export const generateDynamicMetadata = (content: any, type: 'blog' | 'service' |
     ];
   }
 
-  // Create a full metadata object with proper OpenGraph properties
+  // Create a consistent title format that's under 60 chars for SEO
   const metaTitle = `${pageTitle} | ATMOSYN`;
-  const metaDescription = description || 
-    `${shortInfo}. Atmosyn merges innovative design with strategic insights to create engaging digital experiences. Learn more about ${specificTopic}.`;
+  
+  // Trim description to optimal SEO length
+  let metaDescription = description || 
+    `${shortInfo}. Atmosyn delivers ${specificTopic} solutions with proven results.`;
+    
+  // Ensure description is within optimal length range
+  if (metaDescription.length > 155) {
+    metaDescription = metaDescription.substring(0, 152) + '...';
+  }
 
   return {
     title: metaTitle,
@@ -368,6 +382,7 @@ export const generateJsonLd = (type: string, data?: any) => {
       "provider": orgSchema,
       "description": data.excerpt || `Professional ${data.title} services from Atmosyn`,
       "name": data.title,
+      "alternateName": `${data.title} | ATMOSYN`,
       "image": "https://atmosyn.com/assets/img/logo/logo.png",
       "mainEntityOfPage": {
         "@type": "WebPage",

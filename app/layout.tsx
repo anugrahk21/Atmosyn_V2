@@ -49,6 +49,13 @@ export const metadata: Metadata = {
   }
 };
 
+// Add stronger title signals to ensure search engines use our exact title
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+}
+
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -66,6 +73,8 @@ export default function RootLayout({
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
                 />
+                {/* Force search engines to respect our exact title format */}
+                <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
             </head>
             <body className={`${poppins.variable} ${aclonica.variable} ${unbounded.variable} theme-green`}>{children}</body>
         </html>

@@ -9,8 +9,9 @@ export default function Hero1() {
                     <div className="hero-style1">
                         <div className="row">
                             <div className="col-lg-8">
-                                <h1 className="hero-title wow img-custom-anim-left" data-wow-duration="1.5s" data-wow-delay="0.1s"><span className="text-theme">We Don’t
-                                    </span><br></br> Blend In.</h1>
+                                <h1 className="hero-title wow img-custom-anim-left" data-wow-duration="1.5s" data-wow-delay="0.1s">
+                                    <span className="text-theme">ATMOSYN</span> | <span>Digital Agency for AI & Web Solutions</span>
+                                </h1>
                             </div>
                             <div className="col-lg-4 align-self-end">
                                 <p className="hero-text typing-animation wow img-custom-anim-right" data-wow-duration="1.5s" data-wow-delay="0.1s">
