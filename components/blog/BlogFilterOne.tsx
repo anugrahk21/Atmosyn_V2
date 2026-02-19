@@ -60,14 +60,14 @@ const getBlogImageUrl = (blogId: number, imageType: 'main' | 'subsection', index
     // Handle main article images
     if (imageType === 'main') {
         // Main images follow the pattern bg_[id]/[id]-[1,2,3].png
-        return `/assets/img/blog/bg_${blogId}/${blogId}-${index + 1}.png`;
-    } 
+        return `/assets/img/blog/bg_${blogId}/${blogId}-${index + 1}.webp`;
+    }
     // Handle subsection images
     else if (imageType === 'subsection') {
         // Subsection images follow the pattern bg_[id]/sb-[number].png
-        return `/assets/img/blog/bg_${blogId}/sb-${index}.png`;
+        return `/assets/img/blog/bg_${blogId}/sb-${index}.webp`;
     }
-    
+
     // Fallback image if something goes wrong
     return `/assets/img/blog/default-thumbnail.jpg`;
 };
@@ -75,12 +75,12 @@ const getBlogImageUrl = (blogId: number, imageType: 'main' | 'subsection', index
 export default function BlogFilterOne({ initialBlogs }: BlogFilterProps) {
     const searchParams = useSearchParams();
     const categoryParam = searchParams?.get('category') || null;
-    
+
     // Sort the initial blogs by date (newest first) before any filtering
     const sortedInitialBlogs = [...initialBlogs].sort((a, b) => {
         return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
-    
+
     // Set initial filter key based on URL parameter if available
     const [filterKey, setFilterKey] = useState<string>("*");
     const [filteredBlogs, setFilteredBlogs] = useState<BlogPost[]>(sortedInitialBlogs);
@@ -93,10 +93,10 @@ export default function BlogFilterOne({ initialBlogs }: BlogFilterProps) {
     }, [categoryParam]);
 
     useEffect(() => {
-        const filtered = filterKey === "*" 
-            ? sortedInitialBlogs 
+        const filtered = filterKey === "*"
+            ? sortedInitialBlogs
             : sortedInitialBlogs.filter(post => categoryMap[filterKey as keyof typeof categoryMap].categories.includes(post.category));
-        
+
         setFilteredBlogs(filtered);
     }, [filterKey, sortedInitialBlogs]);
 
@@ -122,17 +122,17 @@ export default function BlogFilterOne({ initialBlogs }: BlogFilterProps) {
             <div className="section__title mb-50 text-center">
                 <div className="portfolio-tab-menu filter-menu-active">
                     <span className="portfolio-tab-menu-title">FILTER BY :</span>
-                    <button 
-                        className={`filter-btn ${activeBtn("*")}`} 
+                    <button
+                        className={`filter-btn ${activeBtn("*")}`}
                         onClick={handleFilterKeyChange("*")}
                         style={getButtonStyle("*")}
                     >
                         Show All
                     </button>
                     {Object.entries(categoryMap).map(([key, { name }]) => (
-                        <button 
-                            key={key} 
-                            className={`filter-btn ${activeBtn(key)}`} 
+                        <button
+                            key={key}
+                            className={`filter-btn ${activeBtn(key)}`}
                             onClick={handleFilterKeyChange(key)}
                             style={getButtonStyle(key)}
                         >
@@ -141,15 +141,15 @@ export default function BlogFilterOne({ initialBlogs }: BlogFilterProps) {
                     ))}
                 </div>
             </div>
-            
+
             <div className="row gy-80 justify-content-center">
                 {filteredBlogs.length > 0 ? (
                     filteredBlogs.map((post, index) => (
                         <div className="col-xl-4 col-md-6" key={index}>
                             <div className="blog__post-item-five shine-animate-item">
-                                <div className="blog__post-thumb" style={{height: "100%", overflow: "hidden" }}>
+                                <div className="blog__post-thumb" style={{ height: "100%", overflow: "hidden" }}>
                                     <Link className="shine-animate" href={`/blog/${post.id}`}>
-                                        <img 
+                                        <img
                                             src={getBlogImageUrl(post.id, 'main', 0)}
                                             alt={post.title}
                                             style={{ width: "100%", height: "100%", objectFit: "cover" }}

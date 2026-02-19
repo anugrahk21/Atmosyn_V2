@@ -28,7 +28,7 @@ export default function Hero1() {
                         </div>
                         <div className="hero-thumb1 wow img-custom-anim-top position-relative">
                             <div className="thumb">
-                                <img src="/assets/img/hero/hero-1-1.jpg" alt="hero" />
+                                <img src="/assets/img/hero/hero-1-1.webp" alt="hero" />
                             </div>
                             <Link className="btn big-circle-btn gsap-magnetic" href="/about"><i className="icon-arrow-top-left" /></Link>
                         </div>

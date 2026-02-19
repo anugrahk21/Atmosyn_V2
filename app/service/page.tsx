@@ -64,7 +64,7 @@ export default function Service() {
                             <div className="row gy-40 align-items-center">
                                 <div className="col-xl-5">
                                     <div className="skill-thumb-box1 wow img-custom-anim-left">
-                                        <img src="/assets/img/others/skill1-1.jpg" alt="img" />
+                                        <img src="/assets/img/others/skill1-1.webp" alt="img" />
                                         <div className="square-shape-wrap">
                                             <div className="square-shape1" />
                                             <div className="square-shape2" />

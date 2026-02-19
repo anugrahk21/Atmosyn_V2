@@ -6,14 +6,14 @@ const getBlogImageUrl = (blogId: number, imageType: 'main' | 'subsection', index
     // Handle main article images
     if (imageType === 'main') {
         // Main images follow the pattern bg_[id]/[id]-[1,2,3].png
-        return `/assets/img/blog/bg_${blogId}/${blogId}-${index + 1}.png`;
-    } 
+        return `/assets/img/blog/bg_${blogId}/${blogId}-${index + 1}.webp`;
+    }
     // Handle subsection images
     else if (imageType === 'subsection') {
         // Subsection images follow the pattern bg_[id]/sb-[number].png
-        return `/assets/img/blog/bg_${blogId}/sb-${index}.png`;
+        return `/assets/img/blog/bg_${blogId}/sb-${index}.webp`;
     }
-    
+
     // Fallback image if something goes wrong
     return `/assets/img/blog/default-thumbnail.jpg`;
 };
@@ -36,12 +36,12 @@ export default function Blog1() {
                                 <div className="blog__post-item">
                                     <div className="blog__post-thumb wow img-custom-anim-right" style={{ overflow: 'hidden', height: '300px' }}>
                                         <Link href={`/blog/${post.id}`} style={{ display: 'block', height: '100%' }}>
-                                            <img 
+                                            <img
                                                 src={getBlogImageUrl(post.id, 'main', 0)}
                                                 alt={post.title}
-                                                style={{ 
-                                                    width: '100%', 
-                                                    height: '100%', 
+                                                style={{
+                                                    width: '100%',
+                                                    height: '100%',
                                                     objectFit: 'cover',
                                                     objectPosition: 'center top'
                                                 }}

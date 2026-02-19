@@ -10,9 +10,9 @@ import { notFound } from 'next/navigation'; // Import notFound
 
 // This tells Next.js to pre-render all possible blog pages at build time
 export async function generateStaticParams() {
-  return data.map((post) => ({
-    id: String(post.id),
-  }))
+    return data.map((post) => ({
+        id: String(post.id),
+    }))
 }
 
 // This makes the page static instead of dynamic
@@ -49,24 +49,24 @@ interface BlogPost {
 // Get correct image URL for blog post specifically for social sharing
 const getSocialShareImageUrl = (blogId: number): string => {
     // Use absolute URL with consistent extension (png) for social sharing
-    return `https://atmosyn.com/assets/img/blog/bg_${blogId}/${blogId}-1.png`;
+    return `https://atmosyn.com/assets/img/blog/bg_${blogId}/${blogId}-1.webp`;
 };
 
 // Generate dynamic metadata for this blog post
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
     const post = data.find((post) => String(post.id) === params.id)
-    
+
     if (!post) {
         // Call notFound() if the post doesn't exist
         notFound();
     }
-    
+
     // Add image URL explicitly to the post object for better social sharing
     const postWithImage = {
         ...post,
         socialImage: getSocialShareImageUrl(post.id)
     };
-    
+
     // Use our utility to generate metadata for this specific blog post
     return generateDynamicMetadata(postWithImage, 'blog')
 }
@@ -96,16 +96,16 @@ const getBlogImageUrl = (blogId: number, imageType: 'main' | 'subsection', index
     // Handle main article images
     if (imageType === 'main') {
         // Main images follow the pattern bg_[id]/[id]-[1,2,3].png
-        return `/assets/img/blog/bg_${blogId}/${blogId}-${index + 1}.png`;
-    } 
+        return `/assets/img/blog/bg_${blogId}/${blogId}-${index + 1}.webp`;
+    }
     // Handle subsection images
     else if (imageType === 'subsection') {
         // Subsection images follow the pattern bg_[id]/sb-[number].png
-        return `/assets/img/blog/bg_${blogId}/sb-${index}.png`;
+        return `/assets/img/blog/bg_${blogId}/sb-${index}.webp`;
     }
-    
+
     // Fallback image if something goes wrong
-    return `/assets/img/blog/default-thumbnail.png`;
+    return `/assets/img/blog/default-thumbnail.webp`;
 };
 
 
@@ -151,7 +151,7 @@ const renderBlogContent = (post: BlogPost) => {
 
     // Add any remaining part of the last paragraph if not added
     if (currentParagraph.trim() && paragraphCount === 0) {
-         htmlString += `<p class="mb-25">${currentParagraph.trim()}</p>`;
+        htmlString += `<p class="mb-25">${currentParagraph.trim()}</p>`;
     }
 
     // 2. Insert Subsections
@@ -159,27 +159,27 @@ const renderBlogContent = (post: BlogPost) => {
         post.subsections.forEach((section, index) => {
             const sectionId = createSectionId(section.title);
             let formattedSectionContent = '';
-            
+
             // Add the regular content paragraph first
             if (section.content) {
                 formattedSectionContent += `<p class="mb-25">${section.content}</p>`;
             }
-            
+
             // Add subsection image with updated path structure
             formattedSectionContent += `
                 <div class="blog-subsection-image mb-30 mt-25 text-center">
                     <img src="${getBlogImageUrl(post.id, 'subsection', index + 1)}" alt="${section.title}" class="img-fluid rounded" />
                 </div>
             `;
-            
+
             // Add bullet points if they exist
             if (section.points && section.points.length > 0) {
                 formattedSectionContent += `
                     <div class="blog-section-points">
                         <ul class="list-wrap">
-                            ${section.points.map(point => 
-                                `<li class="mb-10"><i class="fas fa-check-circle me-2"></i>${point}</li>`
-                            ).join('\n')}
+                            ${section.points.map(point =>
+                    `<li class="mb-10"><i class="fas fa-check-circle me-2"></i>${point}</li>`
+                ).join('\n')}
                         </ul>
                     </div>
                 `;
@@ -188,7 +188,7 @@ const renderBlogContent = (post: BlogPost) => {
             // Determine if this is the last subsection to apply appropriate margin
             const isLastSection = post.subsections ? index === post.subsections.length - 1 : false;
             const sectionMarginClass = isLastSection ? "blog-section mb-40" : "blog-section mb-60";
-            
+
             // Number the subsection title (e.g., "1. Title", "2. Title", etc.)
             const numberedTitle = `${index + 1}. ${section.title}`;
 
@@ -198,7 +198,7 @@ const renderBlogContent = (post: BlogPost) => {
                     ${formattedSectionContent}
                 </div>
             `;
-            
+
             // Insert the quote after the 3rd subsection if it exists
             if (index === 2 && categoryQuote && !quoteInserted) {
                 htmlString += `
@@ -251,34 +251,34 @@ const renderBlogContent = (post: BlogPost) => {
 const calculateReadTime = (post: BlogPost): number => {
     // Average reading speed: 200-250 words per minute
     const WORDS_PER_MINUTE = 225;
-    
+
     // Count words in main content
     const contentWords = (post.content || '').split(/\s+/).length;
-    
+
     // Count words in subsections
     const subsectionsWords = post.subsections?.reduce((sum, section) => {
         // Add words from content and points
         const sectionContentWords = section.content ? section.content.split(/\s+/).length : 0;
-        const pointsWords = section.points?.reduce((total, point) => 
+        const pointsWords = section.points?.reduce((total, point) =>
             total + point.split(/\s+/).length, 0) || 0;
-        
+
         return sum + sectionContentWords + pointsWords;
     }, 0) || 0;
-    
+
     // Count words in key takeaways
-    const takeawaysWords = post.keyTakeaways?.reduce((sum, takeaway) => 
+    const takeawaysWords = post.keyTakeaways?.reduce((sum, takeaway) =>
         sum + takeaway.split(/\s+/).length, 0) || 0;
-    
+
     // Count words in FAQs
-    const faqsWords = post.faqs?.reduce((sum, faq) => 
+    const faqsWords = post.faqs?.reduce((sum, faq) =>
         sum + faq.question.split(/\s+/).length + faq.answer.split(/\s+/).length, 0) || 0;
-    
+
     // Calculate total words
     const totalWords = contentWords + subsectionsWords + takeawaysWords + faqsWords;
-    
+
     // Calculate read time in minutes and round up
     const readTimeMinutes = Math.ceil(totalWords / WORDS_PER_MINUTE);
-    
+
     // Return at least 1 minute
     return Math.max(1, readTimeMinutes);
 };
@@ -338,20 +338,20 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
         // Call notFound() if the post doesn't exist
         notFound();
     }
-    
+
     const blogPost = data[currentIndex] as BlogPost;
     const prevPost = currentIndex > 0 ? data[currentIndex - 1] : null;
     const nextPost = currentIndex < data.length - 1 ? data[currentIndex + 1] : null;
-    
+
     // Generate JSON-LD structured data for this blog post
     const blogJsonLd = generateJsonLd('blog', blogPost);
-    
+
     // Set latest posts (excluding current post)
     // First sort by date (newest first)
     const sortedPosts = [...data].sort((a, b) => {
         return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
-    
+
     // Filter out the current post and get the latest 3 posts
     const latestPosts = sortedPosts
         .filter(post => post.id !== data[currentIndex].id)
@@ -526,7 +526,7 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                                             </ul>
                                         </div>
                                     </div>
-                                    
+
                                     <div className="blog-widget widget-rc-post">
                                         <h4 className="widget-title">Latest Posts</h4>
                                         <div className="rc-post-wrap">
@@ -534,9 +534,9 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                                                 <div className="rc-post-item" key={`latest-${index}`} style={{ marginBottom: '15px' }}>
                                                     <div className="thumb shine-animate-item" style={{ width: '100%' }}>
                                                         <Link href={`/blog/${post.id}`} className="shine-animate">
-                                                            <img 
+                                                            <img
                                                                 src={getBlogImageUrl(post.id, 'main', 0)}
-                                                                alt={post.title} 
+                                                                alt={post.title}
                                                                 style={{ width: '100%', height: '120%', objectFit: 'cover', borderRadius: '6px' }}
                                                             />
                                                         </Link>
@@ -578,10 +578,10 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                                                 <ol className="list-wrap references-list">
                                                     {blogPost.references.map((reference) => (
                                                         <li key={`ref-${reference.id}`} className="mb-2">
-                                                            <a href={reference.url} 
-                                                               target="_blank" 
-                                                               rel="noopener noreferrer"
-                                                               className="reference-link">
+                                                            <a href={reference.url}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="reference-link">
                                                                 [{reference.id}] {reference.text}
                                                             </a>
                                                         </li>
@@ -621,9 +621,9 @@ export default function BlogDetails({ params }: { params: { id: string } }) {
                                             <div className="blog__post-item-three">
                                                 <div className="blog__post-thumb">
                                                     <Link href={`/blog/${relatedPost.id}`}>
-                                                        <img 
-                                                            src={getBlogImageUrl(relatedPost.id, 'main', 0)} 
-                                                            alt={relatedPost.title} 
+                                                        <img
+                                                            src={getBlogImageUrl(relatedPost.id, 'main', 0)}
+                                                            alt={relatedPost.title}
                                                             style={{ width: '100%', height: '200px', objectFit: 'cover' }}
                                                         />
                                                     </Link>

@@ -10,12 +10,12 @@ import OfferMarquee from "@/components/sections/OfferMarquee"
 
 // Generate metadata using our utility
 export const metadata: Metadata = generateStaticMetadata({
-  title: 'About Us',
-  pageName: 'About Us',
-  shortInfo: 'Our Story & Mission',
-  description: 'Learn about Atmosyn\'s journey, our passionate team, and our mission to deliver exceptional digital solutions. Atmosyn merges innovative design with strategic insights to create engaging digital experiences.',
-  specificTopic: 'our company values and expertise',
-  keywords: ['about Atmosyn', 'digital agency team', 'company values', 'agency mission', 'digital experts'],
+    title: 'About Us',
+    pageName: 'About Us',
+    shortInfo: 'Our Story & Mission',
+    description: 'Learn about Atmosyn\'s journey, our passionate team, and our mission to deliver exceptional digital solutions. Atmosyn merges innovative design with strategic insights to create engaging digital experiences.',
+    specificTopic: 'our company values and expertise',
+    keywords: ['about Atmosyn', 'digital agency team', 'company values', 'agency mission', 'digital experts'],
 });
 
 export default function About() {
@@ -26,7 +26,7 @@ export default function About() {
             <Layout headerStyle={8} footerStyle={2} breadcrumbTitle="ABOUT US">
                 {/* Offer Marquee added as first element in the page */}
                 <OfferMarquee backgroundColor="bg-dark" paddingTop={10} paddingBottom={10} />
-                
+
                 <section className="pb-120 pt-60">
                     <div className="overflow-hidden">
                         <div className="container">
@@ -76,7 +76,7 @@ Skill Area 01
                         <div className="row gy-40 align-items-center">
                             <div className="col-xl-5">
                                 <div className="skill-thumb-box1 wow img-custom-anim-left">
-                                    <img src="/assets/img/others/skill1-1.jpg" alt="img" />
+                                    <img src="/assets/img/others/skill1-1.webp" alt="img" />
                                     <div className="square-shape-wrap">
                                         <div className="square-shape1" />
                                         <div className="square-shape2" />
@@ -131,10 +131,10 @@ Team Area
                         <div className="square-shape3" />
                         <div className="square-shape4" />
                     </div>
-                    <Team1 
-                        title="Meet The Makers" 
-                        backgroundColor="" 
-                        paddingTop={110} 
+                    <Team1
+                        title="Meet The Makers"
+                        backgroundColor=""
+                        paddingTop={110}
                         paddingBottom={120}
                     />
                 </section>
@@ -207,7 +207,7 @@ Contact Area
                 {/*==============================
 Marquee Area
 ==============================*/}
-                <PartnerMarquee 
+                <PartnerMarquee
                     backgroundColor="theme-bg"
                     paddingTop={30}
                     paddingBottom={30}
