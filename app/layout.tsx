@@ -12,8 +12,6 @@ import "/public/assets/css/bootstrap.min.css"
 import "/public/assets/css/default.css"
 import "/public/assets/css/fontawesome-all.min.css"
 import "/public/assets/css/icon-font.css"
-import "/public/assets/css/magnific-popup.css"
-import "/public/assets/css/select2.min.css"
 import "/public/assets/css/style.css"
 import "/public/assets/css/swiper-bundle.min.css"
 import "/public/assets/css/testimonial-marquee.css"
@@ -39,21 +37,21 @@ const unbounded = Unbounded({
 
 // Use our default metadata from the utility and add favicon configuration
 export const metadata: Metadata = {
-  ...getDefaultMetadata(),
-  icons: {
-    icon: [
-      { url: '/favicon.ico' },
-      { url: '/assets/img/favicon.jpg' }
-    ],
-    apple: { url: '/assets/img/favicon.jpg' }
-  }
+    ...getDefaultMetadata(),
+    icons: {
+        icon: [
+            { url: '/favicon.ico' },
+            { url: '/assets/img/favicon.jpg' }
+        ],
+        apple: { url: '/assets/img/favicon.jpg' }
+    }
 };
 
 // Add stronger title signals to ensure search engines use our exact title
 export const viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 1,
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
 }
 
 export default function RootLayout({

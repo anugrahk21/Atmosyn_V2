@@ -1,11 +1,9 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import Link from 'next/link'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import projectsData from '@/util/projects.json'
-import Image from 'next/image'
 
 interface ProjectModalProps {
   isOpen: boolean
@@ -22,7 +20,7 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
   const timeoutId = useRef<NodeJS.Timeout | null>(null);
   // New state to track the current screenshot index
   const [currentScreenshotIndex, setCurrentScreenshotIndex] = useState(0);
-  
+
   // Find the current project data whenever projectId changes
   useEffect(() => {
     if (projectId) {
@@ -30,7 +28,7 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
       setProject(foundProject)
       setImageLoaded(false) // Reset image loaded state
       setCurrentScreenshotIndex(0) // Reset to first screenshot when changing projects
-      
+
       // Set loaded after a short delay to ensure animations work properly
       setTimeout(() => {
         setLoaded(true)
@@ -63,7 +61,7 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
         closeModal()
       }
     }
-    
+
     window.addEventListener('keydown', handleEscKey)
     return () => window.removeEventListener('keydown', handleEscKey)
   }, [isOpen, closeModal])
@@ -88,10 +86,10 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
       // Stop current animation
       if (timeoutId.current) clearTimeout(timeoutId.current);
       if (animationFrameId.current) cancelAnimationFrame(animationFrameId.current);
-      
+
       setCurrentScreenshotIndex(index);
       setImageLoaded(false); // Reset image loaded state for the new screenshot
-      
+
       // Scroll back to top
       if (scrollImageRef.current) {
         scrollImageRef.current.scrollTop = 0;
@@ -113,10 +111,10 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
     const isDev = project?.services.some((s: string) =>
       s.toLowerCase().includes('development') || s.toLowerCase().includes('web')
     );
-    
+
     const hasMultipleScreenshots = project?.longScreenshots && Array.isArray(project.longScreenshots);
-    const currentScreenshot = hasMultipleScreenshots ? 
-      project.longScreenshots[currentScreenshotIndex] : 
+    const currentScreenshot = hasMultipleScreenshots ?
+      project.longScreenshots[currentScreenshotIndex] :
       (project?.longScreenshot ? { path: project.longScreenshot } : null);
 
     if (!isOpen || !project || !currentScreenshot || !scrollElement || !imageLoaded || !isDev) {
@@ -128,14 +126,12 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
     const maxScrollTop = scrollHeight - clientHeight;
 
     if (maxScrollTop <= 0) {
-      console.log("Skipping scroll animation: No scrollable height.");
       return; // Exit if no scrolling needed
     }
 
     // Start animation after a 2-second delay
     timeoutId.current = setTimeout(() => {
-      console.log("Starting scroll animation after delay");
-      
+
       // Variables to track scroll position and state
       let scrollPosition = 0;
       let isScrollingDown = true;
@@ -143,58 +139,55 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
       const scrollSpeed = 3; // Pixels to scroll per frame - adjust for faster/slower scroll
       const fastScrollSpeed = 20; // Speed for fast scroll back to top
       const topDelayMs = 2000; // Delay at top in milliseconds (same as the initial delay)
-      
+
       const scrollStep = () => {
         if (waitingAtTop) {
           // We're in the waiting period, don't scroll
           return;
         }
-        
+
         if (isScrollingDown) {
           // Normal scroll down
           scrollPosition += scrollSpeed;
-          
+
           // If we've reached the bottom
           if (scrollPosition >= maxScrollTop) {
             isScrollingDown = false; // Switch to fast scroll-up mode
-            console.log("Reached bottom, scrolling back to top");
           }
         } else {
           // Fast scroll back to top
           scrollPosition -= fastScrollSpeed;
-          
+
           // If we've reached the top
           if (scrollPosition <= 0) {
             scrollPosition = 0; // Ensure we start exactly at 0
-            
+
             // Instead of immediately starting to scroll down again,
             // set the waiting flag and schedule the next animation after delay
             waitingAtTop = true;
-            console.log("Reached top, waiting before scrolling down again");
-            
+
             // After the delay, start scrolling down again
             timeoutId.current = setTimeout(() => {
               waitingAtTop = false;
               isScrollingDown = true;
-              console.log("Wait complete, starting scroll down again");
-              
+
               // Resume the animation
               animationFrameId.current = requestAnimationFrame(scrollStep);
             }, topDelayMs);
-            
+
             return; // Exit this iteration of scrollStep
           }
         }
-        
+
         // Apply the scroll position
         if (scrollElement) {
           scrollElement.scrollTop = scrollPosition;
         }
-        
+
         // Continue the animation
         animationFrameId.current = requestAnimationFrame(scrollStep);
       };
-      
+
       // Start the animation
       animationFrameId.current = requestAnimationFrame(scrollStep);
 
@@ -206,7 +199,6 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
       if (animationFrameId.current) cancelAnimationFrame(animationFrameId.current);
       timeoutId.current = null;
       animationFrameId.current = null;
-      console.log("Cleaned up scroll animation effect");
     };
 
   }, [isOpen, project, imageLoaded, currentScreenshotIndex]); // Added currentScreenshotIndex as dependency
@@ -214,21 +206,21 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
   if (!project) return null;
 
   // Check if this is a development project (used for conditional rendering)
-  const isDevelopmentProject = project.services.some((service: string) => 
+  const isDevelopmentProject = project.services.some((service: string) =>
     service.toLowerCase().includes('development') || service.toLowerCase().includes('web')
   );
 
   // Check if project has multiple screenshots
   const hasMultipleScreenshots = project.longScreenshots && Array.isArray(project.longScreenshots) && project.longScreenshots.length > 0;
-  
+
   // Get current screenshot (either from array or fallback to single longScreenshot)
-  const currentScreenshot = hasMultipleScreenshots ? 
-    project.longScreenshots[currentScreenshotIndex] : 
+  const currentScreenshot = hasMultipleScreenshots ?
+    project.longScreenshots[currentScreenshotIndex] :
     (project.longScreenshot ? { path: project.longScreenshot } : null);
-    
+
   // Determine page name for current screenshot
-  const currentPageName = hasMultipleScreenshots && currentScreenshot?.name ? 
-    currentScreenshot.name : 
+  const currentPageName = hasMultipleScreenshots && currentScreenshot?.name ?
+    currentScreenshot.name :
     'Page';
 
   // All images for the slider (for non-development projects)
@@ -238,7 +230,7 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
   ];
 
   return (
-    <div 
+    <div
       className={`project-modal-overlay ${isOpen ? 'open' : ''} ${loaded ? 'loaded' : ''}`}
       onClick={handleOutsideClick}
     >
@@ -246,38 +238,34 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
         <button className="project-modal-close" onClick={closeModal}>
           <i className="fas fa-times"></i>
         </button>
-        
+
         <div className="project-modal-inner">
           {/* Image Display - Conditional based on project type */}
           {isDevelopmentProject && currentScreenshot ? (
             // Long scrolling screenshot for development projects with page navigation
             <div className="project-modal-long-screenshot mb-40">
               {/* Screenshot Container */}
-              <div 
-                ref={scrollImageRef} 
+              <div
+                ref={scrollImageRef}
                 className="long-screenshot-container"
-                style={{ 
-                  height: '500px', 
-                  overflow: 'hidden', 
+                style={{
+                  height: '500px',
+                  overflow: 'hidden',
                   position: 'relative',
                   backgroundColor: '#f5f5f5',
                   borderRadius: '8px'
                 }}
               >
-                <img 
-                  src={`/assets/img/project/${currentScreenshot.path}`} 
+                <img
+                  src={`/assets/img/project/${currentScreenshot.path}`}
                   alt={`${project.title} - ${currentPageName}`}
-                  style={{ width: '100%', display: 'block' }} 
+                  style={{ width: '100%', display: 'block' }}
                   onLoad={() => {
-                    console.log("Image loaded: ", currentScreenshot.path);
                     setImageLoaded(true);
-                  }}
-                  onError={() => {
-                    console.error("Error loading image: ", currentScreenshot.path);
                   }}
                 />
               </div>
-              
+
               {/* Page Navigation */}
               {hasMultipleScreenshots && (
                 <div className="screenshot-navigation mt-3">
@@ -286,32 +274,32 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
                       <span className="fw-medium">{currentPageName}</span>
                     </div>
                     <div className="page-buttons d-flex">
-{project.longScreenshots.map((screenshot: any, idx: number) => (
-  <button
-  key={idx}
-  style={{
-    backgroundColor: currentScreenshotIndex === idx ? '#a8f600' : '#fff',
-    border: '1px solid #000',
-    color: '#000',
-    width: 36,
-    height: 36,
-    margin: '0 5px',
-    borderRadius: '50%',
-    outline: 'none',
-    boxShadow: 'none',
-    fontWeight: 'bold',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: 14,
-    cursor: 'pointer'
-  }}
-  onClick={() => handleScreenshotChange(idx)}
-  aria-label={`View ${screenshot.name || `Page ${idx + 1}`}`}
->
-  {idx + 1}
-</button>
-))}
+                      {project.longScreenshots.map((screenshot: any, idx: number) => (
+                        <button
+                          key={idx}
+                          style={{
+                            backgroundColor: currentScreenshotIndex === idx ? '#a8f600' : '#fff',
+                            border: '1px solid #000',
+                            color: '#000',
+                            width: 36,
+                            height: 36,
+                            margin: '0 5px',
+                            borderRadius: '50%',
+                            outline: 'none',
+                            boxShadow: 'none',
+                            fontWeight: 'bold',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            fontSize: 14,
+                            cursor: 'pointer'
+                          }}
+                          onClick={() => handleScreenshotChange(idx)}
+                          aria-label={`View ${screenshot.name || `Page ${idx + 1}`}`}
+                        >
+                          {idx + 1}
+                        </button>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -337,7 +325,7 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
                 {allImages.map((img, index) => (
                   <SwiperSlide key={index}>
                     <div className="project-modal-slide">
-                      <img src={img} alt={`${project.title} - image ${index+1}`} />
+                      <img src={img} alt={`${project.title} - image ${index + 1}`} />
                     </div>
                   </SwiperSlide>
                 ))}
@@ -359,7 +347,7 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
             <div className="section__title mb-30">
               <h2 className="title">{project.title}</h2>
             </div>
-            
+
             {/* Project Info */}
             <div className="project-modal-main-content mb-60">
               <div className="single-project-info">
@@ -370,11 +358,11 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
                 <h6 className="page-title mt-30 mb-10">Services</h6>
                 {project.services.map((service: string, index: number) => (
                   <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-                    <img 
-                      src="/assets/img/icon/check-circle.svg" 
-                      alt="check" 
-                      className="me-2" 
-                      width={18} 
+                    <img
+                      src="/assets/img/icon/check-circle.svg"
+                      alt="check"
+                      className="me-2"
+                      width={18}
                       height={18}
                       style={{ flexShrink: 0 }}
                     />
@@ -387,7 +375,7 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
                 <p className="text">{project.client}</p>
               </div>
             </div>
-            
+
             {/* Project Details Section - Updated layout with overview and highlights side by side */}
             <div className="project-modal-main-content mb-20">
               <div className="row">
@@ -401,16 +389,16 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
                       <h3 className="page-title mb-10">Key Highlights</h3>
                       <ul className="list-wrap project-highlights-list" style={{ paddingLeft: 0 }}>
                         {project.highlights.map((highlight: string, index: number) => (
-                          <li key={index} style={{ 
-                            display: 'flex', 
+                          <li key={index} style={{
+                            display: 'flex',
                             alignItems: 'flex-start',
                             marginBottom: '12px'
                           }}>
-                            <img 
-                              src="/assets/img/icon/check-circle.svg" 
-                              alt="check" 
-                              className="me-2" 
-                              width={22} 
+                            <img
+                              src="/assets/img/icon/check-circle.svg"
+                              alt="check"
+                              className="me-2"
+                              width={22}
                               height={22}
                               style={{ marginTop: '1px', flexShrink: 0 }}
                             />
@@ -423,14 +411,14 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
                 </div>
               </div>
             </div>
-            
+
             {/* Project Navigation */}
             <div className="inner__page-nav pt-40 border-top">
-              <div 
-                className="nav-btn text-md-start cursor-pointer" 
+              <div
+                className="nav-btn text-md-start cursor-pointer"
                 onClick={() => {
                   setLoaded(false)
-                  setImageLoaded(false) 
+                  setImageLoaded(false)
                   setCurrentScreenshotIndex(0) // Reset to first screenshot when changing projects
                   setTimeout(() => {
                     setProject(prevProject)
@@ -443,10 +431,10 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
                   <span>Previous Project</span>
                 </div>
               </div>
-              <div 
+              <div
                 onClick={() => {
                   setLoaded(false)
-                  setImageLoaded(false) 
+                  setImageLoaded(false)
                   setCurrentScreenshotIndex(0) // Reset to first screenshot when changing projects
                   setTimeout(() => {
                     setProject(nextProject)
