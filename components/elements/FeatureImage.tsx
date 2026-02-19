@@ -14,7 +14,7 @@ export default function FeatureImage({ serviceSlug, index, feature }: FeatureIma
     currentSrc: `/assets/img/service/service_features/${serviceSlug}/${index + 1}.svg`,
     fallbackStep: 0
   });
-  
+
   // Reset image state when serviceSlug or index changes (e.g., navigating between services)
   useEffect(() => {
     setImageState({
@@ -32,11 +32,11 @@ export default function FeatureImage({ serviceSlug, index, feature }: FeatureIma
       // Second fallback: Use service-specific generic images
       const fallbackImages = [
         'responsive-animate.svg',
-        'web_d.png',
-        'Ai_agent.png',
-        'uiux_graphic.png',
-        'brand_identity.png',
-        'marketing_seo.png',
+        'web_d.svg',
+        'Ai_agent.svg',
+        'uiux_graphic.svg',
+        'brand_identity.svg',
+        'marketing_seo.svg',
       ];
       return `/assets/img/service/${fallbackImages[index % 6]}`;
     }
@@ -45,7 +45,7 @@ export default function FeatureImage({ serviceSlug, index, feature }: FeatureIma
   const handleImageError = () => {
     // If we've already tried both fallbacks, do nothing more
     if (imageState.fallbackStep >= 2) return;
-    
+
     // Get the next fallback source and increment the fallback step counter
     const nextSrc = getNextFallbackSrc();
     setImageState(prev => ({

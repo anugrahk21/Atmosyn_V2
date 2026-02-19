@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link'
 import XLogo from '@/components/elements/XLogo'
 import { CONTACT, SOCIAL_LINKS } from '@/util/constants'
@@ -57,9 +58,9 @@ export default function Footer1() {
                     </div>
                     <div className="footer__bottom">
                         <div className="container text-center">
-                            <a href="#" className="scroll__footer-top scroll-to-target open text-theme" data-target="html">
+                            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="scroll__footer-top open text-theme" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
                                 Back to top <i className="fas fa-arrow-up" />
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -10,23 +10,21 @@ import { notFound } from 'next/navigation'; // Import notFound
 
 // This tells Next.js to pre-render all the service detail pages at build time
 export async function generateStaticParams() {
-  return servicesData.map((service) => ({
-    slug: service.slug,
-  }))
+    return servicesData.map((service) => ({
+        slug: service.slug,
+    }))
 }
 
-// This makes the page static instead of dynamic
-export const dynamicParams = false
 
 // Generate dynamic metadata for this service
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
     const service = servicesData.find((service) => service.slug === params.slug)
-    
+
     // If no service is found, call notFound()
     if (!service) {
         notFound();
     }
-    
+
     // Use our utility to generate metadata for this specific service
     return generateDynamicMetadata(service, 'service')
 }
@@ -48,25 +46,26 @@ const formatContent = (content: string) => {
     return content.split('\n\n').filter(paragraph => paragraph.trim() !== '');
 };
 
-export default function ServiceDetails({ params }: { params: { slug: string } }) {    const slug = params.slug;
-    
+export default function ServiceDetails({ params }: { params: { slug: string } }) {
+    const slug = params.slug;
+
     // Find the service with the matching slug
     const service = servicesData.find((item: ServiceItem) => item.slug === slug);
-      // Get related services based on the current service and display a more varied selection
+    // Get related services based on the current service and display a more varied selection
     // First, get all services except the current one
-    const allOtherServices = service 
+    const allOtherServices = service
         ? servicesData.filter(item => item.slug !== slug)
         : servicesData;
-    
+
     // Shuffle the array to get a random selection each time
     const shuffledServices = [...allOtherServices].sort(() => 0.5 - Math.random());
-    
+
     // Take the first 2 services from the shuffled array
     const otherServices = shuffledServices.slice(0, 2);
-    
+
     // Generate JSON-LD structured data for this service
     const serviceJsonLd = generateJsonLd('service', service);
-    
+
     // If no service is found, show an error state
     if (!service) {
         // Call notFound() if the service doesn't exist
@@ -83,9 +82,9 @@ export default function ServiceDetails({ params }: { params: { slug: string } })
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
                 />
-                
+
                 {/* Remove hidden H1 - we'll place a proper visible one in the content */}
-                
+
                 <div>
                     <div className="service-details-page-area pt-30 pb-50">
                         <div className="container">
@@ -112,12 +111,12 @@ export default function ServiceDetails({ params }: { params: { slug: string } })
                                     </div>
                                 </div>
                             </div>
-                              {/* Section 2: Overview with Image and Content Card */}
+                            {/* Section 2: Overview with Image and Content Card */}
                             <div className="service-overview-section mb-80">
                                 <div className="row g-4 align-items-center">
                                     <div className="col-lg-6">
-                                        <img 
-                                            className="img-fluid w-100 rounded-4" 
+                                        <img
+                                            className="img-fluid w-100 rounded-4"
                                             src={`/assets/img/service/${service.img}`}
                                             alt={service.title}
                                         />
@@ -128,7 +127,7 @@ export default function ServiceDetails({ params }: { params: { slug: string } })
                                             </h3>
                                             <div className="content-wrapper">
                                                 {formatContent(service.content).map((paragraph, index) => (
-                                                    <p key={index} className={index === formatContent(service.content).length-1 ? "mb-0" : "mb-4"}>{paragraph}</p>
+                                                    <p key={index} className={index === formatContent(service.content).length - 1 ? "mb-0" : "mb-4"}>{paragraph}</p>
                                                 ))}
                                             </div>
                                         </div>
@@ -144,31 +143,31 @@ export default function ServiceDetails({ params }: { params: { slug: string } })
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div className="row g-4">                                    {service.features.map((feature, index) => (
-  <div key={index} className="col-md-6 col-lg-4">
-    <div
-      className="service-approach-card fade-in-top-seq"
-      style={{ animationDelay: `${index * 0.15 + 0.1}s` }}
-    >      <div className="card-image">
-        <FeatureImage 
-          serviceSlug={service.slug} 
-          index={index} 
-          feature={feature} 
-        />
-      </div>
-      <h4 className="service-card-title">{feature}</h4>
-    </div>
-  </div>
-))}
+                                    <div key={index} className="col-md-6 col-lg-4">
+                                        <div
+                                            className="service-approach-card fade-in-top-seq"
+                                            style={{ animationDelay: `${index * 0.15 + 0.1}s` }}
+                                        >      <div className="card-image">
+                                                <FeatureImage
+                                                    serviceSlug={service.slug}
+                                                    index={index}
+                                                    feature={feature}
+                                                />
+                                            </div>
+                                            <h4 className="service-card-title">{feature}</h4>
+                                        </div>
+                                    </div>
+                                ))}
 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     {/*======== / Service Details Area ========*/}
-                    
+
                     {/*==============================
     View Projects Area
     ==============================*/}

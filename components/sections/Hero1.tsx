@@ -1,5 +1,7 @@
 import OfferMarquee from "./OfferMarquee"
 import Link from "next/link"
+import Image from "next/image"
+import heroImg from "@/public/assets/img/hero/hero-1-1.webp"
 
 export default function Hero1() {
     return (
@@ -28,7 +30,13 @@ export default function Hero1() {
                         </div>
                         <div className="hero-thumb1 wow img-custom-anim-top position-relative">
                             <div className="thumb">
-                                <img src="/assets/img/hero/hero-1-1.webp" alt="hero" />
+                                <Image
+                                    src={heroImg}
+                                    alt="hero"
+                                    priority
+                                    placeholder="blur"
+                                    style={{ width: '100%', height: 'auto' }}
+                                />
                             </div>
                             <Link className="btn big-circle-btn gsap-magnetic" href="/about"><i className="icon-arrow-top-left" /></Link>
                         </div>

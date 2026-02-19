@@ -5,6 +5,23 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import projectsData from '@/util/projects.json'
 
+// Define Project interface based on actual data structure
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  services: string[];
+  client: string;
+  img: string; // Main image/thumbnail
+  additionalImages: string[];
+  longScreenshots?: { name: string; path: string }[];
+  longScreenshot?: string; // Legacy support
+  overview: string;
+  highlights: string[];
+  // Include existing fields that might not be in JSON just in case
+  detailsImg?: string;
+}
+
 interface ProjectModalProps {
   isOpen: boolean
   closeModal: () => void
@@ -12,7 +29,7 @@ interface ProjectModalProps {
 }
 
 export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectModalProps) {
-  const [project, setProject] = useState<any>(null)
+  const [project, setProject] = useState<Project | null>(null)
   const [loaded, setLoaded] = useState(false)
   const scrollImageRef = useRef<HTMLDivElement>(null)
   const [imageLoaded, setImageLoaded] = useState(false)
@@ -24,8 +41,8 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
   // Find the current project data whenever projectId changes
   useEffect(() => {
     if (projectId) {
-      const foundProject = projectsData.find(p => p.id === projectId)
-      setProject(foundProject)
+      const foundProject = projectsData.find(p => p.id === projectId) as Project | undefined
+      setProject(foundProject || null)
       setImageLoaded(false) // Reset image loaded state
       setCurrentScreenshotIndex(0) // Reset to first screenshot when changing projects
 
@@ -44,8 +61,8 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
 
   // Find previous and next projects for navigation
   const currentIndex = project ? projectsData.findIndex(p => p.id === project.id) : -1
-  const prevProject = currentIndex > 0 ? projectsData[currentIndex - 1] : projectsData[projectsData.length - 1]
-  const nextProject = currentIndex < projectsData.length - 1 ? projectsData[currentIndex + 1] : projectsData[0]
+  const prevProject = currentIndex > 0 ? (projectsData[currentIndex - 1] as Project) : (projectsData[projectsData.length - 1] as Project)
+  const nextProject = currentIndex < projectsData.length - 1 ? (projectsData[currentIndex + 1] as Project) : (projectsData[0] as Project)
 
   // Handle clicking outside to close the modal
   const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -114,7 +131,7 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
 
     const hasMultipleScreenshots = project?.longScreenshots && Array.isArray(project.longScreenshots);
     const currentScreenshot = hasMultipleScreenshots ?
-      project.longScreenshots[currentScreenshotIndex] :
+      project!.longScreenshots![currentScreenshotIndex] :
       (project?.longScreenshot ? { path: project.longScreenshot } : null);
 
     if (!isOpen || !project || !currentScreenshot || !scrollElement || !imageLoaded || !isDev) {
@@ -215,17 +232,18 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
 
   // Get current screenshot (either from array or fallback to single longScreenshot)
   const currentScreenshot = hasMultipleScreenshots ?
-    project.longScreenshots[currentScreenshotIndex] :
+    project.longScreenshots![currentScreenshotIndex] :
     (project.longScreenshot ? { path: project.longScreenshot } : null);
 
   // Determine page name for current screenshot
-  const currentPageName = hasMultipleScreenshots && currentScreenshot?.name ?
+  const currentPageName = hasMultipleScreenshots && currentScreenshot && 'name' in currentScreenshot ?
     currentScreenshot.name :
     'Page';
 
   // All images for the slider (for non-development projects)
+  // Fix: Use 'img' as fallback if 'detailsImg' is missing (which it is in the JSON)
   const allImages = [
-    `/assets/img/project/${project.detailsImg}`,
+    `/assets/img/project/${project.detailsImg || project.img}`,
     ...project.additionalImages.map((img: string) => `/assets/img/project/${img}`)
   ];
 
@@ -274,7 +292,7 @@ export default function ProjectModal({ isOpen, closeModal, projectId }: ProjectM
                       <span className="fw-medium">{currentPageName}</span>
                     </div>
                     <div className="page-buttons d-flex">
-                      {project.longScreenshots.map((screenshot: any, idx: number) => (
+                      {project.longScreenshots?.map((screenshot: any, idx: number) => (
                         <button
                           key={idx}
                           style={{

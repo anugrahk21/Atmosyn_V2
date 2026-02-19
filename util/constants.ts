@@ -40,3 +40,27 @@ export const getWhatsAppUrl = (message?: string): string => {
     );
     return `https://wa.me/${CONTACT.phone.raw}?text=${encodedMessage}`;
 };
+
+export const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwFD6BpE99nBy7UzmoKp4s5TYSvJZYmmOdH96hNNczFiWs_Cacczr377qroeav1ZladcA/exec';
+
+export const COUNTRY_CODES = [
+    { code: "+91", label: "+91 (India)" },
+    { code: "+1", label: "+1 (US)" },
+    { code: "+44", label: "+44 (UK)" },
+    { code: "+61", label: "+61 (Australia)" },
+    { code: "+33", label: "+33 (France)" },
+    { code: "+49", label: "+49 (Germany)" },
+    { code: "+86", label: "+86 (China)" },
+    { code: "+81", label: "+81 (Japan)" },
+];
+
+export const TIME_SLOTS = [
+    "09:00-10:00",
+    "10:00-11:00",
+    "11:00-12:00",
+    "12:00-01:00",
+    "01:00-02:00",
+    "02:00-03:00",
+    "03:00-04:00",
+    "04:00-05:00",
+];

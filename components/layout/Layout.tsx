@@ -3,7 +3,6 @@ import AOS from 'aos'
 import { useEffect, useState } from "react"
 import AddClassBody from '../elements/AddClassBody'
 import BackToTop from '../elements/BackToTop'
-import DataBg from '../elements/DataBg'
 import MagnetsComponent from '../elements/MagnetsComponent'
 import WhatsAppButton from '../elements/WhatsAppButton'
 import ContactToastButton from '../elements/ContactToastButton'
@@ -24,10 +23,10 @@ interface LayoutProps {
 }
 
 
-export default function Layout({ 
-    headerStyle, 
-    footerStyle, 
-    breadcrumbTitle, 
+export default function Layout({
+    headerStyle,
+    footerStyle,
+    breadcrumbTitle,
     children,
     showScrollIndicator = true,
     scrollIndicatorProps = {}
@@ -57,7 +56,7 @@ export default function Layout({
         if (typeof window === 'undefined') {
             return;
         }
-        
+
         // Client-side only code
         const WOW: any = require('wowjs');
         (window as any).wow = new WOW.WOW({
@@ -83,8 +82,8 @@ export default function Layout({
     return (
         <>
             <Header1 scroll={scroll} isMobileMenu={isMobileMenu} handleMobileMenu={handleMobileMenu} isOffcanvasMenu={isOffcanvasMenu} handleOffcanvasMenu={handleOffcanvasMenu} />
-            
-            <DataBg />
+
+            {/* DataBg removed as it is unused */}
             <MagnetsComponent />
             <AddClassBody />
 
@@ -99,7 +98,7 @@ export default function Layout({
             <WhatsAppButton />
             <ContactToastButton />
             <BackToTop target="#top" />
-            
+
             {/* Scroll Indicator */}
             {showScrollIndicator && (
                 <ScrollIndicator

@@ -4,6 +4,7 @@ import MobileMenu from '../MobileMenu'
 import OffcanvasMenu from '../OffcanvasMenu'
 import OfferMarquee from '@/components/sections/OfferMarquee'
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 
 interface Header1Props {
     scroll: boolean;
@@ -28,7 +29,17 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isOffc
                                 <div className="tgmenu__wrap">
                                     <nav className="tgmenu__nav">
                                         <div className="logo">
-                                            <Link href="/"><img src="/assets/img/logo/logo-white.svg" alt="Logo" /></Link>
+                                            <Link href="/">
+                                                <Image
+                                                    src="/assets/img/logo/logo-white.svg"
+                                                    alt="Logo"
+                                                    width={0}
+                                                    height={0}
+                                                    sizes="100vw"
+                                                    style={{ width: 'auto', height: 'auto', maxHeight: '45px' }}
+                                                    priority
+                                                />
+                                            </Link>
                                         </div>
                                         <div className="tgmenu__navbar-wrap tgmenu__main-menu d-none d-lg-flex">
                                             <Menu />

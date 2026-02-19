@@ -1,13 +1,19 @@
 'use client'
 import { useEffect, useRef } from 'react'
 
+const CARDS = [
+    { num: '01', title: 'Fresh Startup Energy' },
+    { num: '02', title: 'AI-Powered Solutions' },
+    { num: '03', title: 'Client-Focused Results' },
+];
+
 export default function Overview() {
     const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
 
     useEffect(() => {
         // Initialize the array with the correct number of elements
         cardRefs.current = cardRefs.current.slice(0, 6);
-        
+
         const options = {
             root: null,
             rootMargin: '0px',
@@ -54,50 +60,30 @@ export default function Overview() {
 
                     <div className="row justify-content-center mb-0">
                         {/* Desktop/Tablet View - Shown on md screens and up */}
-                        <div className="col-lg-4 col-md-4 d-none d-md-block">
-                            <div ref={setCardRef(0)} className="counter-card text-center wow img-custom-anim-left scroll-card">
-                                <h2 className="counter-card-number">01</h2>
-                                <h3 className="counter-card-title" style={{ border: '1px solid black' }}>Fresh Startup Energy</h3>
+                        {CARDS.map((card, index) => (
+                            <div className="col-lg-4 col-md-4 d-none d-md-block" key={`desktop-${index}`}>
+                                <div
+                                    ref={setCardRef(index)}
+                                    className="counter-card text-center wow img-custom-anim-left scroll-card"
+                                >
+                                    <h2 className="counter-card-number">{card.num}</h2>
+                                    <h3 className="counter-card-title counter-card-border">{card.title}</h3>
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-lg-4 col-md-4 d-none d-md-block">
-                            <div ref={setCardRef(1)} className="counter-card text-center wow img-custom-anim-left scroll-card">
-                                <h2 className="counter-card-number">02</h2>
-                                <h3 className="counter-card-title" style={{ border: '1px solid black' }}>AI-Powered Solutions</h3>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-4 d-none d-md-block">
-                            <div ref={setCardRef(2)} className="counter-card text-center wow img-custom-anim-left scroll-card">
-                                <h2 className="counter-card-number">03</h2>
-                                <h3 className="counter-card-title" style={{ border: '1px solid black' }}>Client-Focused Results</h3>
-                            </div>
-                        </div>
+                        ))}
 
                         {/* Mobile View - Only shown on sm and xs screens */}
-                        <div className="col-12 d-block d-md-none mb-3">
-                            <div 
-                                ref={setCardRef(3)} 
-                                className="mobile-counter-card d-flex align-items-center wow img-custom-anim-left hover-card scroll-card">
-                                <h2 className="counter-card-number pe-4">01</h2>
-                                <h3 className="counter-card-title mb-0">Fresh Startup Energy</h3>
+                        {CARDS.map((card, index) => (
+                            <div className="col-12 d-block d-md-none mb-3" key={`mobile-${index}`}>
+                                <div
+                                    ref={setCardRef(index + 3)}
+                                    className="mobile-counter-card d-flex align-items-center wow img-custom-anim-left hover-card scroll-card"
+                                >
+                                    <h2 className="counter-card-number pe-4">{card.num}</h2>
+                                    <h3 className="counter-card-title mb-0">{card.title}</h3>
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-12 d-block d-md-none mb-3">
-                            <div 
-                                ref={setCardRef(4)} 
-                                className="mobile-counter-card d-flex align-items-center wow img-custom-anim-left hover-card scroll-card">
-                                <h2 className="counter-card-number pe-4">02</h2>
-                                <h3 className="counter-card-title mb-0">AI-Powered Solutions</h3>
-                            </div>
-                        </div>
-                        <div className="col-12 d-block d-md-none">
-                            <div 
-                                ref={setCardRef(5)} 
-                                className="mobile-counter-card d-flex align-items-center wow img-custom-anim-left hover-card scroll-card">
-                                <h2 className="counter-card-number pe-4">03</h2>
-                                <h3 className="counter-card-title mb-0">Client-Focused Results</h3>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </section>

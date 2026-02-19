@@ -16,8 +16,6 @@ export async function generateStaticParams() {
     }))
 }
 
-// This makes the page static instead of dynamic
-export const dynamicParams = false;
 
 interface BlogPost {
     id: number;

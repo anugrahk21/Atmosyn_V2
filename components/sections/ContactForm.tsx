@@ -2,7 +2,7 @@
 import { WhatsAppButtonOffcanvas } from "@/components/elements/WhatsAppButton"
 import React, { useState } from 'react'
 import services from '../../util/services.json'; // Import the services data
-import { getWhatsAppUrl } from '@/util/constants';
+import { getWhatsAppUrl, COUNTRY_CODES, TIME_SLOTS, GOOGLE_APPS_SCRIPT_URL } from '@/util/constants';
 
 interface ContactFormProps {
   title?: string;
@@ -52,7 +52,7 @@ export default function ContactForm({ title = "GET IN TOUCH", subtitle = "Got a 
 
     try {
       // Using no-cors mode to bypass CORS issues during development
-      const response = await fetch('https://script.google.com/macros/s/AKfycbwFD6BpE99nBy7UzmoKp4s5TYSvJZYmmOdH96hNNczFiWs_Cacczr377qroeav1ZladcA/exec', {
+      const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors', // This should allow the request to proceed without CORS errors
         headers: {
@@ -129,26 +129,24 @@ export default function ContactForm({ title = "GET IN TOUCH", subtitle = "Got a 
           <div className="col-12 form-group">
             <label className="form-icon-left"><img src="/assets/img/icon/svg-img/user.svg" alt="icon" /></label>            <input
               type="text"
-              className="form-control style-border"
+              className="form-control style-border form-control-icon-padding"
               name="name"
               id="name"
               placeholder="Name*"
               value={formData.name}
               onChange={handleChange}
               required
-              style={{ paddingLeft: '40px' }}
             />
           </div>          <div className="col-12 form-group">
             <label className="form-icon-left"><img src="/assets/img/icon/svg-img/envelope.svg" alt="icon" /></label>            <input
               type="email"
-              className="form-control style-border"
+              className="form-control style-border form-control-icon-padding"
               name="email"
               id="email"
               placeholder="Email*"
               value={formData.email}
               onChange={handleChange}
               required
-              style={{ paddingLeft: '40px' }}
             />
           </div>          <div className="col-12 form-group">
             <div className="row">
@@ -156,21 +154,15 @@ export default function ContactForm({ title = "GET IN TOUCH", subtitle = "Got a 
                 <div className="position-relative">                  <label className="form-icon-left"><i className="fas fa-globe"></i></label>
                   <select
                     name="countryCode"
-                    className="form-control style-border"
+                    className="form-control style-border form-control-icon-padding"
                     value={formData.countryCode || ''}
                     onChange={handleChange}
-                    style={{ paddingLeft: '40px' }}
                     required={formData.contactPreference === 'call'}
                   >
                     <option value="" disabled>Select Country Code*</option>
-                    <option value="+91">+91 (India)</option>
-                    <option value="+1">+1 (US)</option>
-                    <option value="+44">+44 (UK)</option>
-                    <option value="+61">+61 (Australia)</option>
-                    <option value="+33">+33 (France)</option>
-                    <option value="+49">+49 (Germany)</option>
-                    <option value="+86">+86 (China)</option>
-                    <option value="+81">+81 (Japan)</option>
+                    {COUNTRY_CODES.map(({ code, label }) => (
+                      <option key={code} value={code}>{label}</option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -178,12 +170,11 @@ export default function ContactForm({ title = "GET IN TOUCH", subtitle = "Got a 
                 <div className="position-relative">                  <label className="form-icon-left"><i className="fas fa-phone-alt"></i></label>
                   <input
                     type="tel"
-                    className="form-control style-border"
+                    className="form-control style-border form-control-icon-padding"
                     name="phone"
                     placeholder={formData.contactPreference === 'call' ? "Phone Number*" : "Phone Number"}
                     value={formData.phone || ''}
                     onChange={handleChange}
-                    style={{ paddingLeft: '40px' }}
                     required={formData.contactPreference === 'call'}
                   />
                 </div>
@@ -193,11 +184,10 @@ export default function ContactForm({ title = "GET IN TOUCH", subtitle = "Got a 
             <label className="form-icon-left"><img src="/assets/img/icon/svg-img/brifcase.svg" alt="icon" /></label>
             <select
               name="service"
-              className="form-control style-border custom-dropdown"
+              className="form-control style-border custom-dropdown form-control-icon-padding"
               value={formData.service}
               onChange={handleChange}
               required
-              style={{ paddingLeft: '40px' }} // Add left padding to prevent overlap with icon
             >
               <option value="" disabled>Select a Service*</option>
               {services.map((service) => (
@@ -244,13 +234,12 @@ export default function ContactForm({ title = "GET IN TOUCH", subtitle = "Got a 
                 <div className="col-md-6 mb-3 mb-md-0">
                   <div className="position-relative">                    <label className="form-icon-left"><i className="far fa-calendar-alt"></i></label>                    <input
                     type="date"
-                    className="form-control style-border"
+                    className="form-control style-border form-control-icon-padding"
                     name="callDate"
                     placeholder="Preferred Date"
                     value={formData.callDate || ''}
                     onChange={handleChange}
                     required
-                    style={{ paddingLeft: '40px' }}
                     min={new Date().toISOString().split('T')[0]}
                   />
                   </div>
@@ -258,21 +247,15 @@ export default function ContactForm({ title = "GET IN TOUCH", subtitle = "Got a 
                   <div className="position-relative">                    <label className="form-icon-left"><i className="far fa-clock"></i></label>
                     <select
                       name="callTime"
-                      className="form-control style-border"
+                      className="form-control style-border form-control-icon-padding"
                       value={formData.callTime || ''}
                       onChange={handleChange}
                       required
-                      style={{ paddingLeft: '40px' }}
                     >
                       <option value="" disabled>Select Time</option>
-                      <option value="09:00-10:00">09:00 AM - 10:00 AM</option>
-                      <option value="10:00-11:00">10:00 AM - 11:00 AM</option>
-                      <option value="11:00-12:00">11:00 AM - 12:00 PM</option>
-                      <option value="12:00-01:00">12:00 PM - 01:00 PM</option>
-                      <option value="01:00-02:00">01:00 PM - 02:00 PM</option>
-                      <option value="02:00-03:00">02:00 PM - 03:00 PM</option>
-                      <option value="03:00-04:00">03:00 PM - 04:00 PM</option>
-                      <option value="04:00-05:00">04:00 PM - 05:00 PM</option>
+                      {TIME_SLOTS.map((slot) => (
+                        <option key={slot} value={slot}>{slot.split('-')[0].trim()} - {slot.split('-')[1].trim()}</option>
+                      ))}
                     </select>
                   </div>
                 </div>
@@ -286,11 +269,10 @@ export default function ContactForm({ title = "GET IN TOUCH", subtitle = "Got a 
                 name="message"
                 placeholder="Message*"
                 id="contactForm"
-                className="form-control style-border"
+                className="form-control style-border textarea-contact"
                 value={formData.message}
                 onChange={handleChange}
                 required
-                style={{ minHeight: '100px', maxHeight: '180px', resize: 'vertical', overflowY: 'auto', marginBottom: '10px' }}
               />
             </div>
           )}

@@ -8,7 +8,7 @@ export default function Breadcrumb({ breadcrumbTitle }: any) {
                     <div className="row align-items-end">
                         <div className="col-lg-8">
                             <div className="breadcrumb__content">
-                                <h3 className="title">{breadcrumbTitle} <img className="breadcrumb-shape" src="/assets/img/others/bredcrumb-shape1.png" alt="img" /></h3>
+                                <h3 className="title">{breadcrumbTitle} <img className="breadcrumb-shape" src="/assets/img/others/bredcrumb-shape1.webp" alt="img" /></h3>
                                 <nav className="breadcrumb">
                                     <span property="itemListElement" typeof="ListItem">
                                         <Link href="/">Home</Link>
