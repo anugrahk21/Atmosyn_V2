@@ -2,6 +2,7 @@
 import { WhatsAppButtonOffcanvas } from "@/components/elements/WhatsAppButton"
 import React, { useState } from 'react'
 import services from '../../util/services.json'; // Import the services data
+import { getWhatsAppUrl } from '@/util/constants';
 
 interface ContactFormProps {
   title?: string;
@@ -9,10 +10,10 @@ interface ContactFormProps {
 }
 
 export default function ContactForm({ title = "GET IN TOUCH", subtitle = "Got a project you want to collaborate on? \nOr just fancy a chat?" }: ContactFormProps) {
-const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
-    countryCode: '', 
+    countryCode: '',
     phone: '',
     service: '',
     contactPreference: 'call',
@@ -24,16 +25,13 @@ const [formData, setFormData] = useState({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionStatus, setSubmissionStatus] = useState<{ type: 'success' | 'error' | 'idle'; message: string }>({ type: 'idle', message: '' }); // Added state for submission status
 
-  // Phone number (without '+' sign) and message for WhatsApp
-  const phoneNumber = '919539694902';
-  const message = 'Hello! I would like to know more about your services.';
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  const whatsappUrl = getWhatsAppUrl('Hello! I would like to know more about your services.');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     if (submissionStatus.type !== 'idle') { // Reset status message on new input
-        setSubmissionStatus({ type: 'idle', message: '' });
+      setSubmissionStatus({ type: 'idle', message: '' });
     }
   };
 
@@ -44,7 +42,7 @@ const [formData, setFormData] = useState({
 
     // Store the current contact preference to preserve it after form reset
     const currentPreference = formData.contactPreference;
-    
+
     // Prepare form data to send - add a prefix to country code to prevent Google Sheets from interpreting it as a date
     const formDataToSend = {
       ...formData,
@@ -62,20 +60,20 @@ const [formData, setFormData] = useState({
         },
         body: JSON.stringify(formDataToSend)
       });
-      
+
       // When using no-cors mode, response.ok will always be false
       // and you won't be able to read the response body
       // So we'll just assume success if the fetch completes without throwing an error
-      
+
       setSubmissionStatus({ type: 'success', message: 'Your message has been sent successfully!' }); // Set success message
-      setFormData({ 
-        name: '', 
-        email: '', 
+      setFormData({
+        name: '',
+        email: '',
         countryCode: '',
         phone: '',
         service: '',
         contactPreference: currentPreference, // Preserve the user's contact preference
-        message: '', 
+        message: '',
         callDate: '',
         callTime: ''
       });
@@ -85,7 +83,7 @@ const [formData, setFormData] = useState({
     } finally {
       setIsSubmitting(false);
     }
-  };  return (
+  }; return (
     <div className="contact-form-wrap">
       {/* Only render section title if title or subtitle is provided */}
       {(title || subtitle) && (
@@ -105,10 +103,10 @@ const [formData, setFormData] = useState({
       <div className="whatsapp-section mb-20">
         <h5 className="subtitle">Just WhatsApp us?</h5>
         <div className="whatsapp-button-container d-flex align-items-center">
-          <a 
+          <a
             href={whatsappUrl}
             className="btn btn-three"
-            target="_blank" 
+            target="_blank"
             rel="noopener noreferrer"
             style={{
               display: 'flex',
@@ -122,9 +120,9 @@ const [formData, setFormData] = useState({
             WhatsApp Us
           </a>
         </div>
-<h5 className="subtitle mt-40">Or just fill out the form below</h5>
+        <h5 className="subtitle mt-40">Or just fill out the form below</h5>
       </div>
-      
+
       <form onSubmit={handleSubmit} className="contact__form ajax-contact">
         <div className="row gy-35 pb-30">
           {/* ...existing code... */}
@@ -207,7 +205,7 @@ const [formData, setFormData] = useState({
               ))}
             </select>
           </div>
-            {/* Contact Preference Selection */}
+          {/* Contact Preference Selection */}
           <div className="col-12 form-group mt-3">
             <h5 className="mb-3">How would you like us to contact you?</h5>
             <div className="d-flex gap-4">
@@ -245,16 +243,16 @@ const [formData, setFormData] = useState({
               <div className="row">
                 <div className="col-md-6 mb-3 mb-md-0">
                   <div className="position-relative">                    <label className="form-icon-left"><i className="far fa-calendar-alt"></i></label>                    <input
-                      type="date"
-                      className="form-control style-border"
-                      name="callDate"
-                      placeholder="Preferred Date"
-                      value={formData.callDate || ''}
-                      onChange={handleChange}
-                      required
-                      style={{ paddingLeft: '40px' }}
-                      min={new Date().toISOString().split('T')[0]}
-                    />
+                    type="date"
+                    className="form-control style-border"
+                    name="callDate"
+                    placeholder="Preferred Date"
+                    value={formData.callDate || ''}
+                    onChange={handleChange}
+                    required
+                    style={{ paddingLeft: '40px' }}
+                    min={new Date().toISOString().split('T')[0]}
+                  />
                   </div>
                 </div>                <div className="col-md-6">
                   <div className="position-relative">                    <label className="form-icon-left"><i className="far fa-clock"></i></label>
@@ -300,23 +298,23 @@ const [formData, setFormData] = useState({
         {/* Display ONLY Error Submission Status */}
         {submissionStatus.type === 'error' && (
           <p style={{
-             marginTop: '20px',
-             color: 'var(--tg-color-red-default)',
-             textAlign: 'center',
-             fontWeight: '500'
-           }}>{submissionStatus.message}</p>
+            marginTop: '20px',
+            color: 'var(--tg-color-red-default)',
+            textAlign: 'center',
+            fontWeight: '500'
+          }}>{submissionStatus.message}</p>
         )}
-        <button 
-          type="submit" 
-          className={`btn btn-three square-btn ${submissionStatus.type === 'success' ? 'success-state' : ''}`} 
+        <button
+          type="submit"
+          className={`btn btn-three square-btn ${submissionStatus.type === 'success' ? 'success-state' : ''}`}
           disabled={isSubmitting || submissionStatus.type === 'success'}
           style={{ marginTop: '0' }}
         >
           {isSubmitting
             ? 'Sending...'
             : submissionStatus.type === 'success'
-            ? 'Message sent! We\'ll reply soon.'
-            : 'SEND MESSAGE'}
+              ? 'Message sent! We\'ll reply soon.'
+              : 'SEND MESSAGE'}
         </button>
       </form>
     </div>

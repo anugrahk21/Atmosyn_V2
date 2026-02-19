@@ -6,7 +6,8 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import BlogFAQAccordion from "@/components/elements/BlogFAQAccordion";
 import XLogo from '@/components/elements/XLogo';
-import { notFound } from 'next/navigation'; // Import notFound
+import { notFound } from 'next/navigation';
+import { getBlogImageUrl, getBlogSocialImageUrl } from '@/util/blogHelpers';
 
 // This tells Next.js to pre-render all possible blog pages at build time
 export async function generateStaticParams() {
@@ -46,28 +47,19 @@ interface BlogPost {
     }[];
 }
 
-// Get correct image URL for blog post specifically for social sharing
-const getSocialShareImageUrl = (blogId: number): string => {
-    // Use absolute URL with consistent extension (png) for social sharing
-    return `https://atmosyn.com/assets/img/blog/bg_${blogId}/${blogId}-1.webp`;
-};
-
 // Generate dynamic metadata for this blog post
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
     const post = data.find((post) => String(post.id) === params.id)
 
     if (!post) {
-        // Call notFound() if the post doesn't exist
         notFound();
     }
 
-    // Add image URL explicitly to the post object for better social sharing
     const postWithImage = {
         ...post,
-        socialImage: getSocialShareImageUrl(post.id)
+        socialImage: getBlogSocialImageUrl(post.id)
     };
 
-    // Use our utility to generate metadata for this specific blog post
     return generateDynamicMetadata(postWithImage, 'blog')
 }
 
@@ -91,22 +83,7 @@ const createSectionId = (title: string): string => {
         .replace(/-+/g, '-');     // Replace multiple hyphens with single hyphen
 };
 
-// Helper function to get blog image URL safely with new folder structure
-const getBlogImageUrl = (blogId: number, imageType: 'main' | 'subsection', index: number = 0): string => {
-    // Handle main article images
-    if (imageType === 'main') {
-        // Main images follow the pattern bg_[id]/[id]-[1,2,3].png
-        return `/assets/img/blog/bg_${blogId}/${blogId}-${index + 1}.webp`;
-    }
-    // Handle subsection images
-    else if (imageType === 'subsection') {
-        // Subsection images follow the pattern bg_[id]/sb-[number].png
-        return `/assets/img/blog/bg_${blogId}/sb-${index}.webp`;
-    }
 
-    // Fallback image if something goes wrong
-    return `/assets/img/blog/default-thumbnail.webp`;
-};
 
 
 // --- Refactored Content Rendering Function ---

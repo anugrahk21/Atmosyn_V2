@@ -1,23 +1,21 @@
 'use client'
-import { useEffect, useState } from "react"
+import { useScrollThreshold } from '@/hooks/useScrollThreshold'
 
-export default function BackToTop({ target }: any) {
-    const [hasScrolled, setHasScrolled] = useState(false)
+interface BackToTopProps {
+    target: string;
+}
 
-    useEffect(() => {
-        const onScroll = () => {
-            setHasScrolled(window.scrollY > 250)
-        }
-
-        window.addEventListener("scroll", onScroll)
-        return () => window.removeEventListener("scroll", onScroll)
-    }, [])
+export default function BackToTop({ target }: BackToTopProps) {
+    const hasScrolled = useScrollThreshold(250)
 
     const handleClick = () => {
-        window.scrollTo({
-            top: document.querySelector(target).offsetTop,
-            behavior: 'smooth'
-        })
+        const el = document.querySelector<HTMLElement>(target)
+        if (el) {
+            window.scrollTo({
+                top: el.offsetTop,
+                behavior: 'smooth'
+            })
+        }
     }
 
     return (

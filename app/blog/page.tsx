@@ -15,23 +15,6 @@ export const metadata: Metadata = generateStaticMetadata({
     keywords: ['digital blog', 'ai', 'web development blog', 'UI/UX design insights', 'marketing strategies', 'Atmosyn blog', 'industry trends'],
 });
 
-// Helper function to get blog image URL with consistent structure
-const getBlogImageUrl = (blogId: number, imageType: 'main' | 'subsection', index: number = 0): string => {
-    // Handle main article images
-    if (imageType === 'main') {
-        // Main images follow the pattern bg_[id]/[id]-[1,2,3].png
-        return `/assets/img/blog/bg_${blogId}/${blogId}-${index + 1}.webp`;
-    }
-    // Handle subsection images
-    else if (imageType === 'subsection') {
-        // Subsection images follow the pattern bg_[id]/sb-[number].png
-        return `/assets/img/blog/bg_${blogId}/sb-${index}.webp`;
-    }
-
-    // Fallback image if something goes wrong
-    return `/assets/img/blog/default-thumbnail.jpg`;
-};
-
 export default function Blog() {
     return (
         <>

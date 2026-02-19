@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import XLogo from '@/components/elements/XLogo'
+import { CONTACT, SOCIAL_LINKS } from '@/util/constants'
 export default function Footer1() {
     return (
         <>
@@ -26,8 +27,8 @@ export default function Footer1() {
                                     <div className="footer__widget footer__conversation">
                                         <h4 className="footer__widget-title">Start a conversation</h4>
                                         <div className="footer__content">
-                                            <p><Link href="mailto:info@atmosyn.com">info@atmosyn.com</Link></p>
-                                            <p><Link href="mailto:workwithatmosyn@gmail.com">workwithatmosyn@gmail.com</Link></p>
+                                            <p><Link href={`mailto:${CONTACT.email.primary}`}>{CONTACT.email.primary}</Link></p>
+                                            <p><Link href={`mailto:${CONTACT.email.secondary}`}>{CONTACT.email.secondary}</Link></p>
                                         </div>
                                     </div>
                                 </div>
@@ -44,10 +45,10 @@ export default function Footer1() {
                                 <div className="col-xl-auto col-md-6 col-sm-6">
                                     <div className="footer__widget footer__social">
                                         <ul className="list-wrap">
-                                            <li><Link href="https://www.instagram.com/" target="_blank"><i className="social-icon fab fa-instagram" />INSTAGRAM <i className="icon-arrow-top-left" /></Link></li>
-                                            <li><Link href="https://www.linkedin.com/" target="_blank"><i className="social-icon fab fa-linkedin-in" />LINKEDIN <i className="icon-arrow-top-left" /></Link></li>
-                                            <li><Link href="https://www.twitter.com/" target="_blank"><i className="social-icon"/><XLogo /> TWITTER <i className="icon-arrow-top-left" /></Link></li>
-                                            <li><Link href="https://www.facebook.com/" target="_blank"><i className="social-icon fab fa-facebook-f" />FACEBOOK <i className="icon-arrow-top-left" /></Link></li>
+                                            <li><Link href={SOCIAL_LINKS.instagram} target="_blank"><i className="social-icon fab fa-instagram" />INSTAGRAM <i className="icon-arrow-top-left" /></Link></li>
+                                            <li><Link href={SOCIAL_LINKS.linkedin} target="_blank"><i className="social-icon fab fa-linkedin-in" />LINKEDIN <i className="icon-arrow-top-left" /></Link></li>
+                                            <li><Link href={SOCIAL_LINKS.twitter} target="_blank"><i className="social-icon" /><XLogo /> TWITTER <i className="icon-arrow-top-left" /></Link></li>
+                                            <li><Link href={SOCIAL_LINKS.facebook} target="_blank"><i className="social-icon fab fa-facebook-f" />FACEBOOK <i className="icon-arrow-top-left" /></Link></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -4,24 +4,19 @@ import { generateStaticMetadata } from "@/util/metadata"
 import type { Metadata } from 'next'
 import ContactForm from "@/components/sections/ContactForm"
 import OfferMarquee from "@/components/sections/OfferMarquee"
-import { WhatsAppButtonOffcanvas } from "@/components/elements/WhatsAppButton"
+import { CONTACT, SITE_CONFIG } from '@/util/constants'
 
 // Generate metadata using our utility
 export const metadata: Metadata = generateStaticMetadata({
-  title: 'Contact Us',
-  pageName: 'Contact',
-  shortInfo: 'Get in touch',
-  description: 'Connect with Atmosyn for your next project. Our team is ready to discuss your ideas, answer questions, and provide expert consultation. Reach out today!',
-  specificTopic: 'contacting our team',
-  keywords: ['contact digital agency', 'web development inquiry', 'digital project consultation', 'hire design team'],
+    title: 'Contact Us',
+    pageName: 'Contact',
+    shortInfo: 'Get in touch',
+    description: 'Connect with Atmosyn for your next project. Our team is ready to discuss your ideas, answer questions, and provide expert consultation. Reach out today!',
+    specificTopic: 'contacting our team',
+    keywords: ['contact digital agency', 'web development inquiry', 'digital project consultation', 'hire design team'],
 });
 
 export default function Contact() {
-    // Phone number (without '+' sign) and message for WhatsApp
-    const phoneNumber = '919539694902';
-    const message = 'Hello! I would like to know more about your services.';
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
     return (
         <>
 
@@ -39,15 +34,15 @@ export default function Contact() {
                                         <ul className="list-wrap">
                                             <li>
                                                 <h6 className="title">Phone</h6>
-                                                <Link href="tel:+919539694902">+91 9539694902</Link>
+                                                <Link href={CONTACT.phone.tel}>{CONTACT.phone.display}</Link>
                                             </li>
                                             <li>
                                                 <h6 className="title">Email</h6>
-                                                <Link href="mailto:info@atmosyn.com">info@atmosyn.com</Link><br></br><Link href="mailto:workwithatmosyn@gmail.com">workwithatmosyn@gmail.com</Link>
+                                                <Link href={`mailto:${CONTACT.email.primary}`}>{CONTACT.email.primary}</Link><br></br><Link href={`mailto:${CONTACT.email.secondary}`}>{CONTACT.email.secondary}</Link>
                                             </li>
                                             <li>
                                                 <h6 className="title">Headquarters</h6>
-                                                Phagwara, Punjab, India
+                                                {SITE_CONFIG.location}
                                             </li>
                                             <li>
                                                 <Link href="https://www.google.com/maps" className="link-btn">
@@ -57,9 +52,9 @@ export default function Contact() {
                                             </li>
                                         </ul>
                                         <div id="contact-image" style={{ marginTop: '3rem', position: 'relative', width: '100%' }}>
-                                            <img 
-                                                src="/assets/img/others/contact1-1.svg" 
-                                                alt="Contact illustration" 
+                                            <img
+                                                src="/assets/img/others/contact1-1.svg"
+                                                alt="Contact illustration"
                                                 className="wow img-custom-anim-left"
                                                 style={{ width: '100%', maxHeight: '420px', objectFit: 'contain' }}
                                             />
@@ -72,7 +67,7 @@ export default function Contact() {
                                             <h4 className="subtitle">Got a project you want to collaborate on?
                                                 Or just fancy a chat?</h4>
                                         </div>
-                                        
+
                                         {/* Replace the static form with the ContactForm component */}
                                         {/* Pass empty title and subtitle props since we're keeping the existing heading */}
                                         <ContactForm title="" subtitle="" />

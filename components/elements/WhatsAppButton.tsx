@@ -1,30 +1,20 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import { getWhatsAppUrl } from '@/util/constants';
+import { useScrollThreshold } from '@/hooks/useScrollThreshold';
 
 export default function WhatsAppButton() {
-    // Phone number (without '+' sign) and message
-    const phoneNumber = '919539694902'; // Replace with your actual WhatsApp number
-    const message = 'Hello! I would like to know more about your services.';
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = getWhatsAppUrl('Hello! I would like to know more about your services.');
 
-    const [hasScrolled, setHasScrolled] = useState(false);
-
-    useEffect(() => {
-        const onScroll = () => {
-            setHasScrolled(window.scrollY > 200);
-        };
-        window.addEventListener('scroll', onScroll);
-        return () => window.removeEventListener('scroll', onScroll);
-    }, []);
+    const hasScrolled = useScrollThreshold(200);
 
     if (!hasScrolled) return null;
 
     return (
-        <a 
-            href={whatsappUrl} 
-            className="whatsapp-btn" 
-            target="_blank" 
+        <a
+            href={whatsappUrl}
+            className="whatsapp-btn"
+            target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat with us on WhatsApp"
         >
@@ -35,15 +25,12 @@ export default function WhatsAppButton() {
 
 // Variant for offcanvas and mobile menu without scroll detection
 export function WhatsAppButtonOffcanvas() {
-    // Phone number (without '+' sign) and message
-    const phoneNumber = '919539694902'; // Replace with your actual WhatsApp number
-    const message = 'Hello! I would like to know more about your services.';
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = getWhatsAppUrl('Hello! I would like to know more about your services.');
 
     return (
-        <a 
+        <a
             href={whatsappUrl}
-            target="_blank" 
+            target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat with us on WhatsApp"
         >

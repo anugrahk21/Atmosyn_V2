@@ -18,18 +18,20 @@ const MagnetsComponent: React.FC = () => {
             })
         }
 
+        const resetMagnet = (event: MouseEvent) => {
+            gsap.to(event.currentTarget, 1, { x: 0, y: 0, ease: Power4.easeOut })
+        }
+
         magnets.forEach(magnet => {
             magnet.addEventListener('mousemove', moveMagnet)
-            magnet.addEventListener('mouseout', event => {
-                gsap.to(event.currentTarget, 1, { x: 0, y: 0, ease: Power4.easeOut })
-            })
+            magnet.addEventListener('mouseout', resetMagnet as EventListener)
         })
 
-        // Cleanup
+        // Cleanup — using the same function references so listeners are actually removed
         return () => {
             magnets.forEach(magnet => {
                 magnet.removeEventListener('mousemove', moveMagnet)
-                magnet.removeEventListener('mouseout', () => { })
+                magnet.removeEventListener('mouseout', resetMagnet as EventListener)
             })
         }
     }, [])

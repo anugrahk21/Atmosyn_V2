@@ -1,29 +1,16 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useScrollThreshold } from '@/hooks/useScrollThreshold';
 
 interface ScrollIndicatorProps {
   className?: string;
 }
 
-const ScrollIndicator = ({ 
+const ScrollIndicator = ({
   className = ''
 }: ScrollIndicatorProps) => {
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Hide when scrolled down more than 150px
-      if (window.scrollY > 150) {
-        setVisible(false);
-      } else {
-        setVisible(true);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const hasScrolledPast = useScrollThreshold(150);
+  const visible = !hasScrolledPast;
 
   const handleClick = () => {
     window.scrollTo({
@@ -35,7 +22,7 @@ const ScrollIndicator = ({
   return (
     <>
       {visible && (
-        <a 
+        <a
           className={`scroll__down scroll-to-target ${className} ${!visible ? 'hidden' : ''}`}
           onClick={handleClick}
         >

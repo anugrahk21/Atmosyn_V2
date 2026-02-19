@@ -5,7 +5,15 @@ import OffcanvasMenu from '../OffcanvasMenu'
 import OfferMarquee from '@/components/sections/OfferMarquee'
 import { usePathname } from 'next/navigation'
 
-export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isOffcanvasMenu, handleOffcanvasMenu }: any) {
+interface Header1Props {
+    scroll: boolean;
+    isMobileMenu: boolean;
+    handleMobileMenu: () => void;
+    isOffcanvasMenu: boolean;
+    handleOffcanvasMenu: () => void;
+}
+
+export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isOffcanvasMenu, handleOffcanvasMenu }: Header1Props) {
     // Get current pathname to determine if we're on the home page
     const pathname = usePathname()
     const isHomePage = pathname === '/'

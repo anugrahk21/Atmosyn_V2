@@ -9,25 +9,12 @@ export default function AddClassBody() {
         const bodyElement = document.querySelector<HTMLBodyElement>('body')
 
         if (bodyElement) {
-            // Remove all classes
-            bodyElement.classList.remove('theme-green', 'theme-yellow', 'theme-purple', 'theme-orange', 'black2-bg')
+            // Apply the site theme
+            bodyElement.classList.add('theme-green')
+        }
 
-            // Add class based on pathname
-            // Add class based on pathname
-            if (pathname === '/home-2') {
-                bodyElement.classList.add('theme-yellow')
-            } else if (pathname === '/home-8') {
-                bodyElement.classList.add('theme-green', 'black2-bg')
-            } else if (pathname === '/home-4') {
-                bodyElement.classList.add('theme-purple')
-            } else if (pathname === '/home-5') {
-                bodyElement.classList.add('theme-orange', 'black2-bg')
-            } else if (pathname === '/home-6') {
-                bodyElement.classList.add('theme-green', 'black2-bg')
-            } else {
-                bodyElement.classList.add('theme-green')
-            }
-
+        return () => {
+            document.querySelector<HTMLBodyElement>('body')?.classList.remove('theme-green')
         }
     }, [pathname])
 
